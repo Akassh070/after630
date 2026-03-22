@@ -87,7 +87,7 @@ export default function HeroSection() {
           custom={0.1}
           className={styles.eyebrow}
         >
-          ✦ Ahmedabad&apos;s Exclusive After-Hours Club
+          ✦ Life Starts After 6:30
         </motion.p>
 
         <motion.h1
@@ -97,10 +97,8 @@ export default function HeroSection() {
           custom={0.3}
           className={styles.headline}
         >
-          Ahmedabad:{' '}
-          <em>Life Starts</em>
-          <br />
-          <span className="gradient-text">After 6:30</span>
+          Ahmedabad’s Most <br />
+          <span className="gradient-text">Exclusive After Office Community</span>
         </motion.h1>
 
         <motion.p
@@ -110,9 +108,9 @@ export default function HeroSection() {
           custom={0.5}
           className={styles.subtext}
         >
-          A curated community for corporate professionals
+          Where corporate professionals rediscover their passion, 
           <br />
-          to rediscover their passion.
+          one curated experience at a time.
         </motion.p>
 
         <motion.div
@@ -131,25 +129,6 @@ export default function HeroSection() {
           <a href="#gallery" className="btn-outline">
             View Gallery
           </a>
-        </motion.div>
-
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.9}
-          className={styles.stats}
-        >
-          {[
-            { value: '500+', label: 'Members' },
-            { value: '60+', label: 'Events Hosted' },
-            { value: '3', label: 'Passion Verticals' },
-          ].map((s) => (
-            <div key={s.label} className={styles.statItem}>
-              <span className={styles.statValue}>{s.value}</span>
-              <span className={styles.statLabel}>{s.label}</span>
-            </div>
-          ))}
         </motion.div>
       </div>
 

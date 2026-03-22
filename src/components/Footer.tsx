@@ -6,7 +6,7 @@ export default function Footer() {
       <div className={styles.inner}>
         <div className={styles.brand}>
           <a href="#" className={styles.logo}>
-            After <span className={styles.logoAccent}>6:30</span>
+            <img src="/logo.jpg" alt="After 6:30" className={styles.logoImg} />
           </a>
           <p className={styles.tagline}>
             Where corporate ends and passion begins.
@@ -24,13 +24,13 @@ export default function Footer() {
           </div>
           <div className={styles.linkGroup}>
             <span className={styles.groupTitle}>Contact Us</span>
-            <a href="tel:+919999999999">📞 +91 99999 99999</a>
-            <a href="mailto:hello@after630.in">✉️ hello@after630.in</a>
-            <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+            <a href="tel:+917016617715">📞 +91 70166 17715</a>
+            <a href="mailto:after630community@gmail.com">✉️ Gmail</a>
+            <a href="https://wa.me/917016617715" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
           </div>
           <div className={styles.linkGroup}>
             <span className={styles.groupTitle}>Social</span>
-            <a href="https://instagram.com/after630" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/after630club?igsh=MXB1M2ZxYmo4Y3c4eg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
               Instagram
             </a>
           </div>

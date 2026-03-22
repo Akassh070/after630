@@ -68,7 +68,7 @@ export default function ApplyToPerform() {
             transition={{ duration: 0.5 }}
             className="section-label"
           >
-            Got Talent?
+            There’s More To You Than Your Job
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -77,8 +77,7 @@ export default function ApplyToPerform() {
             transition={{ duration: 0.55, delay: 0.08 }}
             className="section-title"
           >
-            Apply to{' '}
-            <span className="gradient-text">Perform</span>
+            Apply To <span className="gradient-text">Do What You Love</span>
           </motion.h2>
           <div className="gold-divider" />
           <motion.p
@@ -88,7 +87,7 @@ export default function ApplyToPerform() {
             transition={{ duration: 0.55, delay: 0.18 }}
             className="section-subtitle"
           >
-            Are you a corporate professional with a hidden talent? We build the stage. You bring the fire.
+            You’ve been practicing in your room long enough. It’s time the right people see you
           </motion.p>
 
           <motion.div
@@ -99,9 +98,9 @@ export default function ApplyToPerform() {
             className={styles.perks}
           >
             {[
-              { icon: '🎭', text: 'Curated audience of 100+ professionals' },
-              { icon: '🎬', text: 'Professional photography & video coverage' },
-              { icon: '🤝', text: 'Mentorship from established performers' },
+              { icon: '🎭', text: 'You don’t need to be perfect. You just need to start.' },
+              { icon: '🎥', text: 'We capture your moments — so you can share your journey beyond the stage.' },
+              { icon: '🤝', text: 'Learn, grow, and get better with people who’ve already been there.' },
             ].map((perk) => (
               <div key={perk.text} className={styles.perk}>
                 <span className={styles.perkIcon}>{perk.icon}</span>

@@ -49,11 +49,12 @@ export default function UpcomingEvents() {
               <div className={styles.cardBody}>
                 <div className={styles.cardHeader}>
                   <span className={styles.eventType}>{ev.categoryIcon} {ev.categoryLabel}</span>
-                  <span className={`${styles.spotsTag} ${ev.spotsLeft <= 10 ? styles.few : ''}`}>
-                    {ev.spotsLeft} spots left
+                  <span className={`${styles.spotsTag} ${styles.few}`}>
+                    Limited spots
                   </span>
                 </div>
                 <h3 className={styles.eventTitle}>{ev.title}</h3>
+                <p className={styles.eventDesc}>{ev.shortDesc}</p>
                 <div className={styles.meta}>
                   <span>
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none">

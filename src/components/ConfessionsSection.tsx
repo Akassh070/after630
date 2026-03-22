@@ -18,7 +18,7 @@ export default function ConfessionsSection() {
           transition={{ duration: 0.5 }}
           className="section-label"
         >
-          Anonymous · Real · Honest
+          No Filters. No Names. Just Truth.
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
@@ -27,8 +27,7 @@ export default function ConfessionsSection() {
           transition={{ duration: 0.55, delay: 0.08 }}
           className="section-title"
         >
-          Confessions{' '}
-          <span className="gradient-text">After 6:30</span>
+          Things We <span className="gradient-text">Don’t Say At Work</span>
         </motion.h2>
         <div className="gold-divider" />
         <motion.p
@@ -39,7 +38,7 @@ export default function ConfessionsSection() {
           className="section-subtitle"
           style={{ marginBottom: '48px' }}
         >
-          Things we say after the office lights go off — anonymous, real, and more relatable than any LinkedIn post.
+          Because not everything fits in a LinkedIn post.
         </motion.p>
 
         <div className={styles.grid}>

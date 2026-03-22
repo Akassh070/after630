@@ -23,15 +23,15 @@
 }
 
 .logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--text-primary);
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
-.logoAccent {
-  color: var(--gold);
+.logoImg {
+  height: 56px;
+  width: auto;
+  display: block;
 }
 
 .tagline {

@@ -17,8 +17,8 @@ export default function AboutPreview() {
           >
             <p className="section-label">Our Story</p>
             <h2 className={styles.title}>
-              Built for the 9-to-5.<br/>
-              <span className="gradient-text">Designed for the 5-to-9.</span>
+              Built for your <span className="gradient-text">work life.</span><br/>
+              Designed for your <span className="gradient-text">real life.</span>
             </h2>
           </motion.div>
 
@@ -30,10 +30,16 @@ export default function AboutPreview() {
             className={styles.right}
           >
             <p className={styles.text}>
-              Ahmedabad has amazing corporate jobs, but a painfully predictable social life. You work hard, you go home, you watch Netflix, you repeat.
+              Ahmedabad gives you opportunities.
+              But somewhere, it takes away your evenings.
             </p>
             <p className={styles.text}>
-              We created After 6:30 because we believe life shouldn&apos;t end when you clock out. Whether you want to share a story, play a song, or just meet a stranger over specialty coffee — we built the stage for you.
+              Work ends. You go home. Same routine. Same screen. Same cycle.
+            </p>
+            <p className={styles.text}>
+              We built After 6:30 to change that.
+              To give you a reason to step out, meet new people,
+              and feel something real again.
             </p>
             <a href="/about" className="btn-outline" style={{ display: 'inline-flex', marginTop: '16px' }}>
               Read the Full Story

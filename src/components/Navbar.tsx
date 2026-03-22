@@ -29,7 +29,7 @@ export default function Navbar() {
       className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}
     >
       <a href="/" className={styles.logo}>
-        After <span className={styles.logoAccent}>6:30</span>
+        <img src="/logo.jpg" alt="After 6:30" className={styles.logoImg} />
       </a>
 
       <div className={styles.links}>

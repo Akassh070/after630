@@ -8,8 +8,8 @@ const bentoItems = [
     id: 'music',
     icon: '🎸',
     title: 'Live Music Sessions',
-    desc: 'Intimate acoustic sets and full-band performances by corporate professionals who live for the music.',
-    tag: 'Every Friday',
+    desc: 'Not just performances — real energy, real people. Unplugged nights where music feels personal, and every song hits differently.',
+    tag: 'Curated Evenings',
     accent: 'gold',
     large: true,
   },
@@ -17,8 +17,8 @@ const bentoItems = [
     id: 'storytelling',
     icon: '📖',
     title: 'Storytelling Nights',
-    desc: 'Unscripted, raw, and deeply personal — real stories from real professionals.',
-    tag: '2nd Saturday',
+    desc: 'No scripts. No filters. Just real stories from real people — the kind you carry with you.',
+    tag: 'Real Stories',
     accent: 'orange',
     large: false,
   },
@@ -26,17 +26,17 @@ const bentoItems = [
     id: 'comedy',
     icon: '🎤',
     title: 'Stand-up Comedy',
-    desc: 'Your colleagues are funnier than you think. A stage to prove it.',
-    tag: 'Monthly Showcase',
+    desc: 'Turns out, people around you are funnier than you think. This is their stage — and your escape.',
+    tag: 'Open Stage',
     accent: 'orange',
     large: false,
   },
   {
     id: 'coffee',
     icon: '☕',
-    title: 'Coffee & Networking',
-    desc: 'Curated conversations over specialty coffee. Where passion meets profession.',
-    tag: 'Every Sunday',
+    title: 'Coffee & Conversations',
+    desc: 'No pressure. No awkward networking. Just coffee, conversations, and genuine connections.',
+    tag: 'Easy Meetups',
     accent: 'gold',
     large: false,
   },
@@ -79,8 +79,8 @@ export default function BentoGrid() {
           transition={{ duration: 0.55, delay: 0.08 }}
           className="section-title"
         >
-          Your Passions,{' '}
-          <span className="gradient-text">Amplified</span>
+          More Than Events.{' '}
+          <span className="gradient-text">Real Experiences.</span>
         </motion.h2>
         <div className="gold-divider" />
 

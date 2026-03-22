@@ -22,7 +22,7 @@ export default function CommunityGallery() {
           transition={{ duration: 0.5 }}
           className="section-label"
         >
-          In The Room
+          What It Feels Like
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
@@ -31,7 +31,7 @@ export default function CommunityGallery() {
           transition={{ duration: 0.55, delay: 0.08 }}
           className="section-title"
         >
-          The <span className="gradient-text">Community</span> Gallery
+          Real People. <span className="gradient-text">Real Evenings.</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -41,7 +41,7 @@ export default function CommunityGallery() {
           className="section-subtitle"
           style={{ marginTop: '12px' }}
         >
-          Real moments. Real people. Real passion — after 6:30.
+          Every photo here was once a random evening. Now it’s a story someone remembers.
         </motion.p>
         <div className="gold-divider" />
 
