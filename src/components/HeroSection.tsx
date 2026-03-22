@@ -87,7 +87,7 @@ export default function HeroSection() {
           custom={0.1}
           className={styles.eyebrow}
         >
-          ✦ Life Starts After 6:30
+          Ahmedabad’s Most Exclusive After Office Community
         </motion.p>
 
         <motion.h1
@@ -97,8 +97,9 @@ export default function HeroSection() {
           custom={0.3}
           className={styles.headline}
         >
-          Ahmedabad’s Most <br />
-          <span className="gradient-text">Exclusive After Office Community</span>
+          Ahmedabad: <em>Life</em> <br />
+          <em>Starts</em> <br />
+          <span className="gradient-text">After 6:30</span>
         </motion.h1>
 
         <motion.p
@@ -108,9 +109,9 @@ export default function HeroSection() {
           custom={0.5}
           className={styles.subtext}
         >
-          Where corporate professionals rediscover their passion, 
+          A curated community for corporate professionals 
           <br />
-          one curated experience at a time.
+          to rediscover their passion.
         </motion.p>
 
         <motion.div
@@ -132,16 +133,7 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
-        className={styles.scrollHint}
-      >
-        <div className={styles.scrollLine} />
-        <span>Scroll</span>
-      </motion.div>
+
     </section>
   );
 }

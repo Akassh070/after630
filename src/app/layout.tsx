@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "After 6:30 – Life Starts After Work | Ahmedabad",
   description:
-    "A curated community for corporate professionals in Ahmedabad to rediscover their passions — live music, storytelling, stand-up comedy, and more.",
+    "A curated community for corporate professionals in Ahmedabad to rediscover their passions live music, storytelling, stand up comedy, and more.",
   keywords: ["Ahmedabad nightlife", "corporate community", "live events", "music storytelling comedy"],
   icons: {
     icon: '/favicon.jpg',

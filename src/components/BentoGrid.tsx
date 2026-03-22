@@ -8,7 +8,7 @@ const bentoItems = [
     id: 'music',
     icon: '🎸',
     title: 'Live Music Sessions',
-    desc: 'Not just performances — real energy, real people. Unplugged nights where music feels personal, and every song hits differently.',
+    desc: 'Not just performances real energy, real people. Unplugged nights where music feels personal, and every song hits differently.',
     tag: 'Curated Evenings',
     accent: 'gold',
     large: true,
@@ -17,7 +17,7 @@ const bentoItems = [
     id: 'storytelling',
     icon: '📖',
     title: 'Storytelling Nights',
-    desc: 'No scripts. No filters. Just real stories from real people — the kind you carry with you.',
+    desc: 'No scripts. No filters. Just real stories from real people the kind you carry with you.',
     tag: 'Real Stories',
     accent: 'orange',
     large: false,
@@ -26,7 +26,7 @@ const bentoItems = [
     id: 'comedy',
     icon: '🎤',
     title: 'Stand-up Comedy',
-    desc: 'Turns out, people around you are funnier than you think. This is their stage — and your escape.',
+    desc: 'Turns out, people around you are funnier than you think. This is their stage and your escape.',
     tag: 'Open Stage',
     accent: 'orange',
     large: false,
@@ -51,8 +51,8 @@ const containerVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30, filter: 'blur(8px)' },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     filter: 'blur(0px)',
     transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
@@ -82,7 +82,7 @@ export default function BentoGrid() {
           More Than Events.{' '}
           <span className="gradient-text">Real Experiences.</span>
         </motion.h2>
-        <div className="gold-divider" />
+
 
         <motion.div
           className={styles.grid}

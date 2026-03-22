@@ -29,7 +29,7 @@ export default function ConfessionsSection() {
         >
           Things We <span className="gradient-text">Don’t Say At Work</span>
         </motion.h2>
-        <div className="gold-divider" />
+        
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,12 +59,12 @@ export default function ConfessionsSection() {
                 {c.category}
               </span>
               <p className={styles.text}>&ldquo;{c.text}&rdquo;</p>
-              <span className={styles.anon}>— Anonymous</span>
+              <span className={styles.anon}>Anonymous</span>
             </motion.div>
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           className={styles.cta}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +74,7 @@ export default function ConfessionsSection() {
           <a href="/confessions" className="btn-outline">
             View More Confessions
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
         </motion.div>

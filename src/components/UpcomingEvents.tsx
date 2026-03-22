@@ -27,7 +27,7 @@ export default function UpcomingEvents() {
         >
           Upcoming <span className="gradient-text">Events</span>
         </motion.h2>
-        <div className="gold-divider" />
+        
 
         <div className={styles.cards}>
           {events.map((ev, i) => (

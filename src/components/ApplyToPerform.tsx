@@ -34,7 +34,7 @@ export default function ApplyToPerform() {
     try {
       const formData = new FormData(e.currentTarget);
       const res = await submitApplication(formData);
-      
+
       const name = formData.get('name');
       const email = formData.get('email');
       const artForm = formData.get('artForm');
@@ -43,8 +43,8 @@ export default function ApplyToPerform() {
 
       const whatsappText = `Hi After 6:30 Team! 👋\n\nI would love to apply to perform. Here are my details:\n\n*Name*: ${name}\n*Email*: ${email}\n*City*: ${city}\n*Art Form*: ${artForm}\n\n*My Story/Message*:\n${message}`;
       const encodedText = encodeURIComponent(whatsappText);
-      
-      const after630PhoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919999999999"; 
+
+      const after630PhoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919999999999";
       window.open(`https://wa.me/${after630PhoneNumber}?text=${encodedText}`, '_blank');
 
       if (res.success) {
@@ -79,7 +79,7 @@ export default function ApplyToPerform() {
           >
             Apply To <span className="gradient-text">Do What You Love</span>
           </motion.h2>
-          <div className="gold-divider" />
+          
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ export default function ApplyToPerform() {
           >
             {[
               { icon: '🎭', text: 'You don’t need to be perfect. You just need to start.' },
-              { icon: '🎥', text: 'We capture your moments — so you can share your journey beyond the stage.' },
+              { icon: '🎥', text: 'We capture your moments so you can share your journey beyond the stage.' },
               { icon: '🤝', text: 'Learn, grow, and get better with people who’ve already been there.' },
             ].map((perk) => (
               <div key={perk.text} className={styles.perk}>
@@ -210,7 +210,7 @@ export default function ApplyToPerform() {
                 {isPending ? 'Submitting...' : 'Apply Now'}
                 {!isPending && (
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 )}
               </button>

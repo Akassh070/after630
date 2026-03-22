@@ -6,7 +6,7 @@ export default function Footer() {
       <div className={styles.inner}>
         <div className={styles.brand}>
           <a href="#" className={styles.logo}>
-            <img src="/logo.jpg" alt="After 6:30" className={styles.logoImg} />
+            <img src="/logo-new.png" alt="After 6:30" className={`${styles.logoImg} ${styles.invertedLogo}`} />
           </a>
           <p className={styles.tagline}>
             Where corporate ends and passion begins.

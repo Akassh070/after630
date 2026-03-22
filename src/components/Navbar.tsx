@@ -29,7 +29,7 @@ export default function Navbar() {
       className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}
     >
       <a href="/" className={styles.logo}>
-        <img src="/logo.jpg" alt="After 6:30" className={styles.logoImg} />
+        <img src="/logo-new.png" alt="After 6:30" className={`${styles.logoImg} ${styles.invertedLogo}`} />
       </a>
 
       <div className={styles.links}>

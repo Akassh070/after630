@@ -61,18 +61,22 @@ export const events: After630Event[] = [
     spotsLeft: 10,
     image: '/gallery_storytelling.png',
     shortDesc: 'An evening where strangers turn into stories. Real conversations. Unexpected connections. And moments you didn’t know you needed.',
-    fullDesc: `Strangers & Stories is an intimate evening designed to break the predictability of after-office routines. 
+    fullDesc: `Strangers & Stories is an intimate evening designed to break the monotony of after-office routines and turn ordinary nights into something unforgettable.
+    
+In a city that’s always moving, we rarely pause to truly connect. This experience is built around one simple idea everyone you meet has a story worth hearing. And maybe, just maybe, it’s a story you didn’t know you needed.
 
-We believe that everyone you meet has a story worth hearing, and maybe, just maybe, they have a story that you need to hear too. 
+Expect a night filled with real conversations, playful interactions, and unexpected connections. No awkward networking, no forced introductions just a space where you can be yourself, meet new people, and enjoy the moment.
 
-Expect real conversations, unexpected connections, and the kind of moments that remind you why life in Ahmedabad is about more than just work. No scripts, no networking pressure, just genuine human interaction. 
+To set the vibe, the evening features live music that keeps the energy flowing, along with a complimentary drink to help you relax, open up, and truly be part of the experience.
 
-Come alone or bring a friend — either way, you'll leave with a story.`,
+Come alone or bring a friend either way, you won’t leave as strangers.
+
+You’ll leave with stories. ❤️`,
     lineup: [
-      { time: '7:30 PM', act: 'Arrival + Welcome Coffee', type: 'networking' },
-      { time: '7:50 PM', act: 'The Icebreaker – Beyond Small Talk', type: 'interaction' },
-      { time: '8:20 PM', act: 'Sharing Circles – Real Stories', type: 'storytelling' },
-      { time: '9:15 PM', act: 'Unstructured Conversations', type: 'networking' },
+      { time: '7:30 PM', act: 'Arrival & Welcome', type: 'networking' },
+      { time: '8:00 PM', act: 'The Icebreaker Beyond Small Talk', type: 'interaction' },
+      { time: '8:30 PM', act: 'Strangers & Stories Sharing Circles', type: 'storytelling' },
+      { time: '9:00 PM', act: 'Game start with live music', type: 'music' },
       { time: '9:45 PM', act: 'Closing Moments', type: 'outro' },
     ],
     ticketTypes: [

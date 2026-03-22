@@ -43,7 +43,7 @@ export default function CommunityGallery() {
         >
           Every photo here was once a random evening. Now it’s a story someone remembers.
         </motion.p>
-        <div className="gold-divider" />
+        
 
         <div className={styles.grid}>
           {images.map((img, i) => (

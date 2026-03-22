@@ -34,6 +34,10 @@
   display: block;
 }
 
+.invertedLogo {
+  filter: invert(1);
+}
+
 .tagline {
   font-size: 0.9rem;
   color: var(--text-muted);
