@@ -92,6 +92,21 @@
   background: var(--text-primary);
   border-radius: 2px;
   transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Hamburger X animation */
+.barTop {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.barMid {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.barBot {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Mobile menu */
@@ -128,6 +143,9 @@
   .nav.scrolled {
     padding: 14px 24px;
   }
+  .logoImg {
+    height: 40px;
+  }
   .links {
     display: none;
   }
@@ -136,5 +154,6 @@
   }
   .mobileMenu {
     display: flex;
+    z-index: 99;
   }
 }

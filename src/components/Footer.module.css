@@ -93,6 +93,9 @@
 }
 
 @media (max-width: 640px) {
+  .footer {
+    padding: 48px 20px 28px;
+  }
   .inner {
     flex-direction: column;
     gap: 48px;
@@ -116,5 +119,13 @@
     align-items: center;
     gap: 12px;
     text-align: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .links {
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
   }
 }

@@ -71,7 +71,9 @@
   .grid {
     grid-template-columns: 1fr;
     max-width: 400px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 32px;
     gap: 16px;
   }
 }

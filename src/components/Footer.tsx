@@ -38,7 +38,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.bottom}>
-        <span>© 2025 After 6:30 · Ahmedabad</span>
+        <span>© 2026 After 6:30 · Ahmedabad</span>
         <span className={styles.craft}>Crafted with ♥ for the passionate ones</span>
       </div>
     </footer>

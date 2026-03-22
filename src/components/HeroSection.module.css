@@ -147,3 +147,11 @@
     padding: 16px 20px;
   }
 }
+
+@media (max-width: 380px) {
+  .ctas {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+}

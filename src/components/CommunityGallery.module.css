@@ -68,8 +68,17 @@
   .grid {
     grid-template-columns: 1fr;
     grid-auto-rows: 250px;
+    gap: 12px;
   }
   .tall {
     grid-row: span 1;
+  }
+  /* Show overlay always on mobile since hover doesn't work on touch */
+  .overlay {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.05) 50%, transparent 100%);
+  }
+  .overlayLabel {
+    font-size: 1.2rem;
   }
 }

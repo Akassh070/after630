@@ -169,6 +169,12 @@ select.input option {
     text-align: center;
     padding-top: 0;
   }
+  .perks {
+    text-align: left;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .formRow {
     grid-template-columns: 1fr;
   }
@@ -176,9 +182,12 @@ select.input option {
 
 @media (max-width: 480px) {
   .formCard {
-    padding: 32px 24px;
+    padding: 28px 20px;
   }
   .successTitle {
     font-size: 1.5rem;
+  }
+  .perkText {
+    font-size: 0.85rem;
   }
 }
