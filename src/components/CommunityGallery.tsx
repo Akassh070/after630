@@ -4,11 +4,21 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import styles from './CommunityGallery.module.css';
 
-const images = [
-  { src: '/gallery_music.png', label: 'Live Music Sessions', type: '🎸 Music', tall: true },
-  { src: '/gallery_storytelling.png', label: 'Storytelling Nights', type: '📖 Storytelling', tall: false },
-  { src: '/gallery_comedy.png', label: 'Stand-up Comedy', type: '🎤 Comedy', tall: false },
-  { src: '/gallery_networking.png', label: 'Coffee & Networking', type: '☕ Networking', tall: true },
+interface GalleryImage {
+  src: string;
+  label: string;
+  type: string;
+  tall?: boolean;
+  wide?: boolean;
+  objectPosition?: string;
+}
+
+const images: GalleryImage[] = [
+  { src: '/gallery1.png', label: 'Coffee & Networking', type: '☕ Networking', wide: true, objectPosition: 'center 15%' },
+  { src: '/gallery2.png', label: 'Acoustic Vibes', type: '🎸 Music', tall: true },
+  { src: '/gallery3.png', label: 'Stories & Smiles', type: '🎤 Open Mic' },
+  { src: '/gallery4.png', label: 'The Group Vibe', type: '✨ Community' },
+  { src: '/gallery5.png', label: 'The After 6:30 Family', type: '📸 Memories', wide: true, objectPosition: 'center 20%' },
 ];
 
 export default function CommunityGallery() {
@@ -53,13 +63,13 @@ export default function CommunityGallery() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className={`${styles.item} ${img.tall ? styles.tall : ''}`}
+              className={`${styles.item} ${img.tall ? styles.tall : ''} ${img.wide ? styles.wide : ''}`}
             >
               <Image
                 src={img.src}
                 alt={img.label}
                 fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', objectPosition: img.objectPosition || 'center' }}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className={styles.overlay}>

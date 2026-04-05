@@ -1,0 +1,235 @@
+.wrapper {
+  background: var(--bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 80px 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 50px;
+}
+
+.vibeLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: #ff5f6d;
+  background: -webkit-linear-gradient(45deg, #ff5f6d, #ffc371);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+
+.writeButton {
+  background: linear-gradient(45deg, #ff5f6d, #ffc371);
+  color: #000;
+  border: none;
+  padding: 14px 28px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255, 95, 109, 0.3);
+  transition: all 0.3s ease;
+}
+
+.writeButton:hover {
+  box-shadow: 0 8px 30px rgba(255, 95, 109, 0.5);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+/* Glassy Card with Glow */
+.card {
+  position: relative;
+  border-radius: 24px;
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 1;
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.cardGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  background: radial-gradient(circle at top right, rgba(255, 195, 113, 0.1), transparent 50%);
+  z-index: -1;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
+.card:hover .cardGlow {
+  opacity: 1;
+}
+
+.cardContent {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.eventName {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  font-weight: 700;
+  background: rgba(226, 185, 115, 0.1);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+  font-size: 1rem;
+}
+
+.starFilled {
+  color: #ffc371;
+  text-shadow: 0 0 10px rgba(255, 195, 113, 0.5);
+}
+
+.starEmpty {
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.text {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  font-weight: 500;
+  flex-grow: 1;
+  margin-bottom: 24px;
+}
+
+.cardBottom {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+
+.anonBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.pulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #4cd137;
+  box-shadow: 0 0 8px #4cd137;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px #4cd137; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 0;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.emptyEmoji {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modalBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.modalContent {
+  position: relative;
+  z-index: 1001;
+  width: 100%;
+  max-width: 500px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  border-radius: var(--radius-lg, 16px);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+}
+

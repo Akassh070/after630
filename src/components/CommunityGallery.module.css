@@ -22,6 +22,10 @@
   grid-row: span 2;
 }
 
+.wide {
+  grid-column: span 2;
+}
+
 .item img {
   transition: transform 0.6s ease;
 }
@@ -72,6 +76,9 @@
   }
   .tall {
     grid-row: span 1;
+  }
+  .wide {
+    grid-column: span 1;
   }
   /* Show overlay always on mobile since hover doesn't work on touch */
   .overlay {

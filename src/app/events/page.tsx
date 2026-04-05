@@ -1,6 +1,9 @@
 import { events } from '@/lib/events';
 import cardStyles from '@/components/UpcomingEvents.module.css';
 import styles from './EventsPage.module.css';
+import ReviewSection from '@/components/ReviewSection';
+
+export const dynamic = 'force-dynamic';
 
 export default function EventsPage() {
   return (
@@ -70,6 +73,8 @@ export default function EventsPage() {
             }
           `}} />
         </div>
+        
+        <ReviewSection />
       </main>
     </>
   );
