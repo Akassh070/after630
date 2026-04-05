@@ -73,11 +73,15 @@ export default function ReviewForm({ onClose, initialEventName }: ReviewFormProp
             type="text" 
             id="eventName" 
             name="eventName" 
-            defaultValue={initialEventName || ""}
-            placeholder="e.g. Strangers & Stories" 
-            required 
-            readOnly={pending}
+            value={initialEventName || "Strangers & Stories"}
+            readOnly
             className={styles.input}
+            style={{ 
+              color: 'var(--gold)', 
+              background: 'rgba(255, 195, 113, 0.05)',
+              borderColor: 'rgba(226, 185, 115, 0.2)',
+              pointerEvents: 'none' 
+            }}
           />
         </div>
 
@@ -126,7 +130,7 @@ export default function ReviewForm({ onClose, initialEventName }: ReviewFormProp
         </div>
 
         <button type="submit" className={styles.submitBtn} disabled={pending}>
-          {pending ? 'Submitting...' : 'Submit Anonymous Review'}
+          {pending ? 'Submitting...' : 'Drop Review ✨'}
         </button>
       </form>
     </div>

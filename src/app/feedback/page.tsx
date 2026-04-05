@@ -34,7 +34,7 @@ export default function FeedbackPage() {
         alignItems: 'center', 
         justifyContent: 'center',
         background: 'radial-gradient(circle at center, rgba(30,30,30,1) 0%, rgba(10,10,10,1) 100%)',
-        padding: '20px 0'
+        padding: '120px 20px 40px 20px'
     }}>
       <Suspense fallback={<p style={{ color: 'var(--gold)' }}>Loading vibe check...</p>}>
         <FeedbackContent />

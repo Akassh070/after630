@@ -25,19 +25,60 @@ export default function AdminQRGenerator() {
     const img = new Image();
     
     img.onload = () => {
-      // Create padding and white background
-      const padding = 20;
-      canvas.width = img.width + padding * 2;
-      canvas.height = img.height + padding * 2;
+      // Create a premium poster size
+      const width = 800;
+      const height = 1000;
+      canvas.width = width;
+      canvas.height = height;
       
       if (ctx) {
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, padding, padding);
+        // High-end dark background
+        const grad = ctx.createLinearGradient(0, 0, 0, height);
+        grad.addColorStop(0, '#1a1a1a');
+        grad.addColorStop(1, '#000000');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
+
+        // Gold inner border
+        ctx.strokeStyle = '#e2b973';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(24, 24, width - 48, height - 48);
         
+        ctx.textAlign = 'center';
+        
+        // Brand Title
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 54px Arial, sans-serif';
+        ctx.fillText('After 6:30', width / 2, 130);
+
+        // Subtitle Highlight
+        ctx.fillStyle = '#ffc371';
+        ctx.font = 'bold 36px Arial, sans-serif';
+        ctx.fillText('RATE THE VIBE ✨', width / 2, 190);
+        
+        // Calculate QR placement
+        const qrSize = 500;
+        const x = (width - qrSize) / 2;
+        const y = 260;
+        
+        // Solid white background behind QR for absolute scanning reliability
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(x - 24, y - 24, qrSize + 48, qrSize + 48);
+        
+        ctx.drawImage(img, x, y, qrSize, qrSize);
+        
+        // Bottom Text
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 32px Arial, sans-serif';
+        ctx.fillText('SCAN TO DROP A REVIEW', width / 2, height - 140);
+        
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.font = 'italic 26px Arial, sans-serif';
+        ctx.fillText(`Event: ${eventName}`, width / 2, height - 90);
+
         const pngFile = canvas.toDataURL('image/png');
         const downloadLink = document.createElement('a');
-        downloadLink.download = `QR_${eventName.replace(/\s+/g, '_')}.png`;
+        downloadLink.download = `After630_QR_${eventName.replace(/\s+/g, '_')}.png`;
         downloadLink.href = `${pngFile}`;
         downloadLink.click();
       }
