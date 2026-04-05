@@ -14,11 +14,11 @@ interface GalleryImage {
 }
 
 const images: GalleryImage[] = [
-  { src: '/gallery1.png', label: 'Coffee & Networking', type: '☕ Networking', wide: true, objectPosition: 'center 15%' },
-  { src: '/gallery2.png', label: 'Acoustic Vibes', type: '🎸 Music', tall: true },
-  { src: '/gallery3.png', label: 'Stories & Smiles', type: '🎤 Open Mic' },
-  { src: '/gallery4.png', label: 'The Group Vibe', type: '✨ Community' },
-  { src: '/gallery5.png', label: 'The After 6:30 Family', type: '📸 Memories', wide: true, objectPosition: 'center 20%' },
+  { src: '/gallery1.png', label: 'Coffee & Networking', type: '☕ Networking', wide: true, objectPosition: 'top' },
+  { src: '/gallery2.png', label: 'Acoustic Vibes', type: '🎸 Music', tall: true, objectPosition: 'top' },
+  { src: '/gallery3.png', label: 'Stories & Smiles', type: '🎤 Open Mic', objectPosition: 'top' },
+  { src: '/gallery4.png', label: 'The Group Vibe', type: '✨ Community', objectPosition: 'top' },
+  { src: '/gallery5.png', label: 'The After 6:30 Family', type: '📸 Memories', wide: true, objectPosition: 'bottom' },
 ];
 
 export default function CommunityGallery() {
