@@ -1,255 +1,243 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap');
+@import "../styles/tokens.css";
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --bg: #080808;
-  --bg-2: #0f0f0f;
-  --bg-3: #141414;
-  --gold: #D4A017;
-  --gold-light: #F0BE3A;
-  --orange: #F4622A;
-  --orange-light: #FF7A44;
-  --glass-bg: rgba(255, 255, 255, 0.04);
-  --glass-bg-hover: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.10);
-  --glass-border-hover: rgba(212, 160, 23, 0.4);
-  --text-primary: #F5F0E8;
-  --text-secondary: #C8BFA8;
-  --text-muted: #7A7060;
-  --gradient-gold: linear-gradient(135deg, #D4A017, #F0BE3A, #F4622A);
-  --gradient-bg: radial-gradient(ellipse at top, #1a1208 0%, #080808 60%);
-  --shadow-gold: 0 0 40px rgba(212, 160, 23, 0.15);
-  --shadow-orange: 0 0 30px rgba(244, 98, 42, 0.2);
-  --radius-sm: 12px;
-  --radius-md: 18px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Shortening the transition above still lets a hover transform "jump" once,
+     visibly, for anyone who asked for reduced motion. Hover lift/zoom is
+     purely decorative, so switch it off outright; color/border hover
+     feedback (which doesn't move anything) still applies. */
+  *:hover {
+    transform: none !important;
+  }
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--text-primary);
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  line-height: 1.6;
-  overflow-x: hidden;
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: #fff;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4 {
-  font-family: 'Playfair Display', serif;
-  line-height: 1.15;
+img,
+picture {
+  display: block;
+  max-width: 100%;
 }
 
-/* ── Reusable Glass Card ── */
-.glass-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  will-change: transform;
-  transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.glass-card:hover {
-  background: var(--glass-bg-hover);
-  border-color: var(--glass-border-hover);
-  box-shadow: var(--shadow-gold), 0 10px 40px rgba(0,0,0,0.5);
-  transform: translateY(-6px) scale(1.01);
+/* Form controls don't inherit the page font by default (textarea even falls
+   back to monospace), so placeholders and typed text looked off-brand. */
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
-/* ── Gradient Text ── */
-.gradient-text {
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Native selects: hide the corner-stuck browser chevron and draw our own
+   with consistent inset from the right edge site-wide. */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1.5 1.75 6 6.25 10.5 1.75' stroke='%23142b3b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px 8px;
+  padding-right: 40px;
 }
 
-/* ── Primary CTA Button ── */
-.btn-primary {
+select::-ms-expand {
+  display: none;
+}
+
+/* Placeholders look the same in every field: lighter weight, muted tone. */
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-muted);
+  font-weight: 500;
+  opacity: 1;
+}
+
+/* iOS Safari zooms the whole page when a focused field's text is under 16px
+   (and doesn't zoom back). Android and desktop don't, so only iOS gets 16px —
+   applied to every field type so forms stay internally consistent there too.
+   -webkit-touch-callout is supported only by iOS/iPadOS WebKit. */
+@supports (-webkit-touch-callout: none) {
+  input:not([type="radio"]):not([type="checkbox"]),
+  select,
+  textarea {
+    font-size: max(16px, var(--field-font-size)) !important;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Visible focus ring everywhere, including inside Safari/iOS */
+:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 12px;
+  z-index: 1000;
+  background: var(--color-ink);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 13px;
+  transition: top var(--duration-fast) var(--ease);
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ---- Shared editorial utilities (mirrors the approved prototypes) ---- */
+
+/* The prototypes framed the page as a 1440px "review canvas". On a real site that
+   leaves grey side strips on wide monitors, so the shell is full-bleed; section
+   content is still capped by .container.
+   (This used to carry `overflow: clip` as a safety net against horizontal
+   overflow. Removed: the grid-overflow it guarded against is fixed at the
+   source — minmax() grid columns — and the responsive e2e suite checks every
+   route for overflow and clipped content.) */
+.site {
+  background: #fff;
+  min-height: 100vh;
+}
+
+.container {
+  width: min(var(--container), 100% - 48px);
+  margin-inline: auto;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.9px;
+  text-transform: uppercase;
+  color: var(--color-blue-dark);
+}
+
+.sectionTitle {
+  margin: 12px 0 0;
+  font-size: clamp(32px, 4.8vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -0.07em;
+  font-weight: 800;
+}
+
+.sectionText {
+  margin: 14px 0 0;
+  max-width: 560px;
+  color: var(--color-body);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border: none;
+  background: var(--color-blue);
+  color: #fff;
+  padding: 15px 22px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.22s ease;
+  box-shadow: 0 12px 24px rgba(37, 124, 157, 0.18);
+  min-height: 44px;
+}
+
+.btnPrimary:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+.btnGhost {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 16px 36px;
-  background: var(--gradient-gold);
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 100px;
-  cursor: pointer;
-  text-decoration: none;
-  will-change: transform;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, opacity 0.4s ease;
-  position: relative;
-  overflow: hidden;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--color-ink);
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(37, 124, 157, 0.35);
+  min-height: 44px;
+  transition:
+    color var(--duration-fast) var(--ease),
+    border-color var(--duration-fast) var(--ease);
 }
 
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
-  border-radius: inherit;
-}
+@media (hover: hover) and (pointer: fine) {
+  .btnPrimary:hover {
+    transform: translateY(-2px);
+    background: var(--color-blue-dark);
+  }
 
-.btn-primary:hover {
-  transform: scale(1.03) translateY(-2px);
-  box-shadow: 0 8px 30px rgba(244, 98, 42, 0.35), 0 0 20px rgba(212, 160, 23, 0.3);
-}
-
-.btn-primary:active {
-  transform: scale(0.98);
-}
-
-/* ── Secondary Outline Button ── */
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 28px;
-  background: transparent;
-  color: var(--gold);
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 0.875rem;
-  letter-spacing: 0.03em;
-  border: 1px solid rgba(212, 160, 23, 0.5);
-  border-radius: 100px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.btn-outline:hover {
-  background: rgba(212, 160, 23, 0.1);
-  border-color: var(--gold);
-  box-shadow: 0 6px 20px rgba(212, 160, 23, 0.2);
-  transform: translateY(-2px);
-}
-
-/* ── Section wrapper ── */
-.section {
-  padding: 100px 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-  scroll-margin-top: 100px;
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding: 80px 24px;
-    scroll-margin-top: 80px;
+  .btnGhost:hover {
+    color: var(--color-blue-dark);
+    border-color: var(--color-blue-dark);
   }
 }
 
-@media (max-width: 480px) {
-  .section {
-    padding: 60px 20px;
-    scroll-margin-top: 70px;
-  }
+.mutedNote {
+  font-size: 11px;
+  color: var(--color-muted);
 }
 
-.section-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 12px;
-}
-
-.section-title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 16px;
-}
-
-
-
-.section-subtitle {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  max-width: 560px;
-  line-height: 1.7;
-}
-
-/* ── Gold divider ── */
-.gold-divider {
-  width: 60px;
-  height: 2px;
-  background: var(--gradient-gold);
-  border-radius: 2px;
-  margin: 20px 0;
-}
-
-/* ── Scrollbar ── */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(212, 160, 23, 0.3);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 160, 23, 0.5);
-}
-/* ── Responsive Overrides ── */
-@media (max-width: 640px) {
-  .section-label, .section-title, .section-subtitle {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .gold-divider {
-    margin: 20px auto !important;
-  }
-
-  .section-subtitle {
-    font-size: 0.95rem;
-  }
-
-  .btn-primary {
-    padding: 14px 28px;
-    font-size: 0.88rem;
-  }
-
-  .btn-outline {
-    padding: 12px 24px;
-    font-size: 0.82rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .btn-primary, .btn-outline {
-    width: 100%;
-    justify-content: center;
+@media (max-width: 720px) {
+  .sectionText {
+    max-width: none;
   }
 }

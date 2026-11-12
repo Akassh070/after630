@@ -1,0 +1,73 @@
+.hamb {
+  display: none;
+  background: transparent;
+  border: 0;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--color-ink);
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 45;
+  background: #f9fbfb;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  box-shadow: 0 18px 40px rgba(20, 43, 59, 0.14);
+  padding: 12px 24px 22px;
+}
+
+.panel.open {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.panel a {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-ink);
+  padding: 12px 4px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.panel a[aria-current="page"] {
+  color: var(--color-blue-dark);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .panel a:hover {
+    color: var(--color-blue-dark);
+  }
+}
+
+@media (max-width: 760px) {
+  .hamb {
+    display: block;
+  }
+}
+
+.panel a.whatsapp {
+  margin-top: 8px;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: #0e7a3c;
+  color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .panel a.whatsapp:hover {
+    color: #fff;
+    background: #0b6a33;
+  }
+}

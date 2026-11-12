@@ -1,0 +1,46 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 7px 12px;
+  border-radius: 999px;
+}
+
+.badge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.comingSoon {
+  background: #eaf3f6;
+  color: var(--color-blue-dark);
+}
+
+.published {
+  background: #e6f4ec;
+  color: var(--color-success);
+}
+
+.soldOut {
+  background: #fdeaea;
+  color: var(--color-danger);
+}
+
+.postponed,
+.cancelled {
+  background: #fdf4e8;
+  color: var(--color-warning);
+}
+
+.completed,
+.draft {
+  background: #eef1f2;
+  color: var(--color-muted);
+}

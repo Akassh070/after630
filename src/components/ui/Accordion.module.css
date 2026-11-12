@@ -1,0 +1,69 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: #fff;
+  overflow: hidden;
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: transparent;
+  border: none;
+  padding: 18px 20px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-ink);
+  cursor: pointer;
+  min-height: 44px;
+  transition: background var(--duration-fast) var(--ease);
+}
+
+.icon {
+  flex-shrink: 0;
+  font-size: 18px;
+  color: var(--color-blue-dark);
+  font-weight: 800;
+}
+
+.panel {
+  padding: 0 20px 20px;
+  color: var(--color-body);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.expandAll {
+  align-self: flex-end;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
+  color: var(--color-blue-dark);
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+  margin-bottom: 4px;
+  min-height: 44px;
+  padding: 8px;
+  transition: border-color var(--duration-fast) var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .trigger:hover {
+    background: var(--color-soft);
+  }
+
+  .expandAll:hover {
+    border-bottom-color: var(--color-blue-dark);
+  }
+}

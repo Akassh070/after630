@@ -1,0 +1,68 @@
+.float {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 35; /* above page content, below the sticky header (40) and mobile nav panel (45) */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 20px 0 16px;
+  border-radius: 999px;
+  /* WhatsApp-style green, darkened so the white label meets 4.5:1 (5.4:1)
+     — brand #25D366 is only ~2:1 with white text. */
+  background: #0e7a3c;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 12px 30px rgba(12, 60, 32, 0.28);
+  transition:
+    transform var(--duration-fast) var(--ease),
+    background var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease);
+}
+
+.icon {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .float:hover {
+    background: #0b6a33;
+    transform: translateY(var(--hover-lift));
+    box-shadow: 0 16px 36px rgba(12, 60, 32, 0.34);
+  }
+}
+
+/* Phones: icon-only circle so it never covers much content. */
+@media (max-width: 640px) {
+  .float {
+    width: 56px;
+    padding: 0;
+    justify-content: center;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+  .label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 840px) {
+  .hideOnSmall {
+    display: none;
+  }
+}
+
+@media print {
+  .float {
+    display: none;
+  }
+}

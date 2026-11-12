@@ -1,0 +1,110 @@
+.footer {
+  background: #0c2533;
+  color: #fff;
+  padding: 55px 0 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+}
+
+.brand {
+  display: block;
+  height: 46px;
+  width: auto;
+}
+
+.tagline {
+  max-width: 300px;
+  font-size: 11px;
+  line-height: 1.95;
+  color: #a7bdc6;
+  margin-top: 14px;
+}
+
+.column h3 {
+  font-size: 12px;
+  margin: 6px 0 18px;
+}
+
+.column a {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  font-size: 11px;
+  color: #c0cfd5;
+  margin-bottom: 4px;
+  min-height: 36px;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .column a:hover {
+    color: #fff;
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+  border-top: 1px solid #2c4b5b;
+  margin-top: 35px;
+  padding-top: 20px;
+  color: #89aab7;
+  font-size: 10px;
+}
+
+@media (max-width: 760px) {
+  /* Brand spans the top; the two link columns sit side by side so the footer
+     isn't one very long list on phones. */
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 20px;
+  }
+  .grid > :first-child {
+    grid-column: 1 / -1;
+  }
+  .column a {
+    min-height: 44px;
+    margin-bottom: 0;
+    font-size: 13px;
+  }
+}
+
+.contactLink {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 16px;
+  min-height: 44px;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.contactLabel {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #a7bdc6;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contactLink:hover {
+    color: #78bdd5;
+  }
+}
+
+/* WhatsApp + Instagram contact links under the tagline */
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 32px;
+  margin-top: 4px;
+}

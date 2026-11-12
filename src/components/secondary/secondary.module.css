@@ -1,0 +1,1006 @@
+/* Shared layout patterns ported from the "secondary page" prototypes
+   (about / experiences / contact / faq / legal / 404) — they all shared one
+   stylesheet in handoff/ui, so this module keeps that same shared language. */
+
+.imageFrame {
+  position: relative;
+  background-color: #406474;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.imageNote {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  background: rgba(247, 250, 250, 0.93);
+  color: #24495a;
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-weight: 800;
+  font-size: 9px;
+  letter-spacing: 0.6px;
+  z-index: 2;
+}
+
+.bandDark {
+  background: var(--color-navy-deep);
+  color: #fff;
+}
+
+.bandDark :global(.eyebrow) {
+  color: #9ad5e9;
+}
+
+/* ---- About ---- */
+
+.aboutHero {
+  background: #f7fafb;
+  padding-bottom: 86px;
+}
+
+.aboutHeroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 52fr) minmax(0, 48fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 560px;
+  padding-top: 20px;
+}
+
+.aboutHeroCopy p {
+  max-width: 465px;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.95;
+  margin: 18px 0 24px;
+}
+
+.aboutHeroVisual {
+  position: relative;
+  height: 480px;
+}
+
+.mainShot {
+  position: absolute;
+  left: 3%;
+  top: 0;
+  width: 75%;
+  height: 83%;
+  border-radius: 180px 180px 18px 18px;
+  box-shadow: 0 24px 55px rgba(20, 43, 59, 0.13);
+}
+
+.secondShot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 54%;
+  height: 52%;
+  border: 9px solid #f7fafb;
+  border-radius: 16px;
+  box-shadow: 0 24px 55px rgba(20, 43, 59, 0.13);
+}
+
+.openingLine {
+  padding: 90px 0;
+}
+
+.openingLineInner {
+  border-left: 4px solid var(--color-blue);
+  padding-left: 35px;
+  max-width: 950px;
+}
+
+.openingLineInner p {
+  font-size: clamp(22px, 3vw, 38px);
+  line-height: 1.42;
+  letter-spacing: -0.047em;
+  font-weight: 750;
+  margin: 0;
+}
+
+.chapters {
+  padding: 90px 0;
+  background: #edf5f7;
+}
+
+.chapterHead {
+  text-align: center;
+  max-width: 690px;
+  margin: 0 auto 44px;
+}
+
+.chapterGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.chapterCard {
+  background: #fff;
+  border: 1px solid #d9e8ee;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  transition:
+    transform var(--duration-base) var(--ease),
+    box-shadow var(--duration-base) var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chapterCard:hover,
+  .chapterCard:focus-visible {
+    transform: translateY(var(--hover-lift));
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+.chapterPhoto {
+  height: 280px;
+  position: relative;
+}
+
+.chapterInfo {
+  padding: 28px;
+}
+
+.chapterKicker {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--color-blue-dark);
+  font-weight: 800;
+}
+
+.chapterCard h3 {
+  margin: 10px 0 10px;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.06em;
+  color: var(--color-ink);
+}
+
+.chapterCard p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--color-muted);
+  margin: 0 0 20px;
+}
+
+.beliefs {
+  padding: 90px 0;
+}
+
+.beliefGrid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 60px;
+}
+
+.beliefsList {
+  border-top: 1px solid var(--color-line);
+}
+
+.belief {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 15px;
+  padding: 25px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.belief b {
+  font-size: 11px;
+  color: var(--color-blue-dark);
+}
+
+.belief h3 {
+  font-size: 21px;
+  margin: 0 0 7px;
+  letter-spacing: -0.04em;
+}
+
+.belief p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.aboutCta {
+  padding: 80px 0;
+}
+
+.aboutCtaInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* ---- Experiences ---- */
+
+/* The breadcrumb sits at the very top of each hero (as on About and Trip
+   pages), with consistent breathing room before the hero's own content —
+   instead of a big empty band above it and the eyebrow glued underneath. */
+.archiveHero nav[aria-label="Breadcrumb"] + *,
+.contactHero nav[aria-label="Breadcrumb"] + *,
+.faqHero nav[aria-label="Breadcrumb"] + *,
+.legalHero nav[aria-label="Breadcrumb"] + * {
+  margin-top: 36px;
+}
+
+.archiveHero {
+  padding: 0 0 56px;
+  background: var(--color-paper);
+}
+
+.archiveHero h1 {
+  font-size: clamp(34px, 8vw, 64px);
+  letter-spacing: -0.07em;
+  line-height: 1.08;
+  margin: 14px 0 0;
+  max-width: 14ch;
+}
+
+.archiveLede {
+  max-width: 38rem;
+  margin: 18px 0 0;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.archiveFeature {
+  padding: 70px 0 90px;
+}
+
+.archiveBlock {
+  display: grid;
+  grid-template-columns: minmax(0, 56fr) minmax(0, 44fr);
+  gap: 34px;
+  align-items: center;
+  padding: 35px 0 60px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.archiveBlock.reverse {
+  grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
+}
+
+.archiveBlock.reverse .archivePicture {
+  order: 2;
+}
+
+.archivePicture {
+  height: 400px;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+}
+
+.archiveNumber {
+  font-size: 11px;
+  color: var(--color-blue-dark);
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.archiveBlock h2 {
+  font-size: clamp(28px, 4.7vw, 54px);
+  letter-spacing: -0.07em;
+  line-height: 1.08;
+  margin: 14px 0 20px;
+}
+
+.archiveBlock p {
+  font-size: 13px;
+  color: var(--color-muted);
+  line-height: 1.95;
+}
+
+.archiveCapsule {
+  display: inline-block;
+  border: 1px solid #d7e7ec;
+  border-radius: 30px;
+  padding: 9px 12px;
+  font-size: 10px;
+  color: #4b6978;
+  font-weight: 800;
+  margin-top: 15px;
+}
+
+.archiveQuote {
+  padding: 85px 0;
+  text-align: center;
+}
+
+.archiveQuote p {
+  max-width: 920px;
+  margin: 18px auto 0;
+  font-weight: 800;
+  font-size: clamp(26px, 4vw, 48px);
+  line-height: 1.3;
+  letter-spacing: -0.055em;
+}
+
+.archiveLast {
+  padding: 75px 0;
+  background: #eef5f7;
+}
+
+.archiveLastGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 45px;
+}
+
+.archiveLastPhoto {
+  height: 320px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- Contact ---- */
+
+.contactHero {
+  padding: 0 0 85px;
+  background: linear-gradient(145deg, #f7fafb, #eaf4f7);
+}
+
+.contactHeroGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.contactHero h1 {
+  font-size: clamp(44px, 5.8vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.078em;
+  margin: 15px 0;
+}
+
+.contactHero p {
+  font-size: 14px;
+  color: var(--color-muted);
+  line-height: 1.9;
+  max-width: 450px;
+}
+
+.contactMethods {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.contactMethod {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 18px;
+  border: 1px solid #d6e5eb;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.contactMethodPlain {
+  border-color: transparent;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.contactMethodLink {
+  color: inherit;
+  transition:
+    border-color var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease),
+    transform var(--duration-fast) var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contactMethodLink:hover {
+    border-color: #9fd3b4;
+    box-shadow: var(--shadow-hover);
+    transform: translateY(var(--hover-lift));
+  }
+}
+
+.methodIcon.methodIconWhatsapp {
+  background: #0e7a3c;
+  color: #fff;
+}
+
+.methodIcon.methodIconEmail {
+  background: var(--color-ink);
+  color: #fff;
+}
+
+.methodIcon.methodIconInstagram {
+  background: linear-gradient(45deg, #e1306c, #c13584 50%, #833ab4);
+  color: #fff;
+}
+
+.methodIcon.methodIconInstagram svg,
+.methodIcon.methodIconWhatsapp svg {
+  width: 22px;
+  height: 22px;
+}
+
+.methodIcon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  background: #e9f3f7;
+  border-radius: 12px;
+  color: var(--color-blue-dark);
+  font-size: 18px;
+  flex: 0 0 42px;
+}
+
+.contactMethod h3 {
+  font-size: 13px;
+  margin: 0 0 3px;
+}
+
+.contactMethod p {
+  font-size: 11px;
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.contactCard {
+  background: #fff;
+  border: 1px solid #dbe8ec;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(20, 43, 59, 0.09);
+  padding: 26px;
+}
+
+.formHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.formHead h2 {
+  font-size: 21px;
+  letter-spacing: -0.05em;
+  margin: 0;
+}
+
+.draftPill {
+  font-size: 9px;
+  font-weight: 800;
+  background: #e9f3f7;
+  color: #39738d;
+  border-radius: 30px;
+  padding: 7px 10px;
+  white-space: nowrap;
+}
+
+.formSection {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.formSection label {
+  font-size: 11px;
+  font-weight: 800;
+  color: #3c5a67;
+}
+
+.formControl {
+  border: 1px solid #d7e5ea;
+  background-color: #fbfdfd;
+  border-radius: 9px;
+  padding: 12px 14px;
+  color: var(--color-ink);
+  width: 100%;
+  font-size: var(--field-font-size);
+  font-weight: var(--field-font-weight);
+  min-height: 44px;
+  transition: border-color var(--duration-fast) var(--ease);
+}
+
+select.formControl {
+  padding-right: 40px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .formControl:hover {
+    border-color: #a4cbd7;
+  }
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* each .formSection already carries its own top margin; a row gap would
+     double the spacing once the row stacks on phones */
+  column-gap: 14px;
+  row-gap: 0;
+}
+
+.formActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.contactFollow {
+  padding: 80px 0;
+}
+
+.followGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.followGrid::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 38px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-blue), #7eb8cc 50%, var(--color-blue));
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.followCard {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  padding: 24px;
+  min-height: 170px;
+  background: #fff;
+}
+
+.followN {
+  font-size: 10px;
+  color: var(--color-blue-dark);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.followCard h3 {
+  font-size: 18px;
+  letter-spacing: -0.04em;
+  margin: 13px 0 7px;
+}
+
+.followCard p {
+  font-size: 12px;
+  color: var(--color-muted);
+  line-height: 1.9;
+  margin: 0;
+}
+
+/* ---- FAQ ---- */
+
+.faqHero {
+  padding: 0 0 60px;
+  background: #f6fafb;
+  text-align: center;
+}
+
+.faqHero h1 {
+  font-size: clamp(42px, 6vw, 72px);
+  letter-spacing: -0.08em;
+  line-height: 1.05;
+  margin: 15px 0;
+}
+
+.faqHero p {
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.faqSearch {
+  width: 100%;
+  max-width: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 17px;
+  border: 1px solid #cbdfe7;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  margin: 0 0 24px;
+}
+
+.faqSearch:has(input:focus-visible) {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 3px;
+}
+
+.faqSearch input {
+  border: 0;
+  outline: 0;
+  min-width: 0;
+  min-height: 32px;
+  flex: 1;
+  font-size: var(--field-font-size);
+  font-weight: var(--field-font-weight);
+  color: var(--color-ink);
+}
+
+.faqBody {
+  padding: 56px 0 40px;
+}
+
+.faqBottomCta {
+  padding: 0 0 85px;
+  text-align: center;
+}
+
+.faqBottomActions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.faqChips {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.faqChip {
+  border: 1px solid #d7e5e9;
+  background: #fff;
+  border-radius: 30px;
+  padding: 10px 15px;
+  color: #507181;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  min-height: 44px;
+  transition:
+    border-color var(--duration-fast) var(--ease),
+    color var(--duration-fast) var(--ease);
+}
+
+.faqChip.selected {
+  background: #1c465a;
+  color: #fff;
+  border-color: #1c465a;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .faqChip:not(.selected):hover {
+    border-color: #a4cbd7;
+    color: var(--color-blue-dark);
+  }
+}
+
+.faqLayout {
+  display: grid;
+  grid-template-columns: 0.66fr 1.34fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.faqMain {
+  min-width: 0;
+  width: 100%;
+}
+
+.faqAside {
+  position: sticky;
+  top: 105px;
+  align-self: start;
+  background: #e9f3f7;
+  border-radius: 18px;
+  padding: 25px;
+}
+
+.faqAside h3 {
+  font-size: 22px;
+  letter-spacing: -0.055em;
+  margin: 10px 0;
+}
+
+.faqAside p {
+  font-size: 12px;
+  color: var(--color-muted);
+  line-height: 1.9;
+}
+
+.faqEmpty {
+  border: 1px dashed #bdd5dd;
+  border-radius: 12px;
+  padding: 28px;
+  text-align: center;
+  color: #728b96;
+  font-size: 13px;
+}
+
+/* ---- Legal ---- */
+
+.legalHero {
+  background: #f5fafb;
+  padding: 0 0 60px;
+}
+
+.legalHero h1 {
+  font-size: clamp(40px, 5.9vw, 68px);
+  letter-spacing: -0.075em;
+  line-height: 1.08;
+  margin: 16px 0;
+}
+
+.legalMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+  margin-top: 20px;
+}
+
+.legalTag {
+  border-radius: 30px;
+  background: #e6f2f6;
+  border: 1px solid #cfe3e9;
+  font-size: 10px;
+  color: var(--color-muted);
+  padding: 8px 11px;
+  font-weight: 800;
+}
+
+.legalBody {
+  padding: 50px 0 90px;
+}
+
+.legalGrid {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 44px;
+  align-items: start;
+}
+
+.legalToc {
+  position: sticky;
+  top: 105px;
+  border: 1px solid var(--color-line);
+  border-radius: 15px;
+  padding: 20px;
+  background: #fafcfc;
+}
+
+.legalToc h3 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--color-muted);
+  margin: 0 0 14px;
+}
+
+.legalToc a {
+  display: block;
+  padding: 13px 0;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-muted);
+  border-bottom: 1px solid #edf2f4;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .legalToc a:hover {
+    color: var(--color-blue-dark);
+  }
+}
+
+.legalCopy {
+  max-width: 860px;
+}
+
+.legalSection {
+  padding: 26px 0;
+  border-bottom: 1px solid var(--color-line);
+  scroll-margin-top: 100px;
+}
+
+.legalSection:first-of-type {
+  padding-top: 0;
+}
+
+.legalSection h2 {
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+  margin: 0 0 12px;
+}
+
+.legalSection p {
+  font-size: 13px;
+  line-height: 1.95;
+  color: var(--color-muted);
+}
+
+.legalBottom {
+  background: #eef6f8;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 28px;
+}
+
+.legalBottom h3 {
+  font-size: 18px;
+  margin: 0 0 7px;
+  letter-spacing: -0.035em;
+}
+
+.legalBottom p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--color-muted);
+  margin: 0 0 14px;
+}
+
+/* ---- 404 ---- */
+
+.notfound {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 60px 24px;
+  background:
+    radial-gradient(ellipse at top, #eaf4f7 0%, transparent 55%),
+    #f7fafb;
+}
+
+.notfound h1 {
+  font-size: clamp(90px, 20vw, 220px);
+  font-weight: 800;
+  letter-spacing: -0.14em;
+  line-height: 1;
+  margin: 0;
+  color: #d9e9ef;
+}
+
+.notfound h2 {
+  font-size: clamp(27px, 5vw, 44px);
+  letter-spacing: -0.06em;
+  margin: 2px 0 8px;
+}
+
+.notfound p {
+  max-width: 440px;
+  margin: 0 auto 20px;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.notfoundActions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .contactHeroGrid {
+    gap: 25px;
+  }
+  .aboutHeroGrid {
+    min-height: 480px;
+  }
+}
+
+@media (max-width: 760px) {
+  .aboutHeroGrid,
+  .chapterGrid,
+  .beliefGrid,
+  .archiveBlock,
+  .archiveBlock.reverse,
+  .archiveLastGrid,
+  .contactHeroGrid,
+  .followGrid,
+  .faqLayout,
+  .legalGrid {
+    grid-template-columns: 1fr;
+  }
+  .followGrid::before {
+    display: none;
+  }
+  .aboutHero {
+    padding-bottom: 50px;
+  }
+  .aboutHeroGrid {
+    min-height: 0;
+  }
+  .aboutHeroVisual {
+    height: 340px;
+  }
+  .openingLine,
+  .chapters,
+  .beliefs,
+  .archiveFeature,
+  .archiveQuote,
+  .archiveLast,
+  .contactFollow {
+    padding: 56px 0;
+  }
+  .openingLineInner {
+    padding-left: 22px;
+  }
+  .aboutCtaInner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .archiveHero {
+    padding: 0 0 40px;
+  }
+  .archiveHero h1 {
+    max-width: none;
+    font-size: clamp(32px, 9vw, 42px);
+    line-height: 1.1;
+  }
+  .archiveLede {
+    font-size: 13px;
+    margin-top: 14px;
+  }
+  .archiveBlock,
+  .archiveBlock.reverse {
+    gap: 20px;
+  }
+  .archiveBlock.reverse .archivePicture {
+    order: 0;
+  }
+  .archivePicture {
+    height: 280px;
+  }
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+  .faqLayout {
+    gap: 26px;
+  }
+  /* On one column, answers come first; the "ask the team" prompt follows
+     them instead of pushing the search and questions below the fold. */
+  .faqAside {
+    position: static;
+    order: 2;
+  }
+  .legalToc {
+    position: static;
+  }
+  .legalSection {
+    scroll-margin-top: 75px;
+  }
+}
+
+/* Phones: composer actions share a line or each span full width once they wrap. */
+@media (max-width: 480px) {
+  .formActions > * {
+    flex: 1 1 auto;
+  }
+}

@@ -1,0 +1,62 @@
+/*
+ * Design tokens — ported from the approved After630 "Modern Explorer"
+ * prototypes (see /handoff/ui/docs/DESIGN_SYSTEM.md in the project root).
+ * Keep these in sync with that document; do not introduce new colors here
+ * without updating the doc too.
+ */
+:root {
+  /* Core palette */
+  --color-ink: #142b3b; /* main navy */
+  --color-navy-deep: #0d2b3b; /* dark cinematic navy */
+  --color-blue: #257c9d; /* glacier blue */
+  --color-blue-dark: #16566f; /* hover / pressed */
+  --color-blue-deep: #166888; /* secondary-page accent variant */
+  --color-button-blue: #176b8c; /* alt CTA blue used on a few prototypes */
+  /*
+   * Muted text tones. The prototypes used ~30 slightly different light
+   * grays for secondary/caption text (#5f7682, #627985, #6b8b9a, #7a949f...)
+   * — most of them failed WCAG AA contrast (4.5:1) on the light surfaces
+   * they sat on (an axe-core scan caught this). These two tones replace all
+   * of them: both are verified ≥4.5:1 on every light surface this app uses
+   * (#ffffff, #f7f9f9, #eaf3f6, #eef6f8, #fafcfc, #f0f3f4).
+   */
+  --color-body: #4f6b77; /* secondary/body copy */
+  --color-muted: #4f6b77; /* captions, kickers, fine print — same tone, used for porting continuity */
+  --color-paper: #f7f9f9; /* light background */
+  --color-soft: #eaf3f6; /* pale blue surface */
+  --color-line: #dce7eb; /* divider */
+  --color-line-soft: #e0e9ed;
+  --color-white: #ffffff;
+
+  /* Status */
+  --color-success: #1f7a4d;
+  --color-warning: #8a5214;
+  --color-danger: #b23b3b;
+
+  /* Elevation / shape */
+  --shadow-md: 0 12px 40px rgba(20, 43, 59, 0.08);
+  --shadow-lg: 0 20px 60px rgba(20, 43, 59, 0.12);
+  --radius-lg: 18px;
+  --radius-md: 13px;
+  --radius-sm: 10px;
+  --container: 1260px;
+
+  /* Type */
+  --font-sans: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 0.18s;
+  --duration-base: 0.3s;
+
+  /* Form fields — one size/weight for every input, select, textarea and
+     search box. iOS bumps this to 16px (see globals.css). */
+  --field-font-size: 14px;
+  --field-font-weight: 600;
+
+  /* Hover */
+  --hover-lift: -3px;
+  --hover-lift-lg: -4px;
+  --hover-zoom: 1.04;
+  --shadow-hover: 0 14px 34px rgba(20, 43, 59, 0.12);
+}

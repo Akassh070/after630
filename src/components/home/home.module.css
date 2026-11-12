@@ -1,0 +1,1071 @@
+/* Ported from handoff/ui/after630_complete_homepage_v1.html — approved visual baseline. */
+
+.hero {
+  position: relative;
+  color: #fff;
+  overflow: hidden;
+  background: #122a36;
+  isolation: isolate;
+}
+
+.heroBg,
+.heroFallback {
+  position: absolute;
+  inset: 0;
+}
+
+.heroBg {
+  object-fit: cover;
+  z-index: -3;
+  filter: saturate(0.95) contrast(1.02) brightness(0.74);
+}
+
+.heroFallback {
+  z-index: -4;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(91, 164, 194, 0.28), transparent 24%),
+    linear-gradient(180deg, #27485a 0%, #183342 38%, #0f2531 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(180deg, rgba(8, 24, 33, 0.25) 0%, rgba(8, 24, 33, 0.55) 58%, rgba(8, 24, 33, 0.88) 100%),
+    linear-gradient(90deg, rgba(8, 24, 33, 0.74) 0%, rgba(8, 24, 33, 0.46) 36%, rgba(8, 24, 33, 0.18) 100%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 220px;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(8, 24, 33, 0) 0%, rgba(8, 24, 33, 0.72) 60%, rgba(8, 24, 33, 0.96) 100%);
+}
+
+.heroContent {
+  padding: 74px 0 34px;
+  position: relative;
+}
+
+.heroCopy {
+  max-width: 760px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.heroEyebrow {
+  color: #abd8ea;
+  text-align: center;
+}
+
+.heroTitle {
+  margin: 16px 0 16px;
+  font-size: clamp(50px, 8vw, 108px);
+  line-height: 1.02;
+  letter-spacing: -0.085em;
+  word-spacing: 0.12em; /* keeps words visibly separate at the tight tracking */
+  font-weight: 800;
+  overflow-wrap: break-word;
+}
+
+.heroTitle .accent {
+  color: #9bd7ec;
+}
+
+.heroLede {
+  margin: 0 auto;
+  max-width: 620px;
+  color: #e1edf1;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.heroActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.categoriesWrap {
+  margin-top: 54px;
+}
+
+.categoriesHead {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #dbe8ed;
+}
+
+.categories {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  /* Reserve featured height so hover expand grows upward, not the page */
+  height: 360px;
+}
+
+.categoryCard {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 312px;
+  border-radius: 16px;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  color: #fff;
+  background: #294451;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.16);
+  transition:
+    flex-grow var(--duration-base) var(--ease),
+    height var(--duration-base) var(--ease),
+    transform var(--duration-base) var(--ease),
+    box-shadow var(--duration-base) var(--ease);
+  isolation: isolate;
+  display: block;
+}
+
+.categorySlides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .categoryCard:hover,
+  .categoryCard:focus-visible {
+    flex-grow: 1.35;
+    height: 356px;
+    transform: translateY(-4px);
+    box-shadow: 0 30px 55px rgba(0, 0, 0, 0.2);
+  }
+
+  .categoryCard:hover .categorySlides :global(img),
+  .categoryCard:focus-visible .categorySlides :global(img) {
+    transform: scale(var(--hover-zoom));
+  }
+}
+
+.categoryCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(7, 27, 40, 0.06) 10%, rgba(7, 27, 40, 0.83) 100%);
+}
+
+.categoryLabel {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  padding: 9px 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #173b4d;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.6px;
+}
+
+.categoryInner {
+  position: absolute;
+  left: 20px;
+  right: 18px;
+  bottom: 20px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.categoryInner h3 {
+  margin: 0;
+  font-size: clamp(22px, 2.7vw, 34px);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.055em;
+}
+
+.categoryInner p {
+  margin: 8px 0 0;
+  font-size: 10px;
+  color: #dce9ee;
+  line-height: 1.6;
+}
+
+.categoryArrow {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #eef7fa;
+  color: #183f51;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* ---- Upcoming Trips ---- */
+
+.upcoming {
+  padding: 96px 0 100px;
+  background: #fff;
+}
+
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 22px;
+  margin-bottom: 28px;
+}
+
+.sectionLede {
+  margin: 12px 0 0;
+  max-width: 520px;
+}
+
+.sectionHeadRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.tripsLayout {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.highlight {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 520px;
+  overflow: hidden;
+  color: #fff;
+  border-radius: 20px;
+  background: #355463;
+  isolation: isolate;
+  box-shadow: var(--shadow-md);
+}
+
+/* The background photo is pinned full-bleed behind everything and never
+   participates in flex sizing — the card's real height comes from
+   .highlightBottom's actual content instead, so long titles/descriptions
+   can never overlap the top badges (see UpcomingTrips.tsx). */
+/* Compound selector (two classes) deliberately outranks SmartImage's own
+   .frame{position:relative} regardless of CSS source order. */
+.highlight .highlightImage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.highlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(9, 29, 42, 0.12) 15%, rgba(9, 29, 42, 0.9) 100%);
+}
+
+.highlightTop {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #173a4c;
+  padding: 9px 12px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.65px;
+}
+
+.highlightBottom {
+  position: relative;
+  z-index: 2;
+  padding: 64px 28px 28px;
+}
+
+.highlightBottom h3 {
+  margin: 0;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.06;
+  letter-spacing: -0.06em;
+  font-weight: 800;
+}
+
+.highlightBottom p {
+  margin: 12px 0 0;
+  max-width: 470px;
+  color: #deebef;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.metaRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.metaK {
+  display: block;
+  font-size: 10px;
+  color: #c0d4dc;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.metaV {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.tripActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.tripList {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  height: 100%;
+  min-height: 0;
+}
+
+.miniTrip {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 18px;
+  align-items: stretch;
+  border: 1px solid var(--color-line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--shadow-md);
+  color: inherit;
+  text-decoration: none;
+  min-height: 0;
+  transition:
+    transform var(--duration-base) var(--ease),
+    box-shadow var(--duration-base) var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .miniTrip:hover,
+  .miniTrip:focus-visible {
+    transform: translateY(var(--hover-lift));
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+.miniVisual {
+  position: relative;
+  min-height: 216px;
+  background: #355463;
+}
+
+.miniBadge {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 2;
+}
+
+.miniBody {
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.miniTitle {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.miniCopy {
+  margin-top: 10px;
+  color: var(--color-body);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.miniMeta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.miniFooter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.miniCta {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--color-blue-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---- Manifesto ---- */
+
+.manifesto {
+  background: var(--color-navy-deep);
+  color: #fff;
+  padding: 92px 0;
+}
+
+.manifestoGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 43fr) minmax(0, 57fr);
+  gap: 36px;
+  align-items: center;
+}
+
+.manifesto :global(.eyebrow) {
+  color: #8dcae0;
+}
+
+.manifestoTitle {
+  margin: 16px 0 0;
+  font-size: clamp(38px, 5.1vw, 72px);
+  line-height: 1.08;
+  letter-spacing: -0.07em;
+  font-weight: 800;
+}
+
+.manifestoTitle .accent {
+  color: #8dd2e9;
+}
+
+.manifestoText {
+  margin: 18px 0 0;
+  max-width: 420px;
+  color: #bfd2da;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.btnRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.manifestoPhotos {
+  display: grid;
+  grid-template-columns: 1fr 0.68fr;
+  gap: 14px;
+  align-items: end;
+  min-height: 420px;
+}
+
+.shapePhoto {
+  overflow: hidden;
+  background: #294451;
+  position: relative;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18);
+}
+
+.manifestoSlideshow {
+  position: absolute;
+  inset: 0;
+}
+
+.shapePhotoA {
+  min-height: 420px;
+  border-radius: 180px 180px 20px 20px;
+}
+
+.shapePhotoB {
+  min-height: 290px;
+  border-radius: 20px 20px 140px 140px;
+}
+
+/* ---- Experience ---- */
+
+.experience {
+  padding: 100px 0;
+  background: #fff;
+}
+
+.experienceLayout {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.experienceVisual {
+  position: relative;
+  min-height: 520px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: #355463;
+}
+
+.experienceSlideshow {
+  position: absolute;
+  inset: 0;
+}
+
+.experienceIntro .sectionText {
+  margin-top: 14px;
+  max-width: 460px;
+}
+
+.experienceRows {
+  margin-top: 28px;
+  border-top: 1px solid var(--color-line);
+}
+
+.experienceRow {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.expNum {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-blue-dark);
+  padding-top: 4px;
+}
+
+.experienceRow h3 {
+  margin: 0;
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.18;
+  letter-spacing: -0.05em;
+}
+
+.experienceRow p {
+  margin: 8px 0 0;
+  color: var(--color-body);
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 420px;
+}
+
+/* ---- How it works ---- */
+
+.how {
+  padding: 96px 0;
+  background: var(--color-soft);
+}
+
+.howHead {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 42px;
+}
+
+.howHead .sectionText {
+  margin-inline: auto;
+}
+
+.steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.steps::before {
+  content: "";
+  position: absolute;
+  /* Centers of col 1 and col 4 in a 4-col grid */
+  left: 12.5%;
+  right: 12.5%;
+  top: 22px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-blue), #7eb8cc 50%, var(--color-blue));
+  opacity: 0.55;
+}
+
+.step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stepNum {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--color-blue);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow:
+    0 0 0 8px var(--color-soft),
+    0 0 0 9px rgba(37, 124, 157, 0.28);
+  margin-bottom: 22px;
+}
+
+.step h3 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.step p {
+  margin: 10px 0 0;
+  color: var(--color-body);
+  font-size: 12px;
+  line-height: 1.8;
+  max-width: 230px;
+}
+
+.howActions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.howNote {
+  text-align: center;
+  max-width: 680px;
+  margin: 18px auto 0;
+  color: var(--color-body);
+  font-size: 11px;
+  line-height: 1.85;
+}
+
+/* ---- Story ---- */
+
+.story {
+  padding: 100px 0;
+  background: #fff;
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 54px;
+  align-items: center;
+}
+
+.storyVisual {
+  position: relative;
+  min-height: 480px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: #355463;
+}
+
+.storySlideshow {
+  position: absolute;
+  inset: 0;
+}
+
+.storyTag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  background: #fff;
+  color: #15384a;
+  border-radius: 6px;
+  padding: 8px 11px;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.7px;
+}
+
+.storyCopy p {
+  margin: 18px 0 0;
+  color: var(--color-body);
+  font-size: 14px;
+  line-height: 1.95;
+}
+
+/* ---- Home FAQ ---- */
+
+.faq {
+  padding: 88px 0 95px;
+  background: var(--color-paper);
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 70px;
+  align-items: start;
+}
+
+.faqCopy .sectionText {
+  max-width: 390px;
+}
+
+.faqActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* ---- Closing ---- */
+
+.closing {
+  position: relative;
+  min-height: 390px;
+  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+  background: #102936;
+}
+
+.closing::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(10, 34, 48, 0.93), rgba(10, 34, 48, 0.34));
+}
+
+.closingContent {
+  padding: 70px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.closing :global(.eyebrow) {
+  color: #c8e8f2;
+}
+
+.closingTitle {
+  margin: 14px 0 0;
+  max-width: 700px;
+  font-size: clamp(38px, 5.4vw, 70px);
+  line-height: 1.1;
+  letter-spacing: -0.07em;
+  font-weight: 800;
+}
+
+.closingTitle .accent {
+  color: #9dd9ea;
+}
+
+.closingText {
+  margin: 18px 0 0;
+  max-width: 540px;
+  color: #dde9ef;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* ---- Shared helpers ---- */
+
+.fallbackBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #5e7d88, #27404d);
+}
+
+@media (max-width: 980px) {
+  .tripsLayout,
+  .manifestoGrid,
+  .storyGrid,
+  .faqGrid {
+    grid-template-columns: 1fr;
+  }
+  .experienceLayout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .experienceVisual {
+    min-height: 360px;
+  }
+  .sectionHead {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .sectionHeadRight {
+    align-items: flex-start;
+  }
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 34px 20px;
+  }
+  .steps::before {
+    display: none;
+  }
+  .tripList {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: none;
+    height: auto;
+  }
+  .miniTrip {
+    grid-template-columns: 1fr;
+  }
+  .miniVisual {
+    min-height: 180px;
+  }
+  /* Mobile/tablet: featured + mini share the same Ask CTA control. */
+  .askCta,
+  .miniCta {
+    width: 100%;
+    min-height: 44px;
+    padding: 14px 20px;
+    border-radius: var(--radius-sm);
+    background: #fff !important;
+    color: #173a4c !important;
+    box-shadow: none !important;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .miniFooter {
+    justify-content: stretch;
+  }
+  .miniCta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid rgba(23, 58, 76, 0.12);
+  }
+}
+
+@media (max-width: 720px) {
+  .heroContent {
+    padding: 36px 0 26px;
+  }
+  .heroCopy {
+    text-align: left;
+    margin: 0;
+  }
+  .heroEyebrow {
+    text-align: left;
+  }
+  .heroTitle {
+    font-size: clamp(46px, 11.5vw, 72px);
+    margin: 14px 0 14px;
+    letter-spacing: -0.075em;
+  }
+  .heroLede {
+    margin: 0;
+    font-size: 13px;
+    max-width: unset;
+  }
+  .heroActions {
+    justify-content: flex-start;
+    gap: 18px;
+    margin-top: 22px;
+  }
+  .categoriesWrap {
+    margin-top: 34px;
+  }
+  .categories {
+    display: flex;
+    height: auto;
+    overflow-x: auto;
+    gap: 12px;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 6px;
+  }
+  .categoryCard {
+    min-width: 80%;
+    flex: 0 0 80%;
+    height: 330px;
+    scroll-snap-align: start;
+  }
+  .upcoming,
+  .experience,
+  .story {
+    padding: 70px 0;
+  }
+  .manifesto,
+  .how {
+    padding: 72px 0;
+  }
+  .faq {
+    padding: 68px 0 74px;
+  }
+  .tripsLayout {
+    gap: 16px;
+  }
+  .highlight {
+    min-height: 430px;
+  }
+  .highlightBottom h3 {
+    font-size: 36px;
+  }
+  .metaRow {
+    grid-template-columns: 1fr;
+  }
+  .tripList {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    height: auto;
+  }
+  .miniTrip {
+    grid-template-columns: 1fr;
+  }
+  .miniVisual {
+    min-height: 200px;
+  }
+  .miniTitle {
+    font-size: 24px;
+  }
+  .manifestoPhotos {
+    grid-template-columns: 1fr 0.72fr;
+    gap: 10px;
+    min-height: auto;
+  }
+  .shapePhotoA {
+    min-height: 280px;
+    border-radius: 999px 999px 16px 16px;
+  }
+  .shapePhotoB {
+    min-height: 200px;
+    border-radius: 16px 16px 999px 999px;
+  }
+  .experienceVisual {
+    min-height: 280px;
+  }
+  .experienceRow {
+    grid-template-columns: 42px 1fr;
+    gap: 12px;
+  }
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    column-gap: 18px;
+    align-items: start;
+    text-align: left;
+    /* the number's halo ring extends 9px past the circle; keep it inside the gutter */
+    padding-left: 9px;
+  }
+  .stepNum {
+    grid-row: span 2;
+    margin-bottom: 0;
+  }
+  .step h3 {
+    align-self: end;
+    margin-top: 4px;
+  }
+  .step p {
+    max-width: unset;
+    margin-top: 6px;
+  }
+  .howHead {
+    text-align: left;
+  }
+  .howHead .sectionText {
+    margin-inline: 0;
+  }
+  .howActions {
+    justify-content: flex-start;
+  }
+  .howNote {
+    text-align: left;
+    margin-inline: 0;
+  }
+  .storyVisual {
+    min-height: 300px;
+  }
+  .faqGrid {
+    gap: 30px;
+  }
+  .faqActions {
+    width: 100%;
+  }
+  .closing {
+    min-height: 360px;
+  }
+  .closingContent {
+    padding: 64px 0;
+  }
+  .closingTitle {
+    font-size: clamp(40px, 10vw, 58px);
+  }
+}
+
+/* Phones: a row of CTAs either shares one line equally or, once it wraps,
+   each button spans the full width — never two stacked buttons of
+   different widths. */
+@media (max-width: 480px) {
+  .heroActions > *,
+  .btnRow > *,
+  .howActions > *,
+  .faqActions > *,
+  .tripActions > * {
+    flex: 1 1 auto;
+  }
+  .heroActions,
+  .btnRow {
+    gap: 12px;
+  }
+}

@@ -1,0 +1,83 @@
+.base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.22s ease;
+  min-height: 44px;
+  padding: 14px 20px;
+  text-align: center;
+}
+
+.primary {
+  background: var(--color-blue);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(37, 124, 157, 0.18);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid rgba(37, 124, 157, 0.35);
+}
+
+.outline {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid #b6ced7;
+  border-radius: 22px;
+  padding: 11px 18px;
+  font-size: 11px;
+}
+
+.base:disabled,
+.base[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* Inverted tone: for use on dark photographic/navy backgrounds (hero, manifesto, closing bands). */
+.primary.inverted {
+  background: #fff;
+  color: #173a4c;
+  box-shadow: none;
+}
+
+.ghost.inverted {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: var(--color-blue-dark);
+  }
+
+  .ghost:hover:not(:disabled) {
+    background: var(--color-soft);
+  }
+
+  .outline:hover:not(:disabled) {
+    background: var(--color-soft);
+  }
+
+  .primary.inverted:hover:not(:disabled) {
+    background: #eef7fa;
+    transform: translateY(-2px);
+  }
+
+  .ghost.inverted:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}

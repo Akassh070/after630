@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#a8c2cf"/><stop offset=".75" stop-color="#edf1e9"/><stop offset="1" stop-color="#91a9a4"/></linearGradient>
+      <linearGradient id="near" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#577e7a"/><stop offset="1" stop-color="#385b65"/></linearGradient>
+      <linearGradient id="mist" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#edf1e9" stop-opacity=".6"/><stop offset="1" stop-color="#edf1e9" stop-opacity="0"/></linearGradient>
+      <filter id="blur"><feGaussianBlur stdDeviation="25"/></filter>
+      <radialGradient id="sun"><stop stop-color="#fff6dc" stop-opacity=".76"/><stop offset="1" stop-color="#fff5dc" stop-opacity="0"/></radialGradient>
+    </defs>
+    <rect width="1200" height="760" fill="url(#sky)"/>
+    <circle cx="865" cy="160" r="210" fill="url(#sun)"/>
+    <g fill="#ffffff" opacity=".2" filter="url(#blur)"><ellipse cx="300" cy="195" rx="230" ry="40"/><ellipse cx="915" cy="240" rx="190" ry="34"/></g>
+    <path d="M0 430 L125 307 L227 383 L386 231 L540 391 L687 280 L803 372 L979 219 L1200 404 L1200 760 L0 760Z" fill="#91a9a4"/>
+    <path d="M0 520 L190 390 L335 470 L491 360 L659 471 L865 347 L1037 459 L1200 385 L1200 760 L0 760Z" fill="#577e7a" opacity=".75"/>
+    <path d="M0 565 C225 522 390 552 550 523 S975 523 1200 490 L1200 760 L0 760Z" fill="url(#mist)"/>
+    <path d="M0 633 C180 550 280 608 455 540 S710 593 890 558 S1050 567 1200 515 L1200 760 L0 760Z" fill="url(#near)"/>
+    <g fill="#385b65" opacity=".9"><path d="M30 458.0 l-37.400000000000006 88.0 h20.900000000000002 l-28.6 55.00000000000001 h33.0 v66.0 h22.0 v-66.0 h33.0 l-28.6 -55.00000000000001 h20.900000000000002Z"/><path d="M90 445.0 l-34.0 80.0 h19.0 l-26.0 50.0 h30.0 v60.0 h20.0 v-60.0 h30.0 l-26.0 -50.0 h19.0Z"/><path d="M154 431.0 l-44.2 104.0 h24.7 l-33.800000000000004 65.0 h39.0 v78.0 h26.0 v-78.0 h39.0 l-33.800000000000004 -65.0 h24.7Z"/><path d="M238 510.0 l-30.6 72.0 h17.1 l-23.400000000000002 45.0 h27.0 v54.0 h18.0 v-54.0 h27.0 l-23.400000000000002 -45.0 h17.1Z"/><path d="M326 473.0 l-37.400000000000006 88.0 h20.900000000000002 l-28.6 55.00000000000001 h33.0 v66.0 h22.0 v-66.0 h33.0 l-28.6 -55.00000000000001 h20.900000000000002Z"/><path d="M962 435.0 l-34.0 80.0 h19.0 l-26.0 50.0 h30.0 v60.0 h20.0 v-60.0 h30.0 l-26.0 -50.0 h19.0Z"/><path d="M1058 419.0 l-44.2 104.0 h24.7 l-33.800000000000004 65.0 h39.0 v78.0 h26.0 v-78.0 h39.0 l-33.800000000000004 -65.0 h24.7Z"/><path d="M1140 445.0 l-34.0 80.0 h19.0 l-26.0 50.0 h30.0 v60.0 h20.0 v-60.0 h30.0 l-26.0 -50.0 h19.0Z"/></g><rect width="1200" height="760" fill="#ffffff" opacity=".055"/></svg>

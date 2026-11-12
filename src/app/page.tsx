@@ -1,23 +1,31 @@
-import HeroSection from '@/components/HeroSection';
-import BentoGrid from '@/components/BentoGrid';
-import UpcomingEvents from '@/components/UpcomingEvents';
-import CommunityGallery from '@/components/CommunityGallery';
-import ApplyToPerform from '@/components/ApplyToPerform';
-import ConfessionsSection from '@/components/ConfessionsSection';
-import AboutPreview from '@/components/AboutPreview';
+import type { Metadata } from "next";
+import Hero from "@/components/home/Hero";
+import UpcomingTrips from "@/components/home/UpcomingTrips";
+import Manifesto from "@/components/home/Manifesto";
+import ExperienceGrid from "@/components/home/ExperienceGrid";
+import HowItWorks from "@/components/home/HowItWorks";
+import Story from "@/components/home/Story";
+import HomeFaq from "@/components/home/HomeFaq";
+import ClosingCta from "@/components/home/ClosingCta";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "After630 — Curated Group Travel Experiences",
+  description:
+    "Discover curated group journeys across India. Explore upcoming trips and enquire on WhatsApp — our team confirms availability and booking by hand.",
+  alternates: { canonical: "/" },
+};
+
+export default function HomePage() {
   return (
     <>
-      <main>
-        <HeroSection />
-        <AboutPreview />
-        <BentoGrid />
-        <UpcomingEvents />
-        <CommunityGallery />
-        <ConfessionsSection />
-        <ApplyToPerform />
-      </main>
+      <Hero />
+      <UpcomingTrips />
+      <Manifesto />
+      <ExperienceGrid />
+      <HowItWorks />
+      <Story />
+      <HomeFaq />
+      <ClosingCta />
     </>
   );
 }
