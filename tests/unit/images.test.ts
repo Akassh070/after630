@@ -33,8 +33,8 @@ describe("cloudinaryLoader", () => {
   });
 
   it("passes a local asset (e.g. the logo) through unchanged, never routed through Cloudinary", () => {
-    const url = cloudinaryLoader({ src: "/brand/after630-logo-dark.png", width: 200 });
-    expect(url).toBe("/brand/after630-logo-dark.png");
+    const url = cloudinaryLoader({ src: "/brand/after630-logo-ink.svg", width: 200 });
+    expect(url).toBe("/brand/after630-logo-ink.svg");
   });
 });
 

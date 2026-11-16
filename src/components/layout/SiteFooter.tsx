@@ -13,10 +13,10 @@ export default function SiteFooter() {
         <div className={styles.grid}>
           <div>
             <Image
-              src="/brand/after630-logo-light.png"
+              src="/brand/after630-logo-white.svg"
               alt="After630"
-              width={1612}
-              height={491}
+              width={999}
+              height={313}
               sizes="160px"
               className={styles.brand}
             />

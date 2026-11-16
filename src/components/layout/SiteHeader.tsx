@@ -43,10 +43,10 @@ export default function SiteHeader() {
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logo} aria-label="After630 home">
           <Image
-            src="/brand/after630-logo-dark.png"
+            src="/brand/after630-logo-ink.svg"
             alt=""
-            width={1612}
-            height={491}
+            width={999}
+            height={313}
             priority
             sizes="160px"
             className={styles.logoImg}

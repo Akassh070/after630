@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "After630",
     type: "website",
-    images: [{ url: "/brand/after630-logo-square.jpg", width: 1600, height: 1600, alt: "After630" }],
+    images: [{ url: "/brand/after630-og-square.png", width: 1024, height: 1024, alt: "After630" }],
   },
   robots: siteConfig.allowIndexing ? { index: true, follow: true } : { index: false, follow: false },
 };

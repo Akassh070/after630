@@ -44,16 +44,15 @@ All 11 required routes exist, build, and pass automated checks:
 
 ## 3a. Brand assets
 
-Owner-supplied logos, saved with descriptive names in `public/brand/`:
+Owner-supplied logo pack (vector SVG + PNG), saved in `public/brand/`:
 
 | File | Use |
 |---|---|
-| `after630-logo-wide.jpg`, `after630-logo-square.jpg` | Originals as supplied (square = social share / Open Graph image) |
-| `after630-logo-dark.png` | Header — transparent, tinted brand ink `#142b3b` |
-| `after630-logo-light.png` | Footer (dark background) — transparent white |
-| `src/app/icon.png`, `apple-icon.png`, `favicon.ico` | Browser/app icon: the logo's steaming-cup "0" on a white tile (the full wordmark is unreadable at 16–32px) |
+| `after630-logo-ink.svg` | Header — pack's `currentcolor` SVG with fill set to brand ink `#142b3b` |
+| `after630-logo-white.svg` | Footer (dark background) — pack's white SVG |
+| `after630-og-square.png` | Social share / Open Graph image — pack's square white-on-black 1024px |
+| `src/app/icon.png`, `apple-icon.png`, `favicon.ico` | Browser/app icon: the logo's steaming-cup "0" on a white tile (the full wordmark — which the pack's favicons use — is unreadable at 16–32px, so these were kept) |
 
-The supplied "white" logo JPG was blank (every pixel white — a JPG can't hold transparency), so both transparent PNGs were generated from the black original.
 
 ## 3b. Image hosting (Cloudinary)
 
