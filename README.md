@@ -61,7 +61,7 @@ Every photo on the site — trip galleries, hero/section backgrounds, the
 About/Past Experiences pages — is hosted on Cloudinary and delivered through
 a custom `next/image` loader (`src/lib/cloudinary-loader.ts`), not Next's
 own Image Optimization API. The **logo** (`public/brand/`), the browser/app
-**icons** (`src/app/icon.png`, `apple-icon.png`, `favicon.ico`) and the 8
+**icons** (`src/app/icon.svg`, `apple-icon.png`, `favicon.ico`, `manifest.ts`) and the 8
 local SVG **fallback illustrations** (`public/images/fallback/`, shown if a
 Cloudinary photo fails to load) stay on our own server on purpose — the
 fallback especially must not depend on Cloudinary being up.

@@ -51,7 +51,7 @@ Owner-supplied logo pack (vector SVG + PNG), saved in `public/brand/`:
 | `after630-logo-ink.svg` | Header — pack's `currentcolor` SVG with fill set to brand ink `#142b3b` |
 | `after630-logo-white.svg` | Footer (dark background) — pack's white SVG |
 | `after630-og-square.png` | Social share / Open Graph image — pack's square white-on-black 1024px |
-| `src/app/icon.png`, `apple-icon.png`, `favicon.ico` | Browser/app icon: the logo's steaming-cup "0" on a white tile (the full wordmark — which the pack's favicons use — is unreadable at 16–32px, so these were kept) |
+| `src/app/favicon.ico`, `icon.svg`, `apple-icon.png`, `manifest.ts` + `public/android-chrome-*.png` | Browser/app icons — pack's favicon set (wordmark on black square) |
 
 
 ## 3b. Image hosting (Cloudinary)
