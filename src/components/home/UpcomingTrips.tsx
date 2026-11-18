@@ -2,10 +2,9 @@ import Link from "next/link";
 import Button from "@/components/ui/Button";
 import ImageSlideshow from "@/components/ui/ImageSlideshow";
 import Pill from "@/components/ui/Pill";
-import { getFeaturedTrips } from "@/lib/trips/repository";
+import FeatureTripCard from "@/components/trips/FeatureTripCard";
 import {
-  getAvailableDepartures,
-  formatDepartureDate,
+  getTripDepartureLabel,
   getStartingPriceINR,
   formatPriceINR,
 } from "@/lib/trips/availability";
@@ -19,34 +18,41 @@ function durationLabel(trip: Trip): string {
 }
 
 function departureLabel(trip: Trip): string {
-  const [first] = getAvailableDepartures(trip);
-  return first ? formatDepartureDate(first.localDate) : "To be announced";
+  return getTripDepartureLabel(trip) ?? "To be announced";
 }
 
 function priceLabel(trip: Trip): string {
   return formatPriceINR(getStartingPriceINR(trip));
 }
 
-export default function UpcomingTrips() {
-  const trips = getFeaturedTrips(3);
+export default function UpcomingTrips({ trips }: { trips: Trip[] }) {
   const [featured, ...rest] = trips;
+  const singleTrip = trips.length === 1;
 
   return (
     <section id="upcoming" className={styles.upcoming}>
       <div className="container">
         <div className={styles.sectionHead}>
           <div>
-            <p className="eyebrow">Upcoming Trips</p>
-            <h2 className="sectionTitle">Journeys worth looking forward to.</h2>
-            <p className={`sectionText ${styles.sectionLede}`}>
-              A first look at the kind of places and adventures we want to share with you.
-            </p>
+            {singleTrip ? (
+              <h2 className="sectionTitle">Upcoming trip</h2>
+            ) : (
+              <>
+                <p className="eyebrow">Upcoming Trips</p>
+                <h2 className="sectionTitle">Journeys worth looking forward to.</h2>
+                <p className={`sectionText ${styles.sectionLede}`}>
+                  A first look at the kind of places and adventures we want to share with you.
+                </p>
+              </>
+            )}
           </div>
-          <div className={styles.sectionHeadRight}>
-            <Button href="/trips" variant="ghost">
-              Explore all journeys ↗
-            </Button>
-          </div>
+          {!singleTrip && (
+            <div className={styles.sectionHeadRight}>
+              <Button href="/trips" variant="ghost">
+                Explore all journeys ↗
+              </Button>
+            </div>
+          )}
         </div>
 
         {trips.length === 0 ? (
@@ -57,6 +63,8 @@ export default function UpcomingTrips() {
             </Link>{" "}
             what you&apos;re hoping to find.
           </p>
+        ) : singleTrip ? (
+          <FeatureTripCard trip={featured} />
         ) : (
           <div className={styles.tripsLayout}>
             {featured && (

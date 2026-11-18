@@ -3,12 +3,14 @@ import { img } from "@/lib/images";
 import Button from "@/components/ui/Button";
 import styles from "./trip.module.css";
 
+const background = img("atmospheric-mountain-landscape-representing-adventure");
+
 export default function EndCta() {
   return (
     <section className={styles.endCta}>
       <Image
-        src={img("spiti-valley-himachal-pradesh").src}
-        alt={img("spiti-valley-himachal-pradesh").alt}
+        src={background.src}
+        alt=""
         fill
         sizes="100vw"
       />

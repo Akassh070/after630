@@ -27,15 +27,11 @@ export default function Gallery({
   }
 
   if (images.length === 1) {
+    const [image] = images;
     return (
-      <button
-        type="button"
-        onClick={() => setLightboxIndex(0)}
-        style={{ aspectRatio: "16 / 9", borderRadius: 18, overflow: "hidden", display: "block", width: "100%", border: 0, padding: 0 }}
-        aria-label={`Open ${images[0].alt} in full screen`}
-      >
-        <SmartImage src={images[0].src} alt={images[0].alt} fallbackSrc={fallbackSrc} priority />
-      </button>
+      <div className={styles.singleGallery}>
+        <SmartImage src={image.src} alt={image.alt} fallbackSrc={fallbackSrc} fit={image.fit} sizes="100vw" priority />
+      </div>
     );
   }
 
@@ -59,6 +55,7 @@ export default function Gallery({
               src={image.src}
               alt=""
               fallbackSrc={fallbackSrc}
+              fit={image.fit}
               sizes="(max-width: 650px) 60vw, 30vw"
               priority={index === 0}
             />
@@ -125,7 +122,7 @@ function LightboxContent({
   return (
     <div>
       <div className={styles.lightboxImg}>
-        <SmartImage src={image.src} alt={image.alt} fallbackSrc={fallbackSrc} sizes="90vw" priority />
+        <SmartImage src={image.src} alt={image.alt} fallbackSrc={fallbackSrc} fit={image.fit} sizes="90vw" priority />
       </div>
       <div className={styles.lightboxBottom}>
         <button type="button" onClick={() => goTo(index - 1)} aria-label="Previous photo">

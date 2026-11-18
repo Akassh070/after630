@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { img } from "@/lib/images";
 import Button from "@/components/ui/Button";
+import { getTripDepartureLabel } from "@/lib/trips/availability";
+import type { Trip } from "@/lib/trips/types";
 import CategoryCard from "./CategoryCard";
 import styles from "./home.module.css";
 
@@ -52,7 +54,9 @@ const categories = [
   },
 ];
 
-export default function Hero() {
+export default function Hero({ trip }: { trip?: Trip }) {
+  const departure = trip && getTripDepartureLabel(trip);
+
   return (
     <section id="hero" className={styles.hero}>
       <Image
@@ -63,44 +67,46 @@ export default function Hero() {
         sizes="100vw"
         className={styles.heroBg}
       />
-      <div className={`container ${styles.heroContent}`}>
+      <div className={`container ${styles.heroContent} ${trip ? styles.heroSingle : ""}`}>
         <div className={styles.heroCopy}>
-          <p className={`eyebrow ${styles.heroEyebrow}`}>Curated Group Travel Experiences</p>
+          <p className={`eyebrow ${styles.heroEyebrow}`}>{trip?.tagline ?? "Curated Group Travel Experiences"}</p>
           <h1 className={styles.heroTitle}>
-            Where to <span className={styles.accent}>next?</span>
+            {trip?.title ?? <>Where to <span className={styles.accent}>next?</span></>}
           </h1>
+          {departure && <p className={styles.heroDeparture}>{departure}</p>}
           <p className={styles.heroLede}>
-            Unforgettable places. New friendships. Stories worth telling. Discover group journeys designed for
-            people who love to explore.
+            {trip?.blurb ?? "Unforgettable places. New friendships. Stories worth telling. Discover group journeys designed for people who love to explore."}
           </p>
           <div className={styles.heroActions}>
-            <Button href="/trips" variant="primary">
-              Explore Experiences ↗
+            <Button href={trip ? `/trips/${trip.slug}` : "/trips"} variant="primary">
+              {trip ? "View trip details ↗" : "Explore Experiences ↗"}
             </Button>
-            <Button href="#experience" variant="ghost" inverted>
-              Find your travel style ↗
+            <Button href={trip ? "/trips" : "#experience"} variant="ghost" inverted>
+              {trip ? "Explore trips ↗" : "Find your travel style ↗"}
             </Button>
           </div>
         </div>
 
-        <div className={styles.categoriesWrap}>
-          <p className={styles.categoriesHead}>Choose your kind of adventure</p>
-          <div className={styles.categories}>
-            {categories.map((category, index) => (
-              <CategoryCard
-                key={category.href}
-                label={category.label}
-                title={category.title}
-                tagline={category.tagline}
-                href={category.href}
-                photos={category.photos}
-                intervalMs={category.intervalMs}
-                startDelayMs={category.startDelayMs}
-                priority={index === 0}
-              />
-            ))}
+        {!trip && (
+          <div className={styles.categoriesWrap}>
+            <p className={styles.categoriesHead}>Choose your kind of adventure</p>
+            <div className={styles.categories}>
+              {categories.map((category, index) => (
+                <CategoryCard
+                  key={category.href}
+                  label={category.label}
+                  title={category.title}
+                  tagline={category.tagline}
+                  href={category.href}
+                  photos={category.photos}
+                  intervalMs={category.intervalMs}
+                  startDelayMs={category.startDelayMs}
+                  priority={index === 0}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

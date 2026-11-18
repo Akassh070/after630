@@ -10,11 +10,11 @@ const heroSlides = [
   img("hill-viewpoint-overlooking-water-and"),
 ];
 
-export default function TripsHero() {
+export default function TripsHero({ singleTrip }: { singleTrip: boolean }) {
   return (
     <section className={styles.hero}>
       <ImageSlideshow
-        slides={heroSlides}
+        slides={singleTrip ? heroSlides.slice(0, 3) : heroSlides}
         sizes="100vw"
         intervalMs={5000}
         priority
@@ -22,12 +22,13 @@ export default function TripsHero() {
       />
       <div className={`container ${styles.heroInner}`}>
         <p className="eyebrow" style={{ color: "#a9dcee" }}>
-          The next chapter is out there
+          {singleTrip ? "Upcoming departure" : "The next chapter is out there"}
         </p>
-        <h1>Find your next escape.</h1>
+        <h1>{singleTrip ? "Explore Trips" : "Find your next escape."}</h1>
         <p>
-          From mountain trails to long roads and weekend resets. Explore journeys that take you somewhere new —
-          and bring you back with stories.
+          {singleTrip
+            ? "See the dates, price and itinerary for our next group trip."
+            : "From mountain trails to long roads and weekend resets. Explore journeys that take you somewhere new — and bring you back with stories."}
         </p>
       </div>
     </section>

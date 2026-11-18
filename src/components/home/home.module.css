@@ -53,6 +53,16 @@
   position: relative;
 }
 
+.heroContent.heroSingle {
+  padding-bottom: clamp(44px, 7vw, 84px);
+}
+
+.heroDeparture {
+  margin: 0 0 10px;
+  color: #abd8ea;
+  font-weight: 800;
+}
+
 .heroCopy {
   max-width: 760px;
   text-align: center;

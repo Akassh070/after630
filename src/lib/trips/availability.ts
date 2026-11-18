@@ -28,16 +28,22 @@ export function getAvailableDepartures(trip: Trip): TripDeparture[] {
   return trip.departures.filter((d) => d.status === "available");
 }
 
-export function formatDepartureDate(localDate: string): string {
-  try {
-    return new Intl.DateTimeFormat("en-IN", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    }).format(new Date(`${localDate}T00:00:00`));
-  } catch {
-    return localDate;
-  }
+export function formatDepartureDate(localDate: string, endDate?: string): string {
+  const start = new Date(`${localDate}T00:00:00`);
+  if (Number.isNaN(start.getTime())) return localDate;
+
+  const formatter = new Intl.DateTimeFormat("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const end = endDate ? new Date(`${endDate}T00:00:00`) : undefined;
+  return end && end > start ? formatter.formatRange(start, end) : formatter.format(start);
+}
+
+export function getTripDepartureLabel(trip: Trip): string | undefined {
+  const departure = trip.departures.find((d) => d.status === "available");
+  return departure && formatDepartureDate(departure.localDate, departure.endDate);
 }
 
 /** Cheapest confirmed package price across a trip's available departures, or undefined if none is set. */

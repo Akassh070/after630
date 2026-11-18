@@ -15,7 +15,7 @@ export default function TripsPage() {
 
   return (
     <>
-      <TripsHero />
+      <TripsHero singleTrip={trips.length === 1} />
       <Suspense fallback={<div style={{ minHeight: 400 }} aria-hidden="true" />}>
         <TripExplorer trips={trips} />
       </Suspense>

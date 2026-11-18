@@ -15,7 +15,7 @@ export type TripSource = "live" | "demo" | "qa";
 function readTripSource(): TripSource {
   const raw = process.env.AFTER630_TRIP_SOURCE?.trim().toLowerCase();
   if (raw === "live" || raw === "demo" || raw === "qa") return raw;
-  return "demo";
+  return "live";
 }
 
 /**

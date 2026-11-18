@@ -13,6 +13,7 @@ type SmartImageProps = {
   sizes?: string;
   priority?: boolean;
   className?: string;
+  fit?: "contain";
 };
 
 /**
@@ -28,11 +29,12 @@ export default function SmartImage({
   sizes = "(max-width: 760px) 100vw, 50vw",
   priority,
   className,
+  fit,
 }: SmartImageProps) {
   const [errored, setErrored] = useState(false);
 
   return (
-    <div className={`${styles.frame} ${className ?? ""}`}>
+    <div className={`${styles.frame} ${fit ? styles.contained : ""} ${className ?? ""}`}>
       {showPreviewRibbon && <span className={styles.ribbon}>Design preview</span>}
       {errored ? (
         // eslint-disable-next-line @next/next/no-img-element -- local static SVG fallback, not worth next/image optimization

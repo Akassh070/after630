@@ -164,7 +164,7 @@ Unchanged from `handoff/ux/After630_Phase1_UX_Implementation_Spec.md` §9 — re
 against what's now wired to receive them:
 
 - ~~Verified WhatsApp Business number~~ — **done**: +91 70166 17715 is built in (`src/content/site.ts`). Floating chat button on every page (steps aside on phone trip pages where the sticky enquiry bar is), header "WhatsApp Enquiry", mobile-menu button, footer number, Contact page card, every "Ask on WhatsApp" button, trip enquiries and the message-preview dialog all open `wa.me/917016617715` with a pre-filled message that states it's an enquiry, not a booking. `NEXT_PUBLIC_AFTER630_WHATSAPP_NUMBER` only overrides it (the e2e suite uses a test number).
-- **Real trips** (names, destinations, dates, origin cities, packages, prices, itineraries, inclusions, licensed photos) → add to `src/content/trips.ts`, then set `AFTER630_TRIP_SOURCE=live`.
+- The public trip catalog defaults to `live` and reads the Himachal departure from `src/content/trips.ts`.
 - **Real prior After630 event details and photos** for `/experiences` and `/about`.
 - **Approved legal text** for Privacy/Terms/Cancellation → replace `src/content/legal/*.ts`, then set `NEXT_PUBLIC_LEGAL_APPROVED=true`.
 - The footer and Contact page link to the [After630 Instagram profile](https://www.instagram.com/after630club). The Contact composer opens a prefilled WhatsApp message.

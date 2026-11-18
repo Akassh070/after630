@@ -18,6 +18,15 @@
   transition: transform var(--duration-base) var(--ease);
 }
 
+.contained {
+  background: var(--color-paper);
+}
+
+.contained .img,
+.contained .fallback {
+  object-fit: contain;
+}
+
 .ribbon {
   position: absolute;
   top: 12px;

@@ -18,6 +18,11 @@
   opacity: 1;
 }
 
+.contained {
+  object-fit: contain;
+  background: var(--color-paper);
+}
+
 .fallback {
   position: absolute;
   inset: 0;

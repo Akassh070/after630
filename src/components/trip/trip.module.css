@@ -55,6 +55,12 @@
 
 /* Gallery */
 
+.singleGallery {
+  height: clamp(220px, 45vw, 470px);
+  overflow: hidden;
+  border-radius: 18px;
+}
+
 .gallery {
   display: grid;
   grid-template-columns: 1.6fr 0.75fr 0.75fr;

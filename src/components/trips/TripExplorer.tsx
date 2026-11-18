@@ -203,7 +203,7 @@ export default function TripExplorer({ trips }: { trips: Trip[] }) {
                 <input
                   id="trip-search"
                   type="search"
-                  placeholder="Try Jibhi, road trips, mountains…"
+                  placeholder={trips.length === 1 ? `Try ${trips[0].destinations[0] ?? trips[0].title}…` : "Search by destination or trip name"}
                   value={searchDraft}
                   onChange={(e) => onSearchChange(e.target.value)}
                   autoComplete="off"

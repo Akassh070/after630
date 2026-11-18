@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/ui/Breadcrumb";
+import { getTripDepartureLabel } from "@/lib/trips/availability";
 import type { Trip } from "@/lib/trips/types";
 import styles from "./trip.module.css";
 
@@ -9,6 +10,8 @@ function durationLabel(trip: Trip): string {
 }
 
 export default function TripHeader({ trip }: { trip: Trip }) {
+  const departure = getTripDepartureLabel(trip);
+
   return (
     <>
       <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Explore Trips", href: "/trips" }, { label: trip.title }]} />
@@ -21,6 +24,7 @@ export default function TripHeader({ trip }: { trip: Trip }) {
           </div>
         </div>
         <div className={styles.titleBadges}>
+          {departure && <span className={styles.tag}>{departure}</span>}
           <span className={styles.tag}>◷ {durationLabel(trip)}</span>
         </div>
       </div>

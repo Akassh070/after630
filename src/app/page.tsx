@@ -7,6 +7,7 @@ import HowItWorks from "@/components/home/HowItWorks";
 import Story from "@/components/home/Story";
 import HomeFaq from "@/components/home/HomeFaq";
 import ClosingCta from "@/components/home/ClosingCta";
+import { getFeaturedTrips } from "@/lib/trips/repository";
 
 export const metadata: Metadata = {
   title: "After630 — Curated Group Travel Experiences",
@@ -16,10 +17,12 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  const trips = getFeaturedTrips();
+
   return (
     <>
-      <Hero />
-      <UpcomingTrips />
+      <Hero trip={trips.length === 1 ? trips[0] : undefined} />
+      <UpcomingTrips trips={trips} />
       <Manifesto />
       <ExperienceGrid />
       <HowItWorks />

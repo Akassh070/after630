@@ -1,7 +1,7 @@
 import Link from "next/link";
 import ImageSlideshow from "@/components/ui/ImageSlideshow";
 import StatusBadge from "@/components/ui/StatusBadge";
-import { getStartingPriceINR, formatPriceINR } from "@/lib/trips/availability";
+import { getStartingPriceINR, formatPriceINR, getTripDepartureLabel } from "@/lib/trips/availability";
 import type { Trip } from "@/lib/trips/types";
 import styles from "./trips.module.css";
 
@@ -13,6 +13,7 @@ function durationLabel(trip: Trip): string {
 
 export default function FeatureTripCard({ trip }: { trip: Trip }) {
   const price = getStartingPriceINR(trip);
+  const departure = getTripDepartureLabel(trip);
 
   return (
     <Link href={`/trips/${trip.slug}`} className={styles.featureCard} aria-label={`View trip: ${trip.title}`}>
@@ -32,12 +33,13 @@ export default function FeatureTripCard({ trip }: { trip: Trip }) {
         <div className={styles.featureLocation}>⌖ {trip.place}</div>
         <p className={styles.featureDesc}>{trip.blurb}</p>
         <div className={styles.featureMeta}>
+          {departure && <span className={styles.metaPill}>{departure}</span>}
           <span className={styles.metaPill}>{durationLabel(trip)}</span>
           <StatusBadge status={trip.status} />
         </div>
         <div className={styles.cardBottom}>
           <div>
-            <div className={styles.priceLabel}>Starting price</div>
+            <div className={styles.priceLabel}>Starting price per person</div>
             <div className={styles.priceValue}>{formatPriceINR(price)}</div>
           </div>
           <span className={styles.detailsBtn}>View trip ↗</span>

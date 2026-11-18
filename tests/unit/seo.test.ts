@@ -22,4 +22,9 @@ describe("launch SEO defaults (no env vars set)", () => {
     }
     expect(urls).toContain("https://after630.club/trips");
   });
+
+  it("lists only the live Himachal trip in the public sitemap", () => {
+    const tripUrls = sitemap().map(({ url }) => url).filter((url) => url.startsWith("https://after630.club/trips/"));
+    expect(tripUrls).toEqual(["https://after630.club/trips/15-strangers-and-stories"]);
+  });
 });

@@ -32,9 +32,16 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
   const mode = getEnquiryMode(trip);
   const departures = getAvailableDepartures(trip);
 
-  const [departureId, setDepartureId] = useState("");
-  const [originCity, setOriginCity] = useState("");
-  const [packageId, setPackageId] = useState("");
+  const [firstDeparture] = departures;
+  const [firstOrigin] = firstDeparture?.origins ?? [];
+  const [firstPackage] = firstOrigin?.packages ?? [];
+  const hasFixedPackage = departures.length === 1
+    && firstDeparture.origins.length === 1
+    && firstOrigin.packages.length === 1;
+
+  const [departureId, setDepartureId] = useState(hasFixedPackage ? firstDeparture.id : "");
+  const [originCity, setOriginCity] = useState(hasFixedPackage ? firstOrigin.city : "");
+  const [packageId, setPackageId] = useState(hasFixedPackage ? firstPackage.id : "");
   const [travellers, setTravellers] = useState(1);
   const [previewOpen, setPreviewOpen] = useState(false);
 
@@ -51,7 +58,7 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
       if (!selectedDeparture || !selectedOrigin || !selectedPackage) return null;
       return buildTripEnquiryMessage({
         tripTitle: trip.title,
-        departureDate: formatDepartureDate(selectedDeparture.localDate),
+        departureDate: formatDepartureDate(selectedDeparture.localDate, selectedDeparture.endDate),
         originCity: selectedOrigin.city,
         packageName: selectedPackage.name,
         travellers,
@@ -102,7 +109,7 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
           <span className={styles.bookingTag}>◌ {copy.tag}</span>
           {mode === "enquire" ? (
             <>
-              <div className={styles.bookingLabel}>Starting from</div>
+              <div className={styles.bookingLabel}>{hasFixedPackage ? "Price per person" : "Starting from"}</div>
               <div className={styles.bookingPrice}>
                 {formatPriceINR(selectedPackage?.priceINR ?? fallbackStartingPrice)}
               </div>
@@ -132,10 +139,10 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
                   setPackageId("");
                 }}
               >
-                <option value="">Select a date</option>
+                {!hasFixedPackage && <option value="">Select a date</option>}
                 {departures.map((d) => (
                   <option key={d.id} value={d.id}>
-                    {formatDepartureDate(d.localDate)}
+                    {formatDepartureDate(d.localDate, d.endDate)}
                   </option>
                 ))}
               </select>
@@ -155,7 +162,9 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
                   setPackageId("");
                 }}
               >
-                <option value="">{selectedDeparture ? "Select origin city" : "Choose a departure first"}</option>
+                {!hasFixedPackage && (
+                  <option value="">{selectedDeparture ? "Select origin city" : "Choose a departure first"}</option>
+                )}
                 {origins.map((o) => (
                   <option key={o.city} value={o.city}>
                     {o.city}
@@ -175,7 +184,9 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
                 disabled={!selectedOrigin}
                 onChange={(e) => setPackageId(e.target.value)}
               >
-                <option value="">{selectedOrigin ? "Select a package" : "Choose an origin first"}</option>
+                {!hasFixedPackage && (
+                  <option value="">{selectedOrigin ? "Select a package" : "Choose an origin first"}</option>
+                )}
                 {packages.map((p) => (
                   <option key={p.id} value={p.id}>
                     {p.name} — {formatPriceINR(p.priceINR)}

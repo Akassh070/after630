@@ -43,8 +43,8 @@ approval).
 
 ### Trip data (`AFTER630_TRIP_SOURCE`)
 
-- `live` — only `src/content/trips.ts` (empty until the owner adds real trips). This is what a real launch uses.
-- `demo` (default) — adds the 8 illustrative concept trips ported from the design handoff. All of them are permanently `coming-soon` with zero departures, so the booking selector never has anything fake to show — they exist to prove out the listing/filter/detail UI, nothing more.
+- `live` (default) — shows only the published trips in `src/content/trips.ts`.
+- `demo` — adds the 8 illustrative concept trips from the design handoff, all marked `coming-soon` with no departures.
 - `qa` — adds a few additional fixtures with fake departures/prices, used only by the Playwright suite to exercise the departure → origin → package selector and the sold-out/postponed states end to end.
 
 ## Adding a real trip
@@ -52,15 +52,14 @@ approval).
 Add an entry to `realTrips` in `src/content/trips.ts`, following the `Trip`
 type in `src/lib/trips/types.ts`. Leave `priceINR`/dates out entirely rather
 than guessing — the UI shows "To be announced" / "Price on enquiry" for
-anything unset, and never a fabricated value. Set `AFTER630_TRIP_SOURCE=live`
-once real trips exist and demo content should no longer show.
+anything unset. Set `endDate` on a departure when the return date is confirmed.
 
 ## Images (Cloudinary)
 
 Every photo on the site — trip galleries, hero/section backgrounds, the
 About/Past Experiences pages — is hosted on Cloudinary and delivered through
-a custom `next/image` loader (`src/lib/cloudinary-loader.ts`), not Next's
-own Image Optimization API. The **logo** (`public/brand/`), the browser/app
+a custom `next/image` loader (`src/lib/cloudinary-loader.ts`). The Himachal
+trip artwork from the itinerary is bundled in `public/images/trips/`. The **logo** (`public/brand/`), the browser/app
 **icons** (`src/app/icon.svg`, `apple-icon.png`, `favicon.ico`, `manifest.ts`) and the 8
 local SVG **fallback illustrations** (`public/images/fallback/`, shown if a
 Cloudinary photo fails to load) stay on our own server on purpose — the

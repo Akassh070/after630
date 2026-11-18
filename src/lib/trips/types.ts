@@ -35,8 +35,10 @@ export type TripOrigin = {
 
 export type TripDeparture = {
   id: string;
-  /** ISO date string, e.g. "2027-03-14". */
+  /** Start date in YYYY-MM-DD format. */
   localDate: string;
+  /** End date in YYYY-MM-DD format when the full date range is published. */
+  endDate?: string;
   status: DepartureStatus;
   origins: TripOrigin[];
 };
@@ -45,6 +47,7 @@ export type TripImage = {
   src: string;
   alt: string;
   licensedForUse: boolean;
+  fit?: "contain";
 };
 
 export type TripItineraryDay = {

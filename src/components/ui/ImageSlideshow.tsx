@@ -7,6 +7,7 @@ import styles from "./ImageSlideshow.module.css";
 export type SlideshowSlide = {
   src: string;
   alt?: string;
+  fit?: "contain";
 };
 
 type ImageSlideshowProps = {
@@ -94,7 +95,7 @@ export default function ImageSlideshow({
           fill
           sizes={sizes}
           priority={priority && photoIndex === 0}
-          className={`${styles.slide} ${photoIndex === index ? styles.slideActive : ""}`}
+          className={`${styles.slide} ${photo.fit ? styles.contained : ""} ${photoIndex === index ? styles.slideActive : ""}`}
           onError={() => markFailed(photo.src)}
         />
       ))}
