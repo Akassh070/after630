@@ -12,6 +12,9 @@ import EnquirySection from "@/components/trip/EnquirySection";
 import RelatedTrips from "@/components/trip/RelatedTrips";
 import EndCta from "@/components/trip/EndCta";
 import TrackViewContent from "@/components/analytics/TrackViewContent";
+import JsonLd from "@/components/seo/JsonLd";
+import { absoluteImageSrc } from "@/lib/images";
+import { breadcrumbSchema, tripSchema } from "@/lib/structured-data";
 import { getAllSlugs, getRelatedTrips, getTripBySlug } from "@/lib/trips/repository";
 import { siteConfig } from "@/lib/config";
 import type { Trip } from "@/lib/trips/types";
@@ -25,10 +28,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const trip = getTripBySlug(slug);
   if (!trip) return { title: "Trip not found" };
+  const title = trip.seoTitle ?? trip.title;
+  const description = trip.seoDescription ?? trip.blurb;
+  const shareImage = trip.images[0];
   return {
-    title: trip.title,
-    description: trip.blurb,
+    title,
+    description,
     alternates: { canonical: `/trips/${trip.slug}` },
+    // A real trip photo instead of the site-wide logo when the link is shared
+    // on WhatsApp/Instagram. Repeating title/description here keeps them from
+    // falling back to the root layout's generic values.
+    openGraph: {
+      siteName: "After630",
+      type: "website",
+      title: `${title} — After630`,
+      description,
+      url: `/trips/${trip.slug}`,
+      ...(shareImage
+        ? { images: [{ url: absoluteImageSrc(shareImage.src, 1200), width: 1200, alt: shareImage.alt }] }
+        : {}),
+    },
   };
 }
 
@@ -86,6 +105,16 @@ export default async function TripDetailPage({ params }: { params: Promise<{ slu
         </div>
       </div>
 
+      <JsonLd
+        data={[
+          tripSchema(trip),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Explore Trips", path: "/trips" },
+            { name: trip.title, path: `/trips/${trip.slug}` },
+          ]),
+        ]}
+      />
       <TrackViewContent id={trip.slug} name={trip.title} category={trip.category} />
       <RelatedTrips trips={related} />
       <EndCta />

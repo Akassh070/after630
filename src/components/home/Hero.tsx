@@ -69,10 +69,16 @@ export default function Hero({ trip }: { trip?: Trip }) {
       />
       <div className={`container ${styles.heroContent} ${trip ? styles.heroSingle : ""}`}>
         <div className={styles.heroCopy}>
-          <p className={`eyebrow ${styles.heroEyebrow}`}>{trip?.tagline ?? "Curated Group Travel Experiences"}</p>
-          <h1 className={styles.heroTitle}>
+          {/*
+            The H1 is the small eyebrow line and always describes the site, so
+            the homepage never shares its H1 with the featured trip's own page
+            and always carries the category keywords. The big headline stays the
+            visual focus, so the design doesn't change.
+          */}
+          <h1 className={`eyebrow ${styles.heroEyebrow}`}>Group trips for solo travellers in India</h1>
+          <h2 className={styles.heroTitle}>
             {trip?.title ?? <>Where to <span className={styles.accent}>next?</span></>}
-          </h1>
+          </h2>
           {departure && <p className={styles.heroDeparture}>{departure}</p>}
           <p className={styles.heroLede}>
             {trip?.blurb ?? "Unforgettable places. New friendships. Stories worth telling. Discover group journeys designed for people who love to explore."}

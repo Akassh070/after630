@@ -17,7 +17,26 @@ export default function Overview({ trip }: { trip: Trip }) {
     <section id="overview" className={styles.section}>
       <p className="eyebrow">The experience</p>
       <h2>About this journey</h2>
-      {trip.description ? <p>{trip.description}</p> : trip.blurb ? <p>{trip.blurb}</p> : null}
+      {/* Blank lines in `description` separate paragraphs. */}
+      {(trip.description || trip.blurb)
+        .split(/\n\s*\n/)
+        .filter(Boolean)
+        .map((paragraph) => (
+          <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+        ))}
+
+      {trip.audience && trip.audience.length > 0 && (
+        <div className={styles.audience}>
+          <h3>Who this trip is for</h3>
+          <ul>
+            {trip.audience.map((item) => (
+              <li key={item}>
+                <b aria-hidden="true">✓</b> {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className={styles.facts}>
         <div className={styles.fact}>

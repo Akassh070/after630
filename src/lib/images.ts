@@ -13,6 +13,21 @@ export function img(key: ImageKey): { src: string; alt: string } {
   return { src: `cloudinary:${entry.publicId}`, alt: entry.alt };
 }
 
+/**
+ * Absolute Cloudinary URL for an `img()`-style src (e.g. `trip.images[0].src`),
+ * for places next/image never sees: Open Graph share images and JSON-LD.
+ * JPEG rather than f_auto, because some link-preview crawlers (WhatsApp among
+ * them) don't reliably render WebP/AVIF, and q_auto:eco keeps a 1200px photo under
+ * WhatsApp's ~300 KB preview limit. A local path like "/brand/x.png" is
+ * returned unchanged; metadataBase makes it absolute.
+ */
+export function absoluteImageSrc(src: string, width = 1200): string {
+  if (!src.startsWith("cloudinary:")) return src;
+  const cloud = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || siteCopy.cloudinaryCloudName;
+  const publicId = src.slice("cloudinary:".length);
+  return `https://res.cloudinary.com/${cloud}/image/upload/f_jpg,q_auto:eco,c_limit,w_${width}/${publicId}`;
+}
+
 export type VideoSource = {
   /** H.264 MP4, silent, width-limited — plays everywhere a muted loop can. */
   src: string;

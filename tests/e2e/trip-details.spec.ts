@@ -18,7 +18,7 @@ test.describe("Trip Details — gallery, itinerary, enquiry", () => {
 
   test("itinerary accordion toggles aria-expanded and Expand all opens every day", async ({ page }) => {
     await page.goto("/trips/15-strangers-and-stories");
-    const dayTwoTrigger = page.getByRole("button", { name: /Meadow trek and waterfall/ });
+    const dayTwoTrigger = page.getByRole("button", { name: /Meadow trek, sound healing and a waterfall/ });
     await expect(dayTwoTrigger).toHaveAttribute("aria-expanded", "false");
     await dayTwoTrigger.click();
     await expect(dayTwoTrigger).toHaveAttribute("aria-expanded", "true");

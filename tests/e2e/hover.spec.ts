@@ -29,7 +29,7 @@ test.describe("Hover feedback — desktop mouse", () => {
 
   test("accordion trigger background changes on hover", async ({ page }) => {
     await page.goto("/trips/15-strangers-and-stories");
-    const trigger = page.getByRole("button", { name: /Meadow trek and waterfall/ });
+    const trigger = page.getByRole("button", { name: /Meadow trek, sound healing and a waterfall/ });
 
     const before = await trigger.evaluate((el) => getComputedStyle(el).backgroundColor);
     await trigger.hover();

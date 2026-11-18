@@ -14,11 +14,11 @@ describe("launch SEO defaults (no env vars set)", () => {
     expect(robots().rules).toEqual({ userAgent: "*", allow: "/" });
   });
 
-  it("keeps the draft legal pages out of the sitemap until legal approval", () => {
-    expect(siteConfig.legalApproved).toBe(false);
+  it("lists the approved legal pages in the sitemap", () => {
+    expect(siteConfig.legalApproved).toBe(true);
     const urls = sitemap().map((e) => e.url);
     for (const legal of ["/privacy", "/terms", "/cancellation-refunds"]) {
-      expect(urls).not.toContain(`https://after630.club${legal}`);
+      expect(urls).toContain(`https://after630.club${legal}`);
     }
     expect(urls).toContain("https://after630.club/trips");
   });

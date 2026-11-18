@@ -74,6 +74,18 @@ export type Trip = {
   slug: string;
   title: string;
   tagline?: string;
+  /**
+   * Descriptive second line of the trip page's H1 (e.g. "A 5-Day Himachal
+   * Group Trip from Chandigarh"). `title` stays the short brand name used in
+   * cards and WhatsApp messages; this carries the search keywords.
+   */
+  subtitle?: string;
+  /** <title> for the trip page (the site appends " — After630"). Falls back to `title`. */
+  seoTitle?: string;
+  /** Meta description for the trip page. Falls back to `blurb`. */
+  seoDescription?: string;
+  /** "Who this trip is for" bullets shown in the overview. */
+  audience?: string[];
   region?: TripRegion;
   destinations: string[];
   place: string;

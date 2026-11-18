@@ -18,6 +18,16 @@ export const realTrips: Trip[] = [
     slug: "15-strangers-and-stories",
     title: "15 Strangers & Stories",
     tagline: "The Himachal Experience",
+    subtitle: "A 5-Day Himachal Group Trip from Chandigarh",
+    seoTitle: "Himachal Group Trip from Chandigarh · 12–16 Dec",
+    seoDescription:
+      "Join a 5-day, solo-friendly group trip to a secret Himachal village, 12–16 Dec. Meadow treks, a waterfall, bonfire nights and up to 15 travellers. From ₹15,999.",
+    audience: [
+      "Solo travellers who'd rather go with a group than plan everything alone. Come on your own or bring a friend.",
+      "Travellers aged 20 to 40 who want to meet new people through shared activities, not just sightseeing.",
+      "Anyone who wants mountain air without a tough expedition. The longest planned trek takes about 2 to 2½ hours, and outdoor activities are optional.",
+      "People travelling from Delhi, Jaipur, Ahmedabad, Mumbai, Pune or Bengaluru who can reach Chandigarh for the group departure.",
+    ],
     destinations: ["Himachal Pradesh"],
     place: "Himachal Pradesh · Secret destination",
     category: "mountain",
@@ -25,9 +35,9 @@ export const realTrips: Trip[] = [
     tone: "Mountain group trip",
     status: "published",
     duration: { days: 5, nights: 4 },
-    blurb: "Five days from Chandigarh to a secret Himachal destination, with meadow treks, a waterfall visit and time to get to know your fellow explorers.",
+    blurb: "Five days in the Himachal mountains with up to 15 fellow travellers. We leave together from Chandigarh for meadow treks, a waterfall, village challenges and bonfire evenings. Come solo or bring a friend.",
     description:
-      "Come solo and spend five days in the mountains with a group of up to 15 travellers. The plan includes meadow treks, a sound healing session, a waterfall visit, village challenges, bonfire evenings and a final-night celebration. Confirmed travellers receive the village, stay and essential safety details privately before departure.",
+      "This is a 5-day, 4-night group trip from Chandigarh to a quiet village in Himachal Pradesh, with no more than 15 travellers. It's built for people coming on their own, so you won't be the only one who doesn't know anyone.\n\nThe days are planned but unhurried: a short meadow trek to a sound healing session, an afternoon at a waterfall, team challenges in a mountain village and a trek to a 360° viewpoint. Evenings bring bonfires, live music, a screening of Tamasha and a final-night party.\n\nYou'll stay at the After630 Mountain House, four travellers to a room with a separate bed each. Group transport, four nights' stay, breakfasts, dinners and every planned activity are included. Confirmed travellers receive the exact village, stay and essential safety details privately before departure.",
     images: himachalPhotos.map((photo) => ({ ...photo, licensedForUse: true })),
     videos: [
       { ...video("himachal-sunset-dog"), caption: "Sunset from the meadow" },
@@ -37,31 +47,31 @@ export const realTrips: Trip[] = [
     itinerary: [
       {
         day: 1,
-        title: "12 December · The journey begins",
+        title: "12 December · Chandigarh to the mountains, bonfire and live music",
         description:
           "Meet at Chandigarh Railway Station by 9:30 am for the 10:00 am departure. Expect to reach the mountain stay around 5:00–6:00 pm, depending on road and traffic conditions. Settle in with tea and refreshments, then have dinner by the bonfire with live music.",
       },
       {
         day: 2,
-        title: "13 December · Meadow trek and waterfall",
+        title: "13 December · Meadow trek, sound healing and a waterfall",
         description:
           "After breakfast, take a short trek to a meadow for a sound healing session. Return to the stay around lunchtime. Explore a waterfall in the afternoon, then head back for dinner and a screening of Tamasha.",
       },
       {
         day: 3,
-        title: "14 December · Mountain village exploration",
+        title: "14 December · Village challenges in the Himachal hills",
         description:
           "After breakfast, explore a nearby mountain village through team tasks and local discovery challenges. Return to the stay for dinner.",
       },
       {
         day: 4,
-        title: "15 December · Panoramic views and celebration",
+        title: "15 December · 360° viewpoint trek and the farewell party",
         description:
           "After breakfast, trek across scenic meadows to a 360° viewpoint. Return to the stay to recharge before an evening of music, dancing, a group party and dinner.",
       },
       {
         day: 5,
-        title: "16 December · Return to Chandigarh",
+        title: "16 December · Breakfast, then back to Chandigarh",
         description:
           "Have breakfast, check out and travel back to Chandigarh Railway Station. Expect to arrive in the afternoon or evening, depending on road and traffic conditions.",
       },
@@ -89,6 +99,34 @@ export const realTrips: Trip[] = [
     ],
     faq: [
       {
+        question: "Can I join this Himachal trip solo?",
+        answer: "Yes. The trip is designed for people coming on their own, and the group is capped at 15 travellers so it's easy to get to know everyone. You're also welcome to come with a friend.",
+      },
+      {
+        question: "Who is this trip for?",
+        answer: "It's planned for travellers aged 20 to 40 who enjoy the outdoors and meeting new people. You don't need trekking experience. The longest planned trek takes about 2 to 2½ hours.",
+      },
+      {
+        question: "Where does the trip start and end?",
+        answer: "At Chandigarh Railway Station. Arrive by 9:30 am on 12 December for the 10:00 am departure. We return there on 16 December, arriving in the afternoon or evening depending on road conditions.",
+      },
+      {
+        question: "I live in Delhi, Mumbai, Bengaluru or another city. How do I join?",
+        answer: "Plan your own travel to Chandigarh Railway Station so you arrive by 9:30 am on 12 December. If you're coming from far away, consider reaching Chandigarh the day before. For the return, book onward travel from Chandigarh no earlier than the evening of 16 December. Your travel to and from Chandigarh isn't included in the price.",
+      },
+      {
+        question: "Why is the destination a secret?",
+        answer: "The trip goes to a quiet mountain village. We share the exact village and stay privately with confirmed travellers before departure, along with the essential safety details.",
+      },
+      {
+        question: "Will there be snow in December?",
+        answer: "Snowfall is possible but not guaranteed. Pack warm layers, rain protection and shoes with good grip.",
+      },
+      {
+        question: "What does ₹15,999 cover?",
+        answer: "It covers everything in the inclusions list: return group transport from Chandigarh, four nights' stay, four breakfasts, four dinners and all planned activities. Lunches, personal expenses, travel insurance and travel to Chandigarh are extra. The team confirms the final amount, including any applicable taxes, before you pay.",
+      },
+      {
         question: "How long are the treks?",
         answer: "One planned trek may take roughly 2 to 2½ hours. The route and duration depend on conditions. Bring shoes with good grip, layers and water. Outdoor activities are optional.",
       },
@@ -102,7 +140,11 @@ export const realTrips: Trip[] = [
       },
       {
         question: "When is my booking confirmed?",
-        answer: "The After630 team confirms your seat in writing after receiving payment. Ask the team for the written cancellation, rescheduling and refund terms before paying.",
+        answer: "Your seat is confirmed only after the required payment has been received and the After630 team has sent you a written confirmation.",
+      },
+      {
+        question: "What is the cancellation policy?",
+        answer: "Send your cancellation in writing on WhatsApp. Refunds depend on how far ahead of the 12 December departure you cancel: 90% of the package amount at 30 days or more, 50% at 15–29 days, 25% at 7–14 days, and no refund within 7 days or for no-shows. Non-refundable third-party and payment gateway charges, if any, may be deducted. Full details are on the Cancellation & Refunds page.",
       },
     ],
     departures: [

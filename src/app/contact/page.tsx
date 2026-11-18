@@ -8,8 +8,9 @@ import InstagramIcon from "@/components/ui/InstagramIcon";
 import styles from "@/components/secondary/secondary.module.css";
 
 export const metadata: Metadata = {
-  title: "Contact After630",
-  description: "Reach the After630 team on WhatsApp or Instagram to ask about a trip before you book.",
+  title: "Contact Us on WhatsApp",
+  description:
+    "Ask the After630 team about dates, prices, solo travel or anything else before you book. Message us on WhatsApp or find us on Instagram.",
   alternates: { canonical: "/contact" },
 };
 

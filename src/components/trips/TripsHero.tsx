@@ -22,7 +22,7 @@ export default function TripsHero({ singleTrip }: { singleTrip: boolean }) {
         <p className="eyebrow" style={{ color: "#a9dcee" }}>
           {singleTrip ? "Upcoming departure" : "The next chapter is out there"}
         </p>
-        <h1>{singleTrip ? "Explore Trips" : "Find your next escape."}</h1>
+        <h1>{singleTrip ? "Upcoming group trips" : "Find your next group trip."}</h1>
         <p>
           {singleTrip
             ? "See the dates, price and itinerary for our next group trip."

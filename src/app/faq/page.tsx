@@ -7,8 +7,9 @@ import FaqExplorer from "@/components/faq/FaqExplorer";
 import styles from "@/components/secondary/secondary.module.css";
 
 export const metadata: Metadata = {
-  title: "FAQs",
-  description: "Answers to common questions about booking, trip details, payments, changes and safety.",
+  title: "Group Trip FAQs: Booking, Solo Travel & Payments",
+  description:
+    "How After630 group trips work: joining solo, booking on WhatsApp, what the price includes, payments, changes and what to pack. Answers before you book.",
   alternates: { canonical: "/faq" },
 };
 

@@ -7,7 +7,8 @@ import styles from "@/components/secondary/secondary.module.css";
 
 export const metadata: Metadata = {
   title: "Past Experiences",
-  description: "After630's earlier storytelling and social gatherings, before the move into group travel.",
+  description:
+    "Before group trips, After630 brought people together through storytelling and social gatherings. See where the community and the idea behind our trips began.",
   alternates: { canonical: "/experiences" },
 };
 
@@ -45,7 +46,6 @@ export default function ExperiencesPage() {
                 An After630 gathering built around the simple magic of people meeting, sharing conversations and
                 being part of something beyond the ordinary.
               </p>
-              <span className={styles.archiveCapsule}>Title &amp; date TBA</span>
             </div>
           </div>
 
@@ -66,7 +66,6 @@ export default function ExperiencesPage() {
                 Our second experience continued the same spirit — creating a reason to show up, connect and be
                 part of a shared moment.
               </p>
-              <span className={styles.archiveCapsule}>Title &amp; date TBA</span>
             </div>
           </div>
         </div>

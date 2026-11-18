@@ -18,7 +18,9 @@ test.describe("core navigation", () => {
     await page.goto("/trips");
     await page.getByRole("link", { name: "View trip: 15 Strangers & Stories" }).click();
     await expect(page).toHaveURL(/\/trips\/15-strangers-and-stories$/);
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("15 Strangers & Stories");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      "15 Strangers & Stories: A 5-Day Himachal Group Trip from Chandigarh",
+    );
   });
 
   test("back navigation from a trip detail restores the listing", async ({ page }) => {

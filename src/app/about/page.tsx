@@ -7,8 +7,9 @@ import Button from "@/components/ui/Button";
 import styles from "@/components/secondary/secondary.module.css";
 
 export const metadata: Metadata = {
-  title: "About After630",
-  description: "After630's story — from storytelling gatherings to curated group travel experiences.",
+  title: "Our Story: Group Travel Built Around People",
+  description:
+    "How After630 grew from storytelling gatherings into small-group trips for solo travellers aged 20–40, and what we believe makes a trip worth remembering.",
   alternates: { canonical: "/about" },
 };
 

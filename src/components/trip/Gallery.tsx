@@ -122,7 +122,8 @@ function LightboxContent({
   return (
     <div>
       <div className={styles.lightboxImg}>
-        <SmartImage src={image.src} alt={image.alt} fallbackSrc={fallbackSrc} fit={image.fit} sizes="90vw" priority />
+        {/* Always "contain" here: the lightbox exists to show the whole photo, uncropped. */}
+        <SmartImage src={image.src} alt={image.alt} fallbackSrc={fallbackSrc} fit="contain" sizes="90vw" priority />
       </div>
       <div className={styles.lightboxBottom}>
         <button type="button" onClick={() => goTo(index - 1)} aria-label="Previous photo">

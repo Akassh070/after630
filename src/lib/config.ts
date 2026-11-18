@@ -60,6 +60,12 @@ function readMetaPixelId(): string | null {
   return raw && /^\d{8,20}$/.test(raw) ? raw : null;
 }
 
+/** Search Console tokens are URL-safe base64-ish strings; anything else is treated as "not set". */
+function readGoogleSiteVerification(): string | null {
+  const raw = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim() || siteCopy.googleSiteVerification;
+  return raw && /^[A-Za-z0-9_-]{10,100}$/.test(raw) ? raw : null;
+}
+
 function readSiteUrl(): string {
   const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim() || siteCopy.siteUrl;
   return raw.replace(/\/$/, "");
@@ -73,10 +79,6 @@ function readBooleanWithDefault(name: string, fallback: boolean): boolean {
   return fallback;
 }
 
-function readBoolean(name: string): boolean {
-  return process.env[name]?.trim().toLowerCase() === "true";
-}
-
 export const siteConfig = {
   siteName: "After630",
   siteUrl: readSiteUrl(),
@@ -84,6 +86,7 @@ export const siteConfig = {
   instagramUrl: readInstagramUrl(),
   tripSource: readTripSource(),
   allowIndexing: readBooleanWithDefault("NEXT_PUBLIC_ALLOW_INDEXING", siteCopy.allowIndexing),
-  legalApproved: readBoolean("NEXT_PUBLIC_LEGAL_APPROVED"),
+  legalApproved: readBooleanWithDefault("NEXT_PUBLIC_LEGAL_APPROVED", siteCopy.legalApproved),
   metaPixelId: readMetaPixelId(),
+  googleSiteVerification: readGoogleSiteVerification(),
 } as const;

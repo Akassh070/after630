@@ -838,6 +838,85 @@ select.formControl {
   color: var(--color-muted);
 }
 
+.legalSection p + p,
+.legalSection p + .legalList,
+.legalSection .legalList + p,
+.legalSection .legalTableWrap + p {
+  margin-top: 12px;
+}
+
+.legalList {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.legalList li {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--color-muted);
+}
+
+.legalList li::marker {
+  color: var(--color-blue-dark);
+}
+
+.legalTableWrap {
+  margin-top: 16px;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+.legalTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.legalTable th,
+.legalTable td {
+  padding: 13px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.legalTable thead th {
+  background: var(--color-surface-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.legalTable tbody th {
+  font-weight: 700;
+  color: var(--color-text, inherit);
+}
+
+.legalTable tbody td {
+  font-weight: 800;
+  color: var(--color-blue-dark);
+}
+
+.legalTable tbody tr:last-child th,
+.legalTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.legalSection .legalNote {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--color-soft);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
 .legalBottom {
   background: var(--color-soft);
   border-radius: 16px;

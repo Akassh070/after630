@@ -1,80 +1,145 @@
-/** Ported verbatim from handoff/ui/after630_faq_v1.html. */
-export type FaqCategory = "Booking" | "Trip Details" | "Payments" | "Changes" | "Safety";
+/**
+ * FAQ copy, based on the owner-supplied After 6:30 Website Policies
+ * (18 Nov 2026), plus site-specific answers on age, home cities and
+ * WhatsApp booking. Keep answers consistent with src/content/legal/*.
+ */
+export type FaqCategory = "About" | "Booking & Payments" | "During the Trip" | "Cancellations";
 
-export const faqCategories: FaqCategory[] = ["Booking", "Trip Details", "Payments", "Changes", "Safety"];
+export const faqCategories: FaqCategory[] = ["About", "Booking & Payments", "During the Trip", "Cancellations"];
 
 export const faqItems: { category: FaqCategory; question: string; answer: string }[] = [
+  // About
   {
-    category: "Booking",
-    question: "Can I join an After630 trip solo?",
+    category: "About",
+    question: "What is After630?",
     answer:
-      "You can enquire as a solo traveller. Joining rules, age requirements (if any) and other restrictions will be shown on each confirmed trip page.",
+      "After630 is a travel and experience company for people who want to step away from their everyday routine and explore something different. We curate group trips, mountain escapes, unique stays and travel experiences that bring people, places and stories together.",
   },
   {
-    category: "Booking",
-    question: "How does booking work?",
+    category: "About",
+    question: "Who can travel with After630?",
     answer:
-      "Choose a trip and departure, then send an enquiry on WhatsApp. Our team verifies availability, shares confirmed package and payment details, and sends a booking confirmation after payment verification.",
+      "Our trips are designed for working professionals, solo travellers, friends, couples and anyone who enjoys exploring new places and meeting new people. They're planned with travellers aged 20 to 40 in mind. Any specific age requirements are listed on each trip page.",
   },
   {
-    category: "Booking",
+    category: "About",
+    question: "Can I join a trip alone?",
+    answer:
+      "Absolutely. Our group trips are designed for people travelling on their own, and the experiences are built to help you connect, make new friends and create memories together.",
+  },
+  {
+    category: "About",
+    question: "Are your trips suitable for couples and friends?",
+    answer:
+      "Yes. You can join on your own, as a couple or with a group of friends, subject to availability and the trip's booking conditions.",
+  },
+  {
+    category: "About",
+    question: "I don't live near the departure city. Can I still join?",
+    answer:
+      "Yes. Travellers can join from anywhere, including Ahmedabad, Delhi, Jaipur, Mumbai, Pune and Bengaluru. Each trip starts from a set meeting point (Chandigarh for our Himachal trip), and you plan your own travel there. If you're coming from far away, arriving the day before is the easiest option.",
+  },
+
+  // Booking & Payments
+  {
+    category: "Booking & Payments",
+    question: "How can I book a trip?",
+    answer:
+      "Browse our upcoming trips on the website or our Instagram, then message our team on WhatsApp. We'll share the itinerary, inclusions, pricing and booking steps.",
+  },
+  {
+    category: "Booking & Payments",
     question: "Does sending a WhatsApp message reserve my seat?",
     answer:
-      "No. An enquiry is not a reservation. Your place is confirmed only after our team verifies availability and the required payment and sends confirmation.",
+      "No. An enquiry is not a reservation. Your seat is confirmed only after the required payment has been received and After630 has sent you a confirmation.",
   },
   {
-    category: "Trip Details",
-    question: "What is included in the trip price?",
+    category: "Booking & Payments",
+    question: "How do I confirm my booking?",
     answer:
-      "Each published trip will have its own inclusions and exclusions. Please check the specific package for travel, accommodation, meals, activities and any applicable additional charges.",
+      "Your booking is confirmed only after the required payment has been received and After630 has shared your confirmation. Keep your payment acknowledgement until it arrives.",
   },
   {
-    category: "Trip Details",
-    question: "Where can I see departure points and dates?",
+    category: "Booking & Payments",
+    question: "What is included in the package price?",
     answer:
-      "Confirmed dates, origin cities and pickup details will be shown on the individual trip page and reconfirmed by our team during booking.",
+      "Inclusions vary from trip to trip. Accommodation, transport, meals, activities and experiences are listed clearly on each trip page. Travel to the trip's meeting point is usually not included.",
   },
   {
-    category: "Trip Details",
-    question: "Are the itineraries fixed?",
+    category: "Booking & Payments",
+    question: "Are taxes included in the price?",
     answer:
-      "The published itinerary is the current plan. Weather, local restrictions, transport or safety needs may require changes; applicable trip terms will clarify how those are handled.",
+      "All prices are communicated before your booking is confirmed. Any applicable taxes, extra charges and payment conditions will be specified wherever they apply.",
   },
   {
-    category: "Payments",
-    question: "How can I pay for a trip?",
+    category: "Booking & Payments",
+    question: "Can I customise a trip?",
     answer:
-      "Once availability and terms are confirmed, the team will share approved payment instructions. No direct online checkout is included in the first website release.",
+      "Yes. We can help with customised travel experiences and private group trips, depending on the destination, availability and your requirements. Message us on WhatsApp to discuss it.",
+  },
+
+  // During the Trip
+  {
+    category: "During the Trip",
+    question: "Will I receive a detailed itinerary?",
+    answer:
+      "Yes. Confirmed travellers receive the trip information they need, including travel schedules, accommodation details, inclusions, important instructions and any updates.",
   },
   {
-    category: "Payments",
-    question: "Will I get confirmation after payment?",
+    category: "During the Trip",
+    question: "What should I carry?",
     answer:
-      "A booking confirmation will be shared after the team verifies the applicable payment and reservation details. Keep your payment acknowledgement until confirmation arrives.",
+      "We share a recommended packing list before departure. It usually includes comfortable clothing, suitable footwear, personal essentials, ID documents and items specific to the destination.",
   },
   {
-    category: "Changes",
-    question: "Can I cancel or reschedule?",
+    category: "During the Trip",
+    question: "What happens if the weather affects the trip?",
     answer:
-      "Cancellation or rescheduling depends on the specific trip, suppliers and the policy shared before you pay. See Cancellation & Refunds for the general framework.",
+      "Mountain trips, treks and outdoor activities can be affected by weather, road conditions or local authorities. Safety comes first, so we may modify, replace or cancel an activity when necessary.",
   },
   {
-    category: "Changes",
-    question: "What happens if a trip cannot operate?",
+    category: "During the Trip",
+    question: "Do you provide travel insurance?",
     answer:
-      "If a departure is postponed or cannot operate, our team will share the available options under the confirmed terms for that trip.",
+      "Travel insurance is not included unless a trip's inclusions say so. We strongly recommend arranging suitable travel insurance before departure.",
   },
   {
-    category: "Safety",
-    question: "Are there fitness or age requirements?",
+    category: "During the Trip",
+    question: "How can I contact the team during the trip?",
     answer:
-      "Some destinations or activities may have physical or age restrictions. These are stated in the relevant trip details when a departure is published.",
+      "Confirmed travellers receive the trip coordinator's contact details and emergency communication information before departure.",
+  },
+
+  // Cancellations
+  {
+    category: "Cancellations",
+    question: "Can I cancel my booking?",
+    answer:
+      "Yes. Send your cancellation request in writing through our official WhatsApp number. Refunds depend on how far ahead you cancel: 90% of the package amount at 30 days or more before departure, 50% at 15–29 days, 25% at 7–14 days, and no refund within 7 days. See Cancellation & Refunds for the full policy.",
   },
   {
-    category: "Safety",
-    question: "What should I pack?",
+    category: "Cancellations",
+    question: "Can I transfer my booking to someone else?",
     answer:
-      "Joining instructions will include packing guidance appropriate to the trip, destination, weather and activities before departure.",
+      "Transfers may be allowed with prior written approval from After630, subject to availability, supplier requirements and any applicable charges.",
+  },
+  {
+    category: "Cancellations",
+    question: "What if After630 cancels a trip?",
+    answer:
+      "If we cancel a confirmed trip, we'll inform you and offer either a refund of the amount received or an alternative trip or date, if you agree to it.",
+  },
+  {
+    category: "Cancellations",
+    question: "How long do refunds take?",
+    answer:
+      "Approved refunds are ordinarily initiated within 7–10 business days, usually to your original payment method. The time it takes to reach your account depends on your bank or payment provider.",
+  },
+  {
+    category: "Cancellations",
+    question: "How can I get more information?",
+    answer:
+      "For bookings, trip details and help, message us on our official WhatsApp number or visit the Contact page.",
   },
 ];
 
@@ -83,21 +148,26 @@ export const homeFaqItems = [
   {
     question: "Can I join an After630 trip solo?",
     answer:
-      "You can enquire as a solo traveller. Each trip page will specify joining requirements and any applicable restrictions once the real trip details are confirmed.",
+      "Yes. Our group trips are designed for people travelling on their own and are planned for travellers aged 20 to 40. You're also welcome to come with a friend, a partner or a group.",
   },
   {
     question: "How do I book a trip?",
     answer:
-      "Select a trip, review the details and contact us on WhatsApp. Our team will confirm availability, explain payment and provide your booking confirmation once verified.",
+      "Pick a trip, review the details and message us on WhatsApp. We'll confirm availability and share payment details. Your seat is confirmed once payment is received and we've sent your confirmation.",
+  },
+  {
+    question: "I'm not from Chandigarh. Can I still join?",
+    answer:
+      "Yes. You can join from Ahmedabad, Delhi, Jaipur, Mumbai, Pune, Bengaluru or anywhere else. Each trip has a set meeting point, and you plan your own travel to reach it.",
   },
   {
     question: "What's included in the trip price?",
     answer:
-      "Every confirmed package will have a breakdown of inclusions and exclusions, including any applicable transport, stay, meals and activities.",
+      "Each trip page lists exactly what's included and what's not, covering transport, stay, meals and activities. Travel insurance isn't included unless a trip says so.",
   },
   {
     question: "What about cancellation or refunds?",
     answer:
-      "The cancellation and refund terms for each booking will be shared before payment and made accessible in the website's policies section.",
+      "Cancel in writing on WhatsApp. You'll get 90% back at 30+ days before departure, 50% at 15–29 days, 25% at 7–14 days, and no refund within 7 days. The full Cancellation & Refunds policy has the details.",
   },
 ];

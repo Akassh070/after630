@@ -10,9 +10,11 @@ import ClosingCta from "@/components/home/ClosingCta";
 import { getFeaturedTrips } from "@/lib/trips/repository";
 
 export const metadata: Metadata = {
-  title: "After630 — Curated Group Travel Experiences",
+  // The root page shares the layout's segment, so the title template doesn't
+  // apply here: this string is the full <title>.
+  title: "Group Trips for Solo Travellers in India — After630",
   description:
-    "Discover curated group journeys across India. Explore upcoming trips and enquire on WhatsApp — our team confirms availability and booking by hand.",
+    "Small-group trips for solo travellers aged 20–40. Explore the mountains, meet new people and see upcoming departures, dates and prices. Enquire on WhatsApp.",
   alternates: { canonical: "/" },
 };
 

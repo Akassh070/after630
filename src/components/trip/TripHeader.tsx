@@ -18,7 +18,15 @@ export default function TripHeader({ trip }: { trip: Trip }) {
       <div className={styles.titleArea}>
         <div>
           {trip.tagline && <p className="eyebrow">{trip.tagline}</p>}
-          <h1>{trip.title}</h1>
+          <h1>
+            {trip.title}
+            {trip.subtitle && (
+              <>
+                <span className={styles.srOnlyColon}>: </span>
+                <span className={styles.titleSub}>{trip.subtitle}</span>
+              </>
+            )}
+          </h1>
           <div className={styles.location}>
             ⌖ {trip.place} / {trip.tone}
           </div>

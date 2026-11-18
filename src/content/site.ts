@@ -25,11 +25,24 @@ export const siteCopy = {
    */
   allowIndexing: true,
   /**
+   * Whether the Privacy, Terms and Cancellation pages are final: removes the
+   * "Draft" tag, lets them be indexed and adds them to sitemap.xml. Owner
+   * supplied the final policies on 18 Nov 2026.
+   * NEXT_PUBLIC_LEGAL_APPROVED=true/false overrides it.
+   */
+  legalApproved: true,
+  /**
    * Meta (Facebook) Pixel ID — digits only, from Meta Events Manager. Empty =
    * pixel completely off (no script, no requests). Paste the ID here when you
    * have it; NEXT_PUBLIC_META_PIXEL_ID can override it.
    */
   metaPixelId: "",
+  /**
+   * Google Search Console verification token: only the content="…" value of
+   * the HTML tag Search Console gives you. Empty = no tag.
+   * NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION can override it.
+   */
+  googleSiteVerification: "",
   tagline: "Curated group journeys, incredible places, and experiences worth remembering.",
   footerColumns: [
     {
@@ -52,5 +65,4 @@ export const siteCopy = {
       ],
     },
   ],
-  footerNote: "Pages are UI/UX drafts, subject to operational and legal review.",
 } as const;

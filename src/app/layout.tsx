@@ -7,6 +7,8 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import SkipLink from "@/components/layout/SkipLink";
 import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 import MetaPixel from "@/components/analytics/MetaPixel";
+import JsonLd from "@/components/seo/JsonLd";
+import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { THEME_INIT_SCRIPT } from "@/components/theme/theme";
 import "./globals.css";
@@ -21,17 +23,20 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
-    default: "After630 — Curated Group Travel Experiences",
+    default: "Group Trips for Solo Travellers in India — After630",
     template: "%s — After630",
   },
   description:
-    "After630 designs curated group travel experiences across India. Explore upcoming journeys and enquire on WhatsApp — availability and bookings are confirmed by our team.",
+    "Small-group trips for solo travellers aged 20–40. Explore the mountains, meet new people and see upcoming departures, dates and prices. Enquire on WhatsApp.",
   // Shown when the site link is shared (WhatsApp, Instagram, etc.).
   openGraph: {
     siteName: "After630",
     type: "website",
     images: [{ url: "/brand/after630-og-square.png", width: 1024, height: 1024, alt: "After630" }],
   },
+  // Google Search Console's HTML-tag verification. Set the token in
+  // src/content/site.ts (googleSiteVerification) or NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION.
+  ...(siteConfig.googleSiteVerification ? { verification: { google: siteConfig.googleSiteVerification } } : {}),
   robots: siteConfig.allowIndexing ? { index: true, follow: true } : { index: false, follow: false },
 };
 
@@ -43,6 +48,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {THEME_INIT_SCRIPT}
         </Script>
         <ThemeProvider>
+          {/* Site-wide, so trip pages' `provider` reference resolves on every page. */}
+          <JsonLd data={[organizationSchema(), websiteSchema()]} />
           <SkipLink />
           <div className="site">
             <SiteHeader />
