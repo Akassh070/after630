@@ -206,6 +206,35 @@
   margin: 0 0 15px;
 }
 
+/* Real moments (trip videos) */
+
+.moments {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.moment {
+  margin: 0;
+}
+
+.moment video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 16px;
+  background: #315365;
+}
+
+.moment figcaption {
+  margin-top: 9px;
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 /* Overview */
 
 .overviewPoints {

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import TripHeader from "@/components/trip/TripHeader";
 import Gallery from "@/components/trip/Gallery";
 import Overview from "@/components/trip/Overview";
+import RealMoments from "@/components/trip/RealMoments";
 import Itinerary from "@/components/trip/Itinerary";
 import Inclusions from "@/components/trip/Inclusions";
 import Logistics from "@/components/trip/Logistics";
@@ -36,6 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 function getSubnav(trip: Trip) {
   return [
     { href: "#overview", label: "Overview", show: true },
+    { href: "#real-moments", label: "Real moments", show: (trip.videos?.length ?? 0) > 0 },
     { href: "#itinerary", label: "Itinerary", show: (trip.itinerary?.length ?? 0) > 0 },
     {
       href: "#inclusions",
@@ -74,6 +76,7 @@ export default async function TripDetailPage({ params }: { params: Promise<{ slu
         <div className={styles.bodyLayout} style={{ paddingBottom: 64 }}>
           <div>
             <Overview trip={trip} />
+            <RealMoments videos={trip.videos ?? []} />
             <Itinerary days={trip.itinerary ?? []} />
             <Inclusions trip={trip} />
             <Logistics trip={trip} />

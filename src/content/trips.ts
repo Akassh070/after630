@@ -1,7 +1,16 @@
 import type { Trip } from "@/lib/trips/types";
-import { img } from "@/lib/images";
+import { img, video } from "@/lib/images";
 
-const upcomingPhoto = img("pages-live-trip-15-strangers");
+// Real photos from the After630 Mountain House. The first four fill the trip
+// page's gallery grid; all of them rotate in the trip-card slideshows.
+const himachalPhotos = [
+  img("himachal-village-trail"),
+  img("himachal-mountain-house-sign"),
+  img("himachal-stay-exterior"),
+  img("himachal-traditional-house"),
+  img("himachal-hillside-village"),
+  img("himachal-log-wall-sign"),
+];
 
 export const realTrips: Trip[] = [
   {
@@ -19,13 +28,12 @@ export const realTrips: Trip[] = [
     blurb: "Five days from Chandigarh to a secret Himachal destination, with meadow treks, a waterfall visit and time to get to know your fellow explorers.",
     description:
       "Come solo and spend five days in the mountains with a group of up to 15 travellers. The plan includes meadow treks, a sound healing session, a waterfall visit, village challenges, bonfire evenings and a final-night celebration. Confirmed travellers receive the village, stay and essential safety details privately before departure.",
-    images: [
-      {
-        ...upcomingPhoto,
-        licensedForUse: true,
-      },
+    images: himachalPhotos.map((photo) => ({ ...photo, licensedForUse: true })),
+    videos: [
+      { ...video("himachal-sunset-dog"), caption: "Sunset from the meadow" },
+      { ...video("himachal-meadow-dogs"), caption: "Morning with the mountain dogs" },
     ],
-    fallbackImage: upcomingPhoto.src,
+    fallbackImage: "/brand/after630-og-square.png",
     itinerary: [
       {
         day: 1,

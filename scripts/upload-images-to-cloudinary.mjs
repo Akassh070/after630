@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Uploads every photo in src/content/images.ts to Cloudinary, under its
-// manifest publicId. Idempotent: an entry already present on Cloudinary is
+// Uploads every photo and video in src/content/images.ts (imageManifest +
+// videoManifest) to Cloudinary, under its manifest publicId. Idempotent: an entry already present on Cloudinary is
 // left untouched, so this is safe to re-run after adding new entries.
 //
 // Usage: npm run images:upload
@@ -38,8 +38,11 @@ if (!CLOUD_NAME || !API_KEY || !API_SECRET) {
   process.exit(1);
 }
 
-const { imageManifest } = await import("../src/content/images.ts");
-const entries = Object.entries(imageManifest);
+const { imageManifest, videoManifest } = await import("../src/content/images.ts");
+const entries = [
+  ...Object.entries(imageManifest).map(([key, entry]) => [key, { ...entry, resourceType: "image" }]),
+  ...Object.entries(videoManifest).map(([key, entry]) => [key, { ...entry, resourceType: "video" }]),
+];
 
 function sign(params) {
   // Cloudinary's signing rule: every param except file/cloud_name/resource_type/api_key/signature,
@@ -57,6 +60,8 @@ function mimeFor(filePath) {
   if (ext === ".png") return "image/png";
   if (ext === ".jpg" || ext === ".jpeg") return "image/jpeg";
   if (ext === ".gif") return "image/gif";
+  if (ext === ".mp4") return "video/mp4";
+  if (ext === ".mov") return "video/quicktime";
   return "application/octet-stream";
 }
 
@@ -76,10 +81,10 @@ function filePayload(entry) {
   throw new Error("Manifest entry needs sourceUrl or localPath to upload");
 }
 
-async function alreadyUploaded(publicId) {
+async function alreadyUploaded(publicId, resourceType) {
   const auth = Buffer.from(`${API_KEY}:${API_SECRET}`).toString("base64");
   const res = await fetch(
-    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/image/upload/${encodeURIComponent(publicId)}`,
+    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/${resourceType}/upload/${encodeURIComponent(publicId)}`,
     { headers: { Authorization: `Basic ${auth}` } },
   );
   return res.ok;
@@ -96,7 +101,7 @@ async function upload(entry) {
   body.set("api_key", API_KEY);
   body.set("signature", signature);
 
-  const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
+  const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/${entry.resourceType}/upload`, {
     method: "POST",
     body,
   });
@@ -105,18 +110,21 @@ async function upload(entry) {
   return json;
 }
 
-async function verify(publicId) {
-  const res = await fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${publicId}`, { method: "HEAD" });
+async function verify(publicId, resourceType) {
+  const suffix = resourceType === "video" ? ".mp4" : "";
+  const res = await fetch(`https://res.cloudinary.com/${CLOUD_NAME}/${resourceType}/upload/${publicId}${suffix}`, {
+    method: "HEAD",
+  });
   return res.ok;
 }
 
-console.log(`Checking ${entries.length} images against Cloudinary (${CLOUD_NAME})...\n`);
+console.log(`Checking ${entries.length} images/videos against Cloudinary (${CLOUD_NAME})...\n`);
 
 const results = { uploaded: [], skipped: [], failed: [] };
 
 for (const [key, entry] of entries) {
   try {
-    if (await alreadyUploaded(entry.publicId)) {
+    if (await alreadyUploaded(entry.publicId, entry.resourceType)) {
       results.skipped.push(key);
       console.log(`  skip     ${key}  (already on Cloudinary)`);
       continue;
@@ -137,7 +145,7 @@ console.log("\nVerifying delivery URLs...");
 const verifyFailed = [];
 for (const [key, entry] of entries) {
   if (results.failed.some((f) => f.key === key)) continue;
-  if (!(await verify(entry.publicId))) verifyFailed.push(key);
+  if (!(await verify(entry.publicId, entry.resourceType))) verifyFailed.push(key);
 }
 
 console.log(

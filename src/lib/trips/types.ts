@@ -50,6 +50,14 @@ export type TripImage = {
   fit?: "contain";
 };
 
+/** A short silent clip from the real trip/stay — build with `video(key)` from src/lib/images.ts. */
+export type TripVideo = {
+  src: string;
+  poster: string;
+  alt: string;
+  caption?: string;
+};
+
 export type TripItineraryDay = {
   day: number;
   title: string;
@@ -76,6 +84,8 @@ export type Trip = {
   description?: string;
   blurb: string;
   images: TripImage[];
+  /** Real clips shown in the "Real moments" section; omit when there are none. */
+  videos?: TripVideo[];
   /** Local fallback art shown if the remote image fails or is disabled. */
   fallbackImage: string;
   itinerary?: TripItineraryDay[];

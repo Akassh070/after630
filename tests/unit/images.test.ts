@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import cloudinaryLoader from "@/lib/cloudinary-loader";
-import { imageManifest } from "@/content/images";
-import { img } from "@/lib/images";
+import { imageManifest, videoManifest } from "@/content/images";
+import { img, video } from "@/lib/images";
 
 const SRC_DIR = path.resolve(__dirname, "../../src");
 
@@ -38,6 +38,18 @@ describe("cloudinaryLoader", () => {
   });
 });
 
+describe("video()", () => {
+  it("builds a silent H.264 MP4 and a first-frame poster on Cloudinary's video pipeline", () => {
+    const clip = video("himachal-sunset-dog");
+    expect(clip.src).toBe(
+      "https://res.cloudinary.com/test-cloud/video/upload/q_auto,c_limit,w_720,vc_h264,ac_none/after630/trips/himachal/sunset-dog.mp4",
+    );
+    expect(clip.poster).toBe(
+      "https://res.cloudinary.com/test-cloud/video/upload/so_0,q_auto,c_limit,w_720/after630/trips/himachal/sunset-dog.jpg",
+    );
+  });
+});
+
 describe("image manifest", () => {
   it("every img(\"key\") call in the source tree references a key that exists", () => {
     const callPattern = /\bimg\(\s*"([^"]+)"\s*\)/g;
@@ -65,8 +77,19 @@ describe("image manifest", () => {
     expect(unused).toEqual([]);
   });
 
-  it("every entry has a unique publicId", () => {
-    const ids = Object.values(imageManifest).map((e) => e.publicId);
+  it("every video(\"key\") call references a key that exists, and every video entry is used", () => {
+    const callPattern = /\bvideo\(\s*"([^"]+)"/g;
+    const used = new Set<string>();
+    for (const file of sourceFiles) {
+      if (file.endsWith(`${path.sep}content${path.sep}images.ts`)) continue;
+      for (const match of fs.readFileSync(file, "utf8").matchAll(callPattern)) used.add(match[1]);
+    }
+    expect([...used].filter((key) => !(key in videoManifest))).toEqual([]);
+    expect(Object.keys(videoManifest).filter((key) => !used.has(key))).toEqual([]);
+  });
+
+  it("every entry (photo or video) has a unique publicId", () => {
+    const ids = [...Object.values(imageManifest), ...Object.values(videoManifest)].map((e) => e.publicId);
     expect(new Set(ids).size).toBe(ids.length);
   });
 });
