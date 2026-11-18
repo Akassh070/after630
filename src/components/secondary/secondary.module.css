@@ -419,11 +419,6 @@
   color: #fff;
 }
 
-.methodIcon.methodIconEmail {
-  background: var(--color-ink);
-  color: #fff;
-}
-
 .methodIcon.methodIconInstagram {
   background: linear-gradient(45deg, #e1306c, #c13584 50%, #833ab4);
   color: #fff;

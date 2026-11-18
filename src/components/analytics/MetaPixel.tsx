@@ -10,8 +10,7 @@ import { contactMethodForHref, initMetaPixel, trackMetaEvent } from "@/lib/meta-
  * metaPixelId). Root-layout scripts run once per full page load, and this site
  * navigates client-side, so PageView is sent on every pathname change here
  * (query-string changes such as /trips filters don't count as a new page).
- * Also sends a standard `Contact` event when someone opens a WhatsApp or email
- * link — the site's real conversion, since enquiries happen off-site.
+ * Also sends a standard `Contact` event when someone opens a WhatsApp link.
  */
 export default function MetaPixel({ pixelId }: { pixelId: string }) {
   const pathname = usePathname();

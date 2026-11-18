@@ -74,16 +74,6 @@ function readBooleanWithDefault(name: string, fallback: boolean): boolean {
   return fallback;
 }
 
-/**
- * Contact email. Defaults to the official address in src/content/site.ts; the
- * env var only overrides it. A malformed value is rejected (null) rather than
- * rendered as a broken mailto: link.
- */
-function readContactEmail(): string | null {
-  const raw = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || siteCopy.contactEmail;
-  return raw && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw) ? raw : null;
-}
-
 function readBoolean(name: string): boolean {
   return process.env[name]?.trim().toLowerCase() === "true";
 }
@@ -92,7 +82,6 @@ export const siteConfig = {
   siteName: "After630",
   siteUrl: readSiteUrl(),
   whatsappNumber: readWhatsappNumber(),
-  contactEmail: readContactEmail(),
   instagramUrl: readInstagramUrl(),
   tripSource: readTripSource(),
   allowIndexing: readBooleanWithDefault("NEXT_PUBLIC_ALLOW_INDEXING", siteCopy.allowIndexing),

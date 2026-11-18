@@ -2,21 +2,14 @@
 
 import { useMemo, useState } from "react";
 import Button from "@/components/ui/Button";
-import { buildGeneralEnquiryMessage, buildMailtoLink, buildWaLink } from "@/lib/whatsapp";
+import { buildGeneralEnquiryMessage, buildWaLink } from "@/lib/whatsapp";
 import styles from "@/components/secondary/secondary.module.css";
 
-export default function EnquiryComposer({
-  whatsappNumber,
-  contactEmail,
-}: {
-  whatsappNumber: string | null;
-  contactEmail: string | null;
-}) {
+export default function EnquiryComposer({ whatsappNumber }: { whatsappNumber: string | null }) {
   const [fields, setFields] = useState({ type: "Trip enquiry", name: "", destination: "", travellers: "", dates: "", message: "" });
 
   const message = useMemo(() => buildGeneralEnquiryMessage(fields), [fields]);
   const waLink = buildWaLink(whatsappNumber, message);
-  const mailLink = contactEmail ? buildMailtoLink(contactEmail, `${fields.type || "Enquiry"} — After630`, message) : null;
 
   function update<K extends keyof typeof fields>(key: K, value: (typeof fields)[K]) {
     setFields((prev) => ({ ...prev, [key]: value }));
@@ -110,16 +103,11 @@ export default function EnquiryComposer({
             WhatsApp coming soon
           </Button>
         )}
-        {mailLink && (
-          <Button href={mailLink} variant="outline">
-            Send by email ↗
-          </Button>
-        )}
       </div>
       <p style={{ fontSize: 10, color: "var(--color-muted)", marginTop: 6, lineHeight: 1.8 }}>
         {waLink
           ? "Send on WhatsApp opens the chat with your enquiry filled in — you review it before sending. An enquiry doesn't reserve a seat."
-          : "WhatsApp isn't connected yet. Use email if available, or check back shortly."}
+          : "WhatsApp isn't connected yet. Please check back shortly."}
       </p>
     </div>
   );

@@ -9,8 +9,6 @@ export const siteCopy = {
   whatsappNumber: "917016617715",
   /** Official After630 Instagram profile (supplied by the owner). NEXT_PUBLIC_INSTAGRAM_URL can override it. */
   instagramUrl: "https://www.instagram.com/after630club",
-  /** Official contact email (supplied by the owner). NEXT_PUBLIC_CONTACT_EMAIL can override it. */
-  contactEmail: "akash.dreamverse@gmail.com",
   /**
    * Cloudinary cloud name that hosts every site photo. Public by design (it's
    * in every image URL), so it lives here and the site builds without any env

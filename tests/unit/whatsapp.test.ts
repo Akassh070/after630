@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import {
-  buildMailtoLink,
   formatWhatsappDisplay,
   getGreetingWaLink,
   buildGreetingMessage,
@@ -108,20 +107,5 @@ describe("Instagram profile", () => {
     const { siteConfig, instagramHandle } = await import("@/lib/config");
     expect(siteConfig.instagramUrl).toBe("https://www.instagram.com/after630club");
     expect(instagramHandle(siteConfig.instagramUrl!)).toBe("@after630club");
-  });
-});
-
-describe("contact email", () => {
-  it("uses the official address", async () => {
-    const { siteConfig } = await import("@/lib/config");
-    expect(siteConfig.contactEmail).toBe("akash.dreamverse@gmail.com");
-  });
-
-  it("builds an encoded mailto link with subject and body", () => {
-    const link = buildMailtoLink("akash.dreamverse@gmail.com", "Trip enquiry — After630", "Hi & hello\nLine 2");
-    expect(link.startsWith("mailto:akash.dreamverse@gmail.com?subject=")).toBe(true);
-    const params = new URLSearchParams(link.split("?")[1]);
-    expect(params.get("subject")).toBe("Trip enquiry — After630");
-    expect(params.get("body")).toBe("Hi & hello\nLine 2");
   });
 });

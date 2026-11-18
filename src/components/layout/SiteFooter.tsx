@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { siteCopy } from "@/content/site";
 import { instagramHandle, siteConfig } from "@/lib/config";
-import { buildMailtoLink, formatWhatsappDisplay, getGreetingWaLink } from "@/lib/whatsapp";
+import { formatWhatsappDisplay, getGreetingWaLink } from "@/lib/whatsapp";
 import styles from "./SiteFooter.module.css";
 
 export default function SiteFooter() {
@@ -32,12 +32,6 @@ export default function SiteFooter() {
                 <a href={siteConfig.instagramUrl} target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
                   <span className={styles.contactLabel}>Instagram</span>
                   {instagramHandle(siteConfig.instagramUrl)}
-                </a>
-              )}
-              {siteConfig.contactEmail && (
-                <a href={buildMailtoLink(siteConfig.contactEmail, "Hello After630")} className={styles.contactLink}>
-                  <span className={styles.contactLabel}>Email</span>
-                  {siteConfig.contactEmail}
                 </a>
               )}
             </div>

@@ -64,15 +64,16 @@ test.describe("WhatsApp support across the site", () => {
     await expect(page.getByRole("link", { name: /^Instagram · @after630club/ })).toHaveAttribute("href", ig);
   });
 
-  test("contact email is linked from the footer, the Contact card and the composer", async ({ page }) => {
+  test("Contact offers WhatsApp enquiries without email options", async ({ page }) => {
     await page.goto("/contact");
-    const mail = /^mailto:akash\.dreamverse@gmail\.com\?subject=/;
-    await expect(page.locator("footer").getByRole("link", { name: /akash\.dreamverse@gmail\.com/ })).toHaveAttribute("href", mail);
-    await expect(page.getByRole("link", { name: /^Email · akash\.dreamverse@gmail\.com/ })).toHaveAttribute("href", mail);
+    await expect(page.locator('a[href^="mailto:" i]')).toHaveCount(0);
+    await expect(page.locator("body")).not.toContainText(/\bemail\b/i);
+    await expect(page.locator('meta[name="description"]')).not.toHaveAttribute("content", /\bemail\b/i);
 
     await page.getByLabel("Trip / destination").fill("Spiti");
-    const href = await page.getByRole("link", { name: "Send by email ↗" }).getAttribute("href");
-    expect(href).toMatch(mail);
-    expect(new URLSearchParams(href!.split("?")[1]).get("body")).toContain("Trip / destination: Spiti");
+    const send = page.getByRole("link", { name: "Send on WhatsApp ↗" });
+    await expect(send).toHaveAttribute("href", /^https:\/\/wa\.me\/919800000000\?text=.*Spiti/);
+    const href = await send.getAttribute("href");
+    expect(new URL(href!).searchParams.get("text")).toContain("Trip / destination: Spiti");
   });
 });

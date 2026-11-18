@@ -24,7 +24,7 @@ export default function EnquiryPreviewDialog({
   async function copy() {
     try {
       await navigator.clipboard.writeText(message);
-      setStatus("Copied ✓ — paste it into WhatsApp or email.");
+      setStatus("Enquiry message copied.");
     } catch {
       textareaRef.current?.select();
       setStatus("Press Ctrl/Cmd+C to copy the selected text.");

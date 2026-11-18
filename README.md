@@ -102,7 +102,7 @@ What it sends once on:
 |---|---|
 | `PageView` | Every page, including in-app navigation (no full reload) |
 | `ViewContent` | A trip detail page — trip slug, name and category |
-| `Contact` | Someone clicks a WhatsApp or email link (`method: whatsapp/email`) — the site's real conversion |
+| `Contact` | Someone clicks a WhatsApp link (`method: whatsapp`) |
 
 With no ID, no Meta script loads and no request goes to Facebook
 (`tests/e2e/meta-pixel.spec.ts`). Before switching it on, update the Privacy
@@ -140,8 +140,8 @@ needs to supply before a real launch.
 
 ## Deploying
 
-The site builds and runs with **no env file at all** (WhatsApp, Instagram,
-email and the Cloudinary cloud name are built in via `src/content/site.ts`).
+The site builds and runs with **no env file at all** (WhatsApp, Instagram and
+the Cloudinary cloud name are built in via `src/content/site.ts`).
 On the server:
 
 ```bash

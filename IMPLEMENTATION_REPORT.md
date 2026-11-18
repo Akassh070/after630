@@ -126,7 +126,7 @@ npm run test:e2e    → 125/125 (Playwright, chromium):
                               content; full-page screenshots saved to ./screenshots/
   hover.spec.ts             — touch devices never get a "stuck" hover; reduced-motion
   whatsapp.spec.ts          — floating button, header/footer/contact links, enquiry
-                              previews, Instagram, email — all exercised end to end
+                              previews and Instagram
 ```
 
 Also manually verified after `npm run build && npm run start`: every photo request in the rendered HTML/network panel goes to `res.cloudinary.com/.../f_auto,q_auto,c_limit,w_<size>/...` — zero `images.unsplash.com` or `/_next/image` requests; the logo and icons still serve from `/public` unchanged; full-page screenshots of Home/Trips/Trip-detail/About/Past-Experiences at 390px and 1440px.
@@ -147,7 +147,7 @@ Crawl result: 0 JS errors, 0 failed requests, 0 broken images, 0 broken internal
 
 ## 5b. Meta Pixel (ready, switched off)
 
-`src/components/analytics/MetaPixel.tsx` + `src/lib/meta-pixel.ts`, loaded from the root layout only when `metaPixelId` (`src/content/site.ts`, env override `NEXT_PUBLIC_META_PIXEL_ID`) holds a numeric ID — currently empty, so nothing loads. Events: `PageView` on every pathname change (root-layout scripts only run on a full load and this site navigates client-side, so this is done manually; query-string changes such as `/trips` filters aren't counted as new pages), `ViewContent` on trip pages, `Contact` on any WhatsApp/email link click. Verified with a fake ID in a real browser (Facebook network blocked): `init` + `PageView` on load, `PageView` on client navigation, `ViewContent` on a trip, `Contact` on the WhatsApp CTA — each exactly once. **Before enabling:** the draft Privacy Policy §05 says no pixels are used and must be updated; a consent prompt is advisable.
+`src/components/analytics/MetaPixel.tsx` + `src/lib/meta-pixel.ts`, loaded from the root layout only when `metaPixelId` (`src/content/site.ts`, env override `NEXT_PUBLIC_META_PIXEL_ID`) holds a numeric ID — currently empty, so nothing loads. Events: `PageView` on every pathname change (root-layout scripts only run on a full load and this site navigates client-side, so this is done manually; query-string changes such as `/trips` filters aren't counted as new pages), `ViewContent` on trip pages, `Contact` on any WhatsApp link click. Verified with a fake ID in a real browser (Facebook network blocked): `init` + `PageView` on load, `PageView` on client navigation, `ViewContent` on a trip, `Contact` on the WhatsApp CTA — each exactly once. **Before enabling:** the draft Privacy Policy §05 says no pixels are used and must be updated; a consent prompt is advisable.
 
 ## 6. Manual QA path
 
@@ -155,7 +155,7 @@ Crawl result: 0 JS errors, 0 failed requests, 0 broken images, 0 broken internal
 2. Filter by Mountains, search "Jibhi", open the trip.
 3. Expand itinerary days, open the gallery, try arrow keys / Escape.
 4. Scroll to the enquiry card — it correctly shows "Ask About Future Dates" (no real departures exist yet). Click it: with no `NEXT_PUBLIC_AFTER630_WHATSAPP_NUMBER` set, a preview dialog opens with a copyable message; with the number set, it opens a real `wa.me` link in a new tab.
-5. `/contact` → fill the enquiry composer → "Copy message" / "Send on WhatsApp".
+5. `/contact` → fill the enquiry composer → "Send on WhatsApp".
 6. Visit an unknown route and an unknown trip slug → both 404 with real links back.
 
 ## 7. Items the owner must still supply (launch blockers)
@@ -167,7 +167,7 @@ against what's now wired to receive them:
 - **Real trips** (names, destinations, dates, origin cities, packages, prices, itineraries, inclusions, licensed photos) → add to `src/content/trips.ts`, then set `AFTER630_TRIP_SOURCE=live`.
 - **Real prior After630 event details and photos** for `/experiences` and `/about`.
 - **Approved legal text** for Privacy/Terms/Cancellation → replace `src/content/legal/*.ts`, then set `NEXT_PUBLIC_LEGAL_APPROVED=true`.
-- **Contact details**: **done** — Instagram (https://www.instagram.com/after630club) and email (akash.dreamverse@gmail.com) are built in (`src/content/site.ts`) and linked from the footer and the Contact page; the Contact composer can also send its message by email.
+- The footer and Contact page link to the [After630 Instagram profile](https://www.instagram.com/after630club). The Contact composer opens a prefilled WhatsApp message.
 - ~~Deploy/hosting approval, domain, indexing~~ — **done**: domain `https://after630.club` and indexing (on) are built in; see README §Deploying. No env vars are required on the server.
 
 ## 8. Defaults chosen (documented, easy to change)

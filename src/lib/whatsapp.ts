@@ -97,10 +97,3 @@ export function buildGeneralEnquiryMessage(fields: GeneralEnquiryFields): string
   lines.push("", "Please share the available details. Thank you! This is an enquiry, not a confirmed booking.");
   return lines.join("\n");
 }
-
-/** mailto: link with a subject and (optionally) a pre-filled body. */
-export function buildMailtoLink(email: string, subject: string, body?: string): string {
-  const params = [`subject=${encodeURIComponent(subject)}`];
-  if (body) params.push(`body=${encodeURIComponent(body)}`);
-  return `mailto:${email}?${params.join("&")}`;
-}

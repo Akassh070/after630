@@ -55,9 +55,8 @@ export function trackMetaEvent(event: string, params?: Record<string, unknown>):
 }
 
 /** Which kind of "contact" an outbound link is, if any (used for the Contact event). */
-export function contactMethodForHref(href: string | null | undefined): "whatsapp" | "email" | null {
+export function contactMethodForHref(href: string | null | undefined): "whatsapp" | null {
   if (!href) return null;
   if (/^https:\/\/(wa\.me|api\.whatsapp\.com)\//i.test(href)) return "whatsapp";
-  if (/^mailto:/i.test(href)) return "email";
   return null;
 }

@@ -34,7 +34,7 @@ describe("meta pixel helper", () => {
   it("classifies contact links", async () => {
     const { contactMethodForHref } = await import("@/lib/meta-pixel");
     expect(contactMethodForHref("https://wa.me/917016617715?text=hi")).toBe("whatsapp");
-    expect(contactMethodForHref("mailto:akash.dreamverse@gmail.com")).toBe("email");
+    expect(contactMethodForHref("mailto:hello@example.com")).toBeNull();
     expect(contactMethodForHref("https://www.instagram.com/after630club")).toBeNull();
     expect(contactMethodForHref("/contact")).toBeNull();
     expect(contactMethodForHref(null)).toBeNull();

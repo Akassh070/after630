@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import EnquiryComposer from "@/components/contact/EnquiryComposer";
 import { instagramHandle, siteConfig } from "@/lib/config";
-import { buildMailtoLink, formatWhatsappDisplay, getGreetingWaLink } from "@/lib/whatsapp";
+import { formatWhatsappDisplay, getGreetingWaLink } from "@/lib/whatsapp";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import InstagramIcon from "@/components/ui/InstagramIcon";
 import styles from "@/components/secondary/secondary.module.css";
 
 export const metadata: Metadata = {
   title: "Contact After630",
-  description: "Reach the After630 team on WhatsApp, email or Instagram to ask about a trip before you book.",
+  description: "Reach the After630 team on WhatsApp or Instagram to ask about a trip before you book.",
   alternates: { canonical: "/contact" },
 };
 
@@ -60,28 +60,6 @@ export default function ContactPage() {
                     </div>
                   </div>
                 )}
-                {siteConfig.contactEmail ? (
-                  <a
-                    href={buildMailtoLink(siteConfig.contactEmail, "Trip enquiry — After630")}
-                    className={`${styles.contactMethod} ${styles.contactMethodLink}`}
-                  >
-                    <span className={`${styles.methodIcon} ${styles.methodIconEmail}`} aria-hidden="true">
-                      ✉
-                    </span>
-                    <div>
-                      <h3>Email · {siteConfig.contactEmail}</h3>
-                      <p>For detailed questions, group requests or anything you&apos;d rather write out.</p>
-                    </div>
-                  </a>
-                ) : (
-                  <div className={`${styles.contactMethod} ${styles.contactMethodPlain}`}>
-                    <span className={styles.methodIcon} aria-hidden="true">✉</span>
-                    <div>
-                      <h3>Email</h3>
-                      <p>Email support will appear here when confirmed.</p>
-                    </div>
-                  </div>
-                )}
                 {siteConfig.instagramUrl ? (
                   <a
                     href={siteConfig.instagramUrl}
@@ -109,7 +87,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <EnquiryComposer whatsappNumber={siteConfig.whatsappNumber} contactEmail={siteConfig.contactEmail} />
+            <EnquiryComposer whatsappNumber={siteConfig.whatsappNumber} />
           </div>
         </div>
       </section>
