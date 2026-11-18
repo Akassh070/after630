@@ -23,6 +23,13 @@ export type ImageManifestEntry = {
   sourceUrl?: string;
   /** Repo-relative path to a local image file to upload. */
   localPath?: string;
+  /**
+   * Focal point as a CSS object-position (e.g. "28% 50%"), for photos whose
+   * subject isn't centred. Every frame crops with object-fit: cover, and on
+   * phones a landscape photo in a tall frame (or a portrait one in a wide
+   * card) otherwise loses its subject. Omit for centred subjects.
+   */
+  position?: string;
 };
 
 export const imageManifest = {
@@ -37,10 +44,12 @@ export const imageManifest = {
   },
   "homepage-people-a-02": {
     publicId: "after630/homepage/people-a-02",
+    position: "26% 50%", // the group on the veranda, left of the blue pillar
     alt: "Friends sharing chai on a mountain veranda",
   },
   "homepage-people-a-03": {
     publicId: "after630/homepage/people-a-03",
+    position: "32% 50%",
     alt: "Travellers sharing dinner at a mountain homestay table",
   },
   "homepage-people-a-04": {
@@ -168,6 +177,7 @@ export const imageManifest = {
    * travellers. */
   "himachal-mountain-house-sign": {
     publicId: "after630/trips/himachal/mountain-house-sign",
+    position: "50% 64%", // the sign sits in the lower third of this portrait shot
     alt: "After6.30 Mountain House wooden sign on a boulder in a Himalayan meadow",
   },
   "himachal-stay-exterior": {

@@ -9,6 +9,8 @@ import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 import MetaPixel from "@/components/analytics/MetaPixel";
 import JsonLd from "@/components/seo/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
+import { shareImage } from "@/lib/images";
+import { getFeaturedTrips } from "@/lib/trips/repository";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { THEME_INIT_SCRIPT } from "@/components/theme/theme";
 import "./globals.css";
@@ -19,6 +21,12 @@ const manrope = Manrope({
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
+
+// Every page's link preview (WhatsApp, Instagram, Facebook…) shows a real
+// trip photo: the featured trip's lead image, or the logo if no trip is live.
+// Trip pages override this with their own photo.
+const featuredPhoto = getFeaturedTrips()[0]?.images[0];
+const defaultShareImage = shareImage(featuredPhoto ?? { src: "/brand/after630-og-square.png", alt: "After630" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -32,7 +40,11 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "After630",
     type: "website",
-    images: [{ url: "/brand/after630-og-square.png", width: 1024, height: 1024, alt: "After630" }],
+    images: [defaultShareImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [defaultShareImage.url],
   },
   // Google Search Console's HTML-tag verification. Set the token in
   // src/content/site.ts (googleSiteVerification) or NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION.

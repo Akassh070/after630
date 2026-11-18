@@ -571,6 +571,63 @@
   margin-top: 21px;
 }
 
+/* Fixed-package trips: the trip facts in place of single-option dropdowns. */
+.bookingSummary {
+  margin: 0 0 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface-muted);
+}
+
+.bookingSummary > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 14px;
+}
+
+.bookingSummary > div + div {
+  border-top: 1px solid var(--color-border);
+}
+
+.bookingSummary dt {
+  color: var(--color-text-muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.bookingSummary dd {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.bookingTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--color-soft);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.bookingTotal strong {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+}
+
 .bookingHelp {
   margin-top: 11px;
   color: var(--color-muted);
@@ -983,8 +1040,8 @@ dialog.lightbox {
   .fieldGroup + .fieldGroup {
     margin: 0;
   }
-  /* Only the select fields pair up in two columns; copy, CTAs, help text and
-     the preview button always take the full row. */
+  /* Only the select fields pair up in two columns; the trip summary, copy,
+     CTAs and help text always take the full row. */
   .bookingFields > :not(.fieldGroup) {
     grid-column: 1 / -1;
   }
@@ -1115,4 +1172,20 @@ dialog.lightbox {
   font-size: 15px;
   color: var(--color-blue-dark);
   line-height: 1.4;
+}
+
+.packingTitle {
+  margin: 28px 0 14px;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.section p.packingNote {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--color-soft);
+  font-size: 12px;
+  line-height: 1.75;
 }

@@ -54,6 +54,7 @@ describe("buildTripEnquiryMessage", () => {
     expect(message).toContain("starting from Delhi");
     expect(message).toContain("package Premium");
     expect(message).toContain("for 3 travellers");
+    expect(message).toContain("reserve our seats");
   });
 
   it("uses singular traveller wording for one traveller", () => {

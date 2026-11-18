@@ -50,6 +50,9 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
   const selectedPackage = packages.find((p) => p.id === packageId);
 
   const fallbackStartingPrice = getStartingPriceINR(trip);
+  const totalPrice = selectedPackage?.priceINR !== undefined ? selectedPackage.priceINR * travellers : undefined;
+  const { days, nights } = trip.duration ?? {};
+  const durationText = days ? (nights ? `${days} days / ${nights} nights` : `${days} days`) : null;
 
   function computeMessage(): string | null {
     if (mode === "enquire") {
@@ -123,75 +126,99 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
 
         {mode === "enquire" && (
           <div className={styles.bookingFields}>
-            <div className={styles.fieldGroup}>
-              <label className={styles.fieldTitle} htmlFor="departure-select">
-                Choose departure
-              </label>
-              <select
-                id="departure-select"
-                className={styles.selectField}
-                value={departureId}
-                onChange={(e) => {
-                  setDepartureId(e.target.value);
-                  setOriginCity("");
-                  setPackageId("");
-                }}
-              >
-                {!hasFixedPackage && <option value="">Select a date</option>}
-                {departures.map((d) => (
-                  <option key={d.id} value={d.id}>
-                    {formatDepartureDate(d.localDate, d.endDate)}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className={styles.fieldGroup}>
-              <label className={styles.fieldTitle} htmlFor="origin-select">
-                Travel from
-              </label>
-              <select
-                id="origin-select"
-                className={styles.selectField}
-                value={originCity}
-                disabled={!selectedDeparture}
-                onChange={(e) => {
-                  setOriginCity(e.target.value);
-                  setPackageId("");
-                }}
-              >
-                {!hasFixedPackage && (
-                  <option value="">{selectedDeparture ? "Select origin city" : "Choose a departure first"}</option>
+            {hasFixedPackage ? (
+              // One departure, one pickup city, one package: nothing to choose,
+              // so show the facts instead of single-option dropdowns (and keep
+              // the price in one place, above).
+              <dl className={styles.bookingSummary}>
+                <div>
+                  <dt>Dates</dt>
+                  <dd>{formatDepartureDate(firstDeparture.localDate, firstDeparture.endDate)}</dd>
+                </div>
+                <div>
+                  <dt>Pickup</dt>
+                  <dd>{firstOrigin.city}</dd>
+                </div>
+                {durationText && (
+                  <div>
+                    <dt>Duration</dt>
+                    <dd>{durationText}</dd>
+                  </div>
                 )}
-                {origins.map((o) => (
-                  <option key={o.city} value={o.city}>
-                    {o.city}
-                  </option>
-                ))}
-              </select>
-            </div>
+              </dl>
+            ) : (
+              <>
+              <div className={styles.fieldGroup}>
+                <label className={styles.fieldTitle} htmlFor="departure-select">
+                  Choose departure
+                </label>
+                <select
+                  id="departure-select"
+                  className={styles.selectField}
+                  value={departureId}
+                  onChange={(e) => {
+                    setDepartureId(e.target.value);
+                    setOriginCity("");
+                    setPackageId("");
+                  }}
+                >
+                  {!hasFixedPackage && <option value="">Select a date</option>}
+                  {departures.map((d) => (
+                    <option key={d.id} value={d.id}>
+                      {formatDepartureDate(d.localDate, d.endDate)}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-            <div className={styles.fieldGroup}>
-              <label className={styles.fieldTitle} htmlFor="package-select">
-                Package
-              </label>
-              <select
-                id="package-select"
-                className={styles.selectField}
-                value={packageId}
-                disabled={!selectedOrigin}
-                onChange={(e) => setPackageId(e.target.value)}
-              >
-                {!hasFixedPackage && (
-                  <option value="">{selectedOrigin ? "Select a package" : "Choose an origin first"}</option>
-                )}
-                {packages.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.name} — {formatPriceINR(p.priceINR)}
-                  </option>
-                ))}
-              </select>
-            </div>
+              <div className={styles.fieldGroup}>
+                <label className={styles.fieldTitle} htmlFor="origin-select">
+                  Travel from
+                </label>
+                <select
+                  id="origin-select"
+                  className={styles.selectField}
+                  value={originCity}
+                  disabled={!selectedDeparture}
+                  onChange={(e) => {
+                    setOriginCity(e.target.value);
+                    setPackageId("");
+                  }}
+                >
+                  {!hasFixedPackage && (
+                    <option value="">{selectedDeparture ? "Select origin city" : "Choose a departure first"}</option>
+                  )}
+                  {origins.map((o) => (
+                    <option key={o.city} value={o.city}>
+                      {o.city}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className={styles.fieldGroup}>
+                <label className={styles.fieldTitle} htmlFor="package-select">
+                  Package
+                </label>
+                <select
+                  id="package-select"
+                  className={styles.selectField}
+                  value={packageId}
+                  disabled={!selectedOrigin}
+                  onChange={(e) => setPackageId(e.target.value)}
+                >
+                  {!hasFixedPackage && (
+                    <option value="">{selectedOrigin ? "Select a package" : "Choose an origin first"}</option>
+                  )}
+                  {packages.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.name} — {formatPriceINR(p.priceINR)}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              </>
+            )}
 
             <div className={styles.fieldGroup}>
               <span className={styles.fieldTitle}>Travellers</span>
@@ -219,6 +246,15 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
                 </button>
               </div>
             </div>
+
+            {totalPrice !== undefined && travellers > 1 && (
+              <div className={styles.bookingTotal} aria-live="polite">
+                <span>
+                  Total for {travellers} travellers
+                </span>
+                <strong>{formatPriceINR(totalPrice)}</strong>
+              </div>
+            )}
 
             {message ? (
               <Button

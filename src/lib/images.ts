@@ -1,4 +1,4 @@
-import { imageManifest, videoManifest, type ImageKey, type VideoKey } from "@/content/images";
+import { imageManifest, videoManifest, type ImageKey, type ImageManifestEntry, type VideoKey } from "@/content/images";
 import { siteCopy } from "@/content/site";
 
 /**
@@ -8,9 +8,13 @@ import { siteCopy } from "@/content/site";
  * `src/lib/cloudinary-loader.ts` recognises and turns into a delivery URL at
  * render time. Never read `imageManifest` directly from a component.
  */
-export function img(key: ImageKey): { src: string; alt: string } {
-  const entry = imageManifest[key];
-  return { src: `cloudinary:${entry.publicId}`, alt: entry.alt };
+export function img(key: ImageKey): { src: string; alt: string; position?: string } {
+  const entry: ImageManifestEntry = imageManifest[key];
+  return {
+    src: `cloudinary:${entry.publicId}`,
+    alt: entry.alt,
+    ...(entry.position ? { position: entry.position } : {}),
+  };
 }
 
 /**
@@ -26,6 +30,27 @@ export function absoluteImageSrc(src: string, width = 1200): string {
   const cloud = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || siteCopy.cloudinaryCloudName;
   const publicId = src.slice("cloudinary:".length);
   return `https://res.cloudinary.com/${cloud}/image/upload/f_jpg,q_auto:eco,c_limit,w_${width}/${publicId}`;
+}
+
+/**
+ * Link-preview (Open Graph) image for WhatsApp, Instagram, Facebook, X and
+ * LinkedIn: a 1200×630 crop, the size they all render as a large card.
+ * Centre crop: Cloudinary's g_auto tested worse on the Himachal photos (it
+ * kept foreground ferns and cut the mountains). A local path (e.g. the logo
+ * fallback) is returned as a square image instead.
+ */
+export function shareImage(image: { src: string; alt: string }) {
+  if (!image.src.startsWith("cloudinary:")) {
+    return { url: image.src, width: 1024, height: 1024, alt: image.alt };
+  }
+  const cloud = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || siteCopy.cloudinaryCloudName;
+  const publicId = image.src.slice("cloudinary:".length);
+  return {
+    url: `https://res.cloudinary.com/${cloud}/image/upload/f_jpg,q_auto:eco,c_fill,g_center,w_1200,h_630/${publicId}`,
+    width: 1200,
+    height: 630,
+    alt: image.alt,
+  };
 }
 
 export type VideoSource = {

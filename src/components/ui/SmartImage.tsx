@@ -12,6 +12,8 @@ type SmartImageProps = {
   priority?: boolean;
   className?: string;
   fit?: "contain";
+  /** CSS object-position focal point, from the image manifest. */
+  position?: string;
 };
 
 /**
@@ -27,6 +29,7 @@ export default function SmartImage({
   priority,
   className,
   fit,
+  position,
 }: SmartImageProps) {
   const [errored, setErrored] = useState(false);
 
@@ -43,6 +46,7 @@ export default function SmartImage({
           sizes={sizes}
           priority={priority}
           className={styles.img}
+          style={position && !fit ? { objectPosition: position } : undefined}
           onError={() => setErrored(true)}
         />
       )}

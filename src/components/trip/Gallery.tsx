@@ -30,7 +30,15 @@ export default function Gallery({
     const [image] = images;
     return (
       <div className={styles.singleGallery}>
-        <SmartImage src={image.src} alt={image.alt} fallbackSrc={fallbackSrc} fit={image.fit} sizes="100vw" priority />
+        <SmartImage
+          src={image.src}
+          alt={image.alt}
+          fallbackSrc={fallbackSrc}
+          fit={image.fit}
+          position={image.position}
+          sizes="100vw"
+          priority
+        />
       </div>
     );
   }
@@ -56,6 +64,7 @@ export default function Gallery({
               alt=""
               fallbackSrc={fallbackSrc}
               fit={image.fit}
+              position={image.position}
               sizes="(max-width: 650px) 60vw, 30vw"
               priority={index === 0}
             />

@@ -8,6 +8,8 @@ export type SlideshowSlide = {
   src: string;
   alt?: string;
   fit?: "contain";
+  /** CSS object-position focal point, from the image manifest. */
+  position?: string;
 };
 
 type ImageSlideshowProps = {
@@ -96,6 +98,7 @@ export default function ImageSlideshow({
           sizes={sizes}
           priority={priority && photoIndex === 0}
           className={`${styles.slide} ${photo.fit ? styles.contained : ""} ${photoIndex === index ? styles.slideActive : ""}`}
+          style={photo.position && !photo.fit ? { objectPosition: photo.position } : undefined}
           onError={() => markFailed(photo.src)}
         />
       ))}

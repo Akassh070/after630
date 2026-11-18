@@ -64,7 +64,8 @@ export function buildTripEnquiryMessage(details: TripEnquiryDetails): string {
   if (travellers) parts.push(`for ${travellers} traveller${travellers === 1 ? "" : "s"}`);
 
   return (
-    `${parts.join(", ")}. Please confirm availability and share the payment details to reserve my seat.`
+    `${parts.join(", ")}. Please confirm availability and share the payment details to reserve ` +
+    `${travellers && travellers > 1 ? "our seats" : "my seat"}.`
   );
 }
 

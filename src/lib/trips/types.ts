@@ -48,6 +48,8 @@ export type TripImage = {
   alt: string;
   licensedForUse: boolean;
   fit?: "contain";
+  /** CSS object-position focal point, carried over from the image manifest. */
+  position?: string;
 };
 
 /** A short silent clip from the real trip/stay — build with `video(key)` from src/lib/images.ts. */
@@ -104,6 +106,10 @@ export type Trip = {
   inclusions?: string[];
   exclusions?: string[];
   travelStay?: { label: string; value: string }[];
+  /** "What to pack" groups, shown under the travel & stay details. */
+  packing?: { label: string; value: string }[];
+  /** Short note under the packing list, e.g. about snow or trek readiness. */
+  packingNote?: string;
   faq?: TripFaqItem[];
   departures: TripDeparture[];
   policyUrls?: { terms?: string; cancellation?: string };

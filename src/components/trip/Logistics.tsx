@@ -3,7 +3,8 @@ import styles from "./trip.module.css";
 
 export default function Logistics({ trip }: { trip: Trip }) {
   const entries = trip.travelStay ?? [];
-  if (entries.length === 0) return null;
+  const packing = trip.packing ?? [];
+  if (entries.length === 0 && packing.length === 0) return null;
 
   return (
     <section id="logistics" className={styles.section}>
@@ -12,14 +13,31 @@ export default function Logistics({ trip }: { trip: Trip }) {
       <p>
         Transport, stay and pick-up details for this journey.
       </p>
-      <div className={styles.detailsGrid}>
-        {entries.map((entry) => (
-          <div key={entry.label} className={styles.detailCell}>
-            <div className={styles.t}>{entry.label}</div>
-            <div className={styles.v}>{entry.value}</div>
+      {entries.length > 0 && (
+        <div className={styles.detailsGrid}>
+          {entries.map((entry) => (
+            <div key={entry.label} className={styles.detailCell}>
+              <div className={styles.t}>{entry.label}</div>
+              <div className={styles.v}>{entry.value}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {packing.length > 0 && (
+        <>
+          <h3 className={styles.packingTitle}>What to pack</h3>
+          <div className={styles.detailsGrid}>
+            {packing.map((entry) => (
+              <div key={entry.label} className={styles.detailCell}>
+                <div className={styles.t}>{entry.label}</div>
+                <div className={styles.v}>{entry.value}</div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+          {trip.packingNote && <p className={styles.packingNote}>{trip.packingNote}</p>}
+        </>
+      )}
     </section>
   );
 }

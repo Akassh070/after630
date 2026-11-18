@@ -13,7 +13,7 @@ import RelatedTrips from "@/components/trip/RelatedTrips";
 import EndCta from "@/components/trip/EndCta";
 import TrackViewContent from "@/components/analytics/TrackViewContent";
 import JsonLd from "@/components/seo/JsonLd";
-import { absoluteImageSrc } from "@/lib/images";
+import { shareImage } from "@/lib/images";
 import { breadcrumbSchema, tripSchema } from "@/lib/structured-data";
 import { getAllSlugs, getRelatedTrips, getTripBySlug } from "@/lib/trips/repository";
 import { siteConfig } from "@/lib/config";
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!trip) return { title: "Trip not found" };
   const title = trip.seoTitle ?? trip.title;
   const description = trip.seoDescription ?? trip.blurb;
-  const shareImage = trip.images[0];
+  const sharePhoto = trip.images[0];
   return {
     title,
     description,
@@ -44,10 +44,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: `${title} — After630`,
       description,
       url: `/trips/${trip.slug}`,
-      ...(shareImage
-        ? { images: [{ url: absoluteImageSrc(shareImage.src, 1200), width: 1200, alt: shareImage.alt }] }
-        : {}),
+      ...(sharePhoto ? { images: [shareImage(sharePhoto)] } : {}),
     },
+    ...(sharePhoto
+      ? { twitter: { card: "summary_large_image" as const, images: [shareImage(sharePhoto).url] } }
+      : {}),
   };
 }
 
