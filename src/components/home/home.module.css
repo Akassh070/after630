@@ -560,7 +560,10 @@
   display: grid;
   grid-template-columns: 0.92fr 1.08fr;
   gap: 48px;
-  align-items: center;
+  /* Stretch, not center: the photo takes the text column's full height so its
+     top lines up with the eyebrow and its bottom with the last row, instead
+     of floating mid-column when the copy is taller than 520px. */
+  align-items: stretch;
 }
 
 .experienceVisual {
