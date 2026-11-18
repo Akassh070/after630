@@ -36,7 +36,7 @@ export const siteCopy = {
    * pixel completely off (no script, no requests). Paste the ID here when you
    * have it; NEXT_PUBLIC_META_PIXEL_ID can override it.
    */
-  metaPixelId: "29229964080031303",
+  metaPixelId: "991343213555216",
   /**
    * Google Search Console verification token: only the content="…" value of
    * the HTML tag Search Console gives you. Empty = no tag.
