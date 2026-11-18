@@ -7,8 +7,8 @@ export default function ClosingCta() {
   return (
     <section id="closing" className={styles.closing}>
       <Image
-        src={img("dramatic-mountain-peaks-under-open").src}
-        alt={img("dramatic-mountain-peaks-under-open").alt}
+        src={img("homepage-closing").src}
+        alt={img("homepage-closing").alt}
         fill
         sizes="100vw"
       />

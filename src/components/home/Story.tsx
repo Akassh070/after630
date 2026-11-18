@@ -4,11 +4,11 @@ import ImageSlideshow from "@/components/ui/ImageSlideshow";
 import styles from "./home.module.css";
 
 const storySlides = [
-  img("people-sharing-an-evening-gathering"),
-  img("friends-enjoying-a-shared-outdoor"),
-  img("friends-laughing-together-on-a"),
-  img("friends-sharing-a-meal-and"),
-  img("friends-sharing-a-meal-and-2"),
+  img("homepage-beginning-01"),
+  img("homepage-beginning-02"),
+  img("homepage-beginning-03"),
+  img("homepage-beginning-04"),
+  img("homepage-beginning-05"),
 ];
 
 export default function Story() {

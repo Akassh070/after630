@@ -4,19 +4,19 @@ import ImageSlideshow from "@/components/ui/ImageSlideshow";
 import styles from "./home.module.css";
 
 const peopleSlides = [
-  img("travellers-on-an-outdoor-adventure"),
-  img("friends-laughing-together-on-a"),
-  img("friends-sharing-a-meal-and"),
-  img("friends-sharing-a-meal-and-2"),
-  img("green-forest-and-mountain-landscape"),
+  img("homepage-people-a-01"),
+  img("homepage-people-a-02"),
+  img("homepage-people-a-03"),
+  img("homepage-people-a-04"),
+  img("homepage-people-a-05"),
 ];
 
 const placeSlides = [
-  img("misty-forest-path-through-evergreen"),
-  img("hill-viewpoint-overlooking-water-and"),
-  img("atmospheric-mountain-landscape-representing-adventure"),
-  img("open-highway-stretching-toward-distant"),
-  img("calm-riverside-waters-surrounded-by"),
+  img("homepage-people-b-01"),
+  img("homepage-people-b-02"),
+  img("homepage-people-b-03"),
+  img("homepage-people-b-04"),
+  img("homepage-people-b-05"),
 ];
 
 export default function Manifesto() {

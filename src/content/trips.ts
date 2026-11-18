@@ -1,6 +1,8 @@
 import type { Trip } from "@/lib/trips/types";
+import { img } from "@/lib/images";
 
 const himachalArtwork = "/images/trips/15-strangers-and-stories.webp";
+const upcomingPhoto = img("homepage-upcoming-trip");
 
 export const realTrips: Trip[] = [
   {
@@ -19,6 +21,10 @@ export const realTrips: Trip[] = [
     description:
       "Come solo and spend five days in the mountains with a group of up to 15 travellers. The plan includes meadow treks, a sound healing session, a waterfall visit, village challenges, bonfire evenings and a final-night celebration. Confirmed travellers receive the village, stay and essential safety details privately before departure.",
     images: [
+      {
+        ...upcomingPhoto,
+        licensedForUse: true,
+      },
       {
         src: himachalArtwork,
         alt: "15 Strangers & Stories: The Himachal Experience trip artwork",

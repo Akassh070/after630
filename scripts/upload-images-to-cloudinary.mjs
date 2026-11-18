@@ -8,13 +8,25 @@
 // NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME — the npm script loads them from
 // .env.local via Node's --env-file flag; nothing here ever reads
 // .env.example (which intentionally holds no real secrets).
+//
+// Each new upload needs either `sourceUrl` (Cloudinary fetches remotely) or
+// `localPath` (local file → data URI). Local files are upload sources only —
+// the live site always loads from Cloudinary via publicId. Resolve localPath
+// against AFTER630_HOMEPAGE_IMAGES_DIR when set (e.g. the Downloads pack),
+// otherwise against the repo root. Absolute localPath values are used as-is.
 
 import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 
 const { siteCopy } = await import("../src/content/site.ts");
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || siteCopy.cloudinaryCloudName;
 const API_KEY = process.env.CLOUDINARY_API_KEY;
 const API_SECRET = process.env.CLOUDINARY_API_SECRET;
+const ROOT = path.resolve(import.meta.dirname, "..");
+const LOCAL_ROOT = process.env.AFTER630_HOMEPAGE_IMAGES_DIR
+  ? path.resolve(process.env.AFTER630_HOMEPAGE_IMAGES_DIR)
+  : ROOT;
 
 if (!CLOUD_NAME || !API_KEY || !API_SECRET) {
   console.error(
@@ -37,6 +49,30 @@ function sign(params) {
   return createHash("sha1").update(toSign + API_SECRET).digest("hex");
 }
 
+function mimeFor(filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  if (ext === ".webp") return "image/webp";
+  if (ext === ".png") return "image/png";
+  if (ext === ".jpg" || ext === ".jpeg") return "image/jpeg";
+  if (ext === ".gif") return "image/gif";
+  return "application/octet-stream";
+}
+
+function resolveLocalPath(localPath) {
+  return path.isAbsolute(localPath) ? localPath : path.resolve(LOCAL_ROOT, localPath);
+}
+
+function filePayload(entry) {
+  if (entry.localPath) {
+    const absolute = resolveLocalPath(entry.localPath);
+    const bytes = readFileSync(absolute);
+    const mime = mimeFor(absolute);
+    return `data:${mime};base64,${bytes.toString("base64")}`;
+  }
+  if (entry.sourceUrl) return entry.sourceUrl;
+  throw new Error("Manifest entry needs sourceUrl or localPath to upload");
+}
+
 async function alreadyUploaded(publicId) {
   const auth = Buffer.from(`${API_KEY}:${API_SECRET}`).toString("base64");
   const res = await fetch(
@@ -52,7 +88,7 @@ async function upload(entry) {
   const signature = sign(params);
 
   const body = new FormData();
-  body.set("file", entry.sourceUrl); // Cloudinary fetches it server-side — nothing downloads locally.
+  body.set("file", filePayload(entry));
   for (const [k, v] of Object.entries(params)) body.set(k, String(v));
   body.set("api_key", API_KEY);
   body.set("signature", signature);
@@ -81,6 +117,9 @@ for (const [key, entry] of entries) {
       results.skipped.push(key);
       console.log(`  skip     ${key}  (already on Cloudinary)`);
       continue;
+    }
+    if (!entry.sourceUrl && !entry.localPath) {
+      throw new Error("Not on Cloudinary yet, and no sourceUrl/localPath to upload from");
     }
     await upload(entry);
     results.uploaded.push(key);

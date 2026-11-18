@@ -60,8 +60,8 @@ export default function Hero({ trip }: { trip?: Trip }) {
   return (
     <section id="hero" className={styles.hero}>
       <Image
-        src={img("dramatic-mountain-peaks-under-open").src}
-        alt={img("dramatic-mountain-peaks-under-open").alt}
+        src={img("homepage-hero").src}
+        alt={img("homepage-hero").alt}
         fill
         priority
         sizes="100vw"

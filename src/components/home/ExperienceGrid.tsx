@@ -21,11 +21,11 @@ const rows = [
 ];
 
 const waySlides = [
-  img("green-forest-and-mountain-landscape"),
-  img("friends-laughing-together-on-a"),
-  img("open-highway-stretching-toward-distant"),
-  img("hill-viewpoint-overlooking-water-and"),
-  img("calm-riverside-waters-surrounded-by"),
+  img("homepage-way-01"),
+  img("homepage-way-02"),
+  img("homepage-way-03"),
+  img("homepage-way-04"),
+  img("homepage-way-05"),
 ];
 
 export default function ExperienceGrid() {

@@ -7,14 +7,22 @@
  * reads this file as its source of truth. `img(key)` (src/lib/images.ts)
  * is how components read an entry; never hard-code a Cloudinary URL or an
  * Unsplash URL in a component.
+ *
+ * Provide either `sourceUrl` (Cloudinary fetches remotely) or `localPath`
+ * (upload-only — file is NOT served from the repo). Paths are resolved
+ * against AFTER630_HOMEPAGE_IMAGES_DIR when set, otherwise the repo root.
+ * Once an asset is on Cloudinary, localPath can be omitted; the site only
+ * needs publicId.
  */
 
 export type ImageManifestEntry = {
   /** Cloudinary public ID (folder/name, no extension). */
   publicId: string;
   alt: string;
-  /** Original source Unsplash photo the upload script fetched this from. */
-  sourceUrl: string;
+  /** Original remote URL Cloudinary should fetch (e.g. Unsplash). */
+  sourceUrl?: string;
+  /** Repo-relative path to a local image file to upload. */
+  localPath?: string;
 };
 
 export const imageManifest = {
@@ -98,11 +106,6 @@ export const imageManifest = {
     alt: "Lakeside resort atmosphere at golden hour",
     sourceUrl: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4",
   },
-  "misty-forest-path-through-evergreen": {
-    publicId: "after630/scenes/misty-forest-path-through-evergreen",
-    alt: "Misty forest path through evergreen trees",
-    sourceUrl: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
-  },
   "dramatic-mountain-peaks-under-open": {
     publicId: "after630/scenes/dramatic-mountain-peaks-under-open",
     alt: "Dramatic mountain peaks under open sky",
@@ -128,25 +131,98 @@ export const imageManifest = {
     alt: "Cozy cabin weekend escape in the woods",
     sourceUrl: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c",
   },
-  "friends-laughing-together-on-a": {
-    publicId: "after630/people/friends-laughing-together-on-a",
-    alt: "Friends laughing together on a trip",
-    sourceUrl: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac",
+  /* ---- Homepage pack (AI brand illustrations, Nov 2026) ---- */
+  "homepage-hero": {
+    publicId: "after630/homepage/hero",
+    alt: "Blue-hour Himachal valley with layered mountain ridges",
   },
-  "friends-sharing-a-meal-and-2": {
-    publicId: "after630/people/friends-sharing-a-meal-and-2",
-    alt: "Friends sharing a meal and conversation",
-    sourceUrl: "https://images.unsplash.com/photo-1478144592103-25e218a04891",
+  "homepage-upcoming-trip": {
+    publicId: "after630/homepage/upcoming-trip",
+    alt: "Mountain homestay among deodar pines with travellers walking a meadow path",
   },
-  "people-sharing-an-evening-gathering": {
-    publicId: "after630/people/people-sharing-an-evening-gathering",
-    alt: "People sharing an evening gathering under string lights",
-    sourceUrl: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205",
+  "homepage-people-a-01": {
+    publicId: "after630/homepage/people-a-01",
+    alt: "Travellers walking a deodar woodland trail",
   },
-  "friends-enjoying-a-shared-outdoor": {
-    publicId: "after630/people/friends-enjoying-a-shared-outdoor",
-    alt: "Friends enjoying a shared outdoor moment",
-    sourceUrl: "https://images.unsplash.com/photo-1527525443983-6e60c75fff46",
+  "homepage-people-a-02": {
+    publicId: "after630/homepage/people-a-02",
+    alt: "Friends sharing chai on a mountain veranda",
+  },
+  "homepage-people-a-03": {
+    publicId: "after630/homepage/people-a-03",
+    alt: "Travellers sharing dinner at a mountain homestay table",
+  },
+  "homepage-people-a-04": {
+    publicId: "after630/homepage/people-a-04",
+    alt: "Friends talking beside a campfire in a mountain clearing",
+  },
+  "homepage-people-a-05": {
+    publicId: "after630/homepage/people-a-05",
+    alt: "Green Himachal forest valley in soft morning haze",
+  },
+  "homepage-people-b-01": {
+    publicId: "after630/homepage/people-b-01",
+    alt: "Misty deodar forest footpath",
+  },
+  "homepage-people-b-02": {
+    publicId: "after630/homepage/people-b-02",
+    alt: "Hill viewpoint over a winding mountain lake",
+  },
+  "homepage-people-b-03": {
+    publicId: "after630/homepage/people-b-03",
+    alt: "Quiet Himalayan panorama with layered foothills",
+  },
+  "homepage-people-b-04": {
+    publicId: "after630/homepage/people-b-04",
+    alt: "Scenic mountain highway through the hills",
+  },
+  "homepage-people-b-05": {
+    publicId: "after630/homepage/people-b-05",
+    alt: "Calm mountain stream with stones and woodland",
+  },
+  "homepage-way-01": {
+    publicId: "after630/homepage/way-01",
+    alt: "Sunlit forest clearing and walking trail in Himachal",
+  },
+  "homepage-way-02": {
+    publicId: "after630/homepage/way-02",
+    alt: "Travellers at a mountain tea stall overlooking the hills",
+  },
+  "homepage-way-03": {
+    publicId: "after630/homepage/way-03",
+    alt: "Curving mountain road through cedar forest",
+  },
+  "homepage-way-04": {
+    publicId: "after630/homepage/way-04",
+    alt: "Traveller at a grassy lake overlook in the mountains",
+  },
+  "homepage-way-05": {
+    publicId: "after630/homepage/way-05",
+    alt: "Clear shallow river over stones with forest reflections",
+  },
+  "homepage-beginning-01": {
+    publicId: "after630/homepage/beginning-01",
+    alt: "Community storytelling evening in a small cafe",
+  },
+  "homepage-beginning-02": {
+    publicId: "after630/homepage/beginning-02",
+    alt: "Relaxed courtyard gathering among plants",
+  },
+  "homepage-beginning-03": {
+    publicId: "after630/homepage/beginning-03",
+    alt: "Friends talking in a cafe, candid environmental view",
+  },
+  "homepage-beginning-04": {
+    publicId: "after630/homepage/beginning-04",
+    alt: "Shared table of chai and snacks with friends",
+  },
+  "homepage-beginning-05": {
+    publicId: "after630/homepage/beginning-05",
+    alt: "Rooftop storytelling gathering at dusk",
+  },
+  "homepage-closing": {
+    publicId: "after630/homepage/closing",
+    alt: "Expansive Himalayan valley at twilight",
   },
 } as const satisfies Record<string, ImageManifestEntry>;
 
