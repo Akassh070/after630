@@ -175,6 +175,13 @@ export const realTrips: Trip[] = [
         ],
       },
     ],
+    // Owner-supplied itinerary PDF (DEC HIMACHAL TRIP 2026.pdf, 18 Nov 2026),
+    // published as-is at the owner's request.
+    brochure: {
+      href: "/downloads/after630-himachal-15-strangers-and-stories-dec-2026.pdf",
+      fileName: "After630 - 15 Strangers & Stories - Himachal Dec 2026.pdf",
+      sizeLabel: "1.9 MB",
+    },
     published: true,
     featured: true,
   },

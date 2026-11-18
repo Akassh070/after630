@@ -113,6 +113,8 @@ export type Trip = {
   faq?: TripFaqItem[];
   departures: TripDeparture[];
   policyUrls?: { terms?: string; cancellation?: string };
+  /** Downloadable itinerary PDF, served from /public (e.g. "/downloads/trip.pdf"). */
+  brochure?: { href: string; fileName: string; sizeLabel?: string };
   published: boolean;
   featured?: boolean;
 };

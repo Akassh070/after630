@@ -1,8 +1,9 @@
 import Accordion from "@/components/ui/Accordion";
-import type { TripItineraryDay } from "@/lib/trips/types";
+import type { Trip, TripItineraryDay } from "@/lib/trips/types";
+import BrochureDownload from "./BrochureDownload";
 import styles from "./trip.module.css";
 
-export default function Itinerary({ days }: { days: TripItineraryDay[] }) {
+export default function Itinerary({ days, brochure }: { days: TripItineraryDay[]; brochure?: Trip["brochure"] }) {
   if (days.length === 0) return null;
 
   const items = days.map((day) => ({
@@ -27,6 +28,7 @@ export default function Itinerary({ days }: { days: TripItineraryDay[] }) {
           <p className="eyebrow">Day by day</p>
           <h2>Every day, a new chapter.</h2>
         </div>
+        <BrochureDownload brochure={brochure} variant="link" />
       </div>
       <Accordion items={items} showExpandAll />
     </section>

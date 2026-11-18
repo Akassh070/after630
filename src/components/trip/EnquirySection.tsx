@@ -15,6 +15,7 @@ import {
 } from "@/lib/trips/availability";
 import { buildAlternateDatesMessage, buildFutureDatesMessage, buildTripEnquiryMessage, buildWaLink } from "@/lib/whatsapp";
 import type { Trip } from "@/lib/trips/types";
+import BrochureDownload from "./BrochureDownload";
 import styles from "./trip.module.css";
 
 const MODE_COPY: Record<EnquiryMode, { tag: string; help: string }> = {
@@ -336,6 +337,12 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
             <Link href="/trips" className="btnGhost" style={{ marginTop: 14, display: "inline-flex" }}>
               Explore upcoming trips ↗
             </Link>
+          </div>
+        )}
+
+        {trip.brochure && (
+          <div className={styles.bookingBrochure}>
+            <BrochureDownload brochure={trip.brochure} />
           </div>
         )}
 

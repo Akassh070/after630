@@ -89,4 +89,15 @@ test.describe("Trip Details — gallery, itinerary, booking", () => {
     await expect(page.getByRole("button", { name: /Preview or copy message/ })).toHaveCount(0);
     await expect(page.locator("body")).not.toContainText(/enquiry|enquire/i);
   });
+  test("itinerary PDF can be downloaded from the itinerary and the booking card", async ({ page, request }) => {
+    await page.goto("/trips/15-strangers-and-stories");
+    const links = page.getByRole("link", { name: /Download itinerary \(PDF/ });
+    await expect(links).toHaveCount(2);
+    const href = await links.first().getAttribute("href");
+    expect(href).toBe("/downloads/after630-himachal-15-strangers-and-stories-dec-2026.pdf");
+    await expect(links.first()).toHaveAttribute("download", /\.pdf$/);
+    const res = await request.get(href!);
+    expect(res.status()).toBe(200);
+    expect(res.headers()["content-type"]).toContain("application/pdf");
+  });
 });

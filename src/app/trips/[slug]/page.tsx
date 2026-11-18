@@ -97,7 +97,7 @@ export default async function TripDetailPage({ params }: { params: Promise<{ slu
           <div>
             <Overview trip={trip} />
             <RealMoments videos={trip.videos ?? []} />
-            <Itinerary days={trip.itinerary ?? []} />
+            <Itinerary days={trip.itinerary ?? []} brochure={trip.brochure} />
             <Inclusions trip={trip} />
             <Logistics trip={trip} />
             <TripFaq faq={trip.faq ?? []} />

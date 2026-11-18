@@ -1191,3 +1191,32 @@ dialog.lightbox {
   font-size: 12px;
   line-height: 1.75;
 }
+
+/* Itinerary PDF download: compact link in the itinerary header, outline
+   button in the booking card. */
+.brochureLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  color: var(--color-blue-dark);
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: 44px;
+}
+
+.bookingBrochure {
+  padding: 0 24px 18px;
+}
+
+.brochureButton {
+  gap: 6px;
+}
+
+@media (max-width: 650px) {
+  .itineraryHead {
+    flex-wrap: wrap;
+  }
+}
