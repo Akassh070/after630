@@ -1,7 +1,6 @@
 import type { Trip } from "@/lib/trips/types";
 import { img } from "@/lib/images";
 
-const himachalArtwork = "/images/trips/15-strangers-and-stories.webp";
 const upcomingPhoto = img("homepage-upcoming-trip");
 
 export const realTrips: Trip[] = [
@@ -25,14 +24,8 @@ export const realTrips: Trip[] = [
         ...upcomingPhoto,
         licensedForUse: true,
       },
-      {
-        src: himachalArtwork,
-        alt: "15 Strangers & Stories: The Himachal Experience trip artwork",
-        licensedForUse: true,
-        fit: "contain",
-      },
     ],
-    fallbackImage: himachalArtwork,
+    fallbackImage: upcomingPhoto.src,
     itinerary: [
       {
         day: 1,

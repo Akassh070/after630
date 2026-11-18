@@ -57,8 +57,7 @@ anything unset. Set `endDate` on a departure when the return date is confirmed.
 
 Every photo on the site — trip galleries, hero/section backgrounds, the
 About/Past Experiences pages — is hosted on Cloudinary and delivered through
-a custom `next/image` loader (`src/lib/cloudinary-loader.ts`). The Himachal
-trip artwork from the itinerary is bundled in `public/images/trips/`.
+a custom `next/image` loader (`src/lib/cloudinary-loader.ts`).
 Brand assets and photo fallbacks also use local files so they can load
 independently of Cloudinary.
 

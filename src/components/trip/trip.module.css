@@ -537,33 +537,9 @@
   font-size: 13px;
 }
 
-.bookingCta {
+/* Spacing only — visual styles come from the shared Button component. */
+.bookingPrimaryCta {
   margin-top: 21px;
-  border: 0;
-  width: 100%;
-  background: var(--color-blue);
-  border-radius: 10px;
-  color: #fff;
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  font-size: 12px;
-  font-weight: 800;
-  cursor: pointer;
-  min-height: 48px;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .bookingCta:hover:not(:disabled) {
-    background: var(--color-blue-deep);
-  }
-}
-
-.bookingCta:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .bookingHelp {

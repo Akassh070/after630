@@ -223,11 +223,17 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
             </div>
 
             {waLink ? (
-              <Button href={waLink} external variant="primary" fullWidth>
+              <Button href={waLink} external variant="primary" fullWidth className={styles.bookingPrimaryCta}>
                 {ctaLabel}
               </Button>
             ) : (
-              <Button variant="primary" fullWidth disabled={!message} onClick={handlePrimaryClick}>
+              <Button
+                variant="primary"
+                fullWidth
+                disabled={!message}
+                onClick={handlePrimaryClick}
+                className={styles.bookingPrimaryCta}
+              >
                 {ctaLabel}
               </Button>
             )}
