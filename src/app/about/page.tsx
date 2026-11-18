@@ -55,8 +55,8 @@ export default function AboutPage() {
             <div className={styles.aboutHeroVisual}>
               <div className={`${styles.imageFrame} ${styles.mainShot}`}>
                 <Image
-                  src={img("people-gathered-together-for-a").src}
-                  alt={img("people-gathered-together-for-a").alt}
+                  src={img("pages-about-hero-main").src}
+                  alt={img("pages-about-hero-main").alt}
                   fill
                   sizes="(max-width: 760px) 70vw, 35vw"
                   style={{ objectFit: "cover" }}
@@ -64,8 +64,8 @@ export default function AboutPage() {
               </div>
               <div className={`${styles.imageFrame} ${styles.secondShot}`}>
                 <Image
-                  src={img("calm-riverside-waters-surrounded-by").src}
-                  alt={img("calm-riverside-waters-surrounded-by").alt}
+                  src={img("pages-about-hero-inset").src}
+                  alt={img("pages-about-hero-inset").alt}
                   fill
                   sizes="(max-width: 760px) 50vw, 24vw"
                   style={{ objectFit: "cover" }}
@@ -103,8 +103,8 @@ export default function AboutPage() {
             <Link href="/experiences" className={styles.chapterCard}>
               <div className={`${styles.chapterPhoto} ${styles.imageFrame}`}>
                 <Image
-                  src={img("people-connecting-at-a-shared").src}
-                  alt={img("people-connecting-at-a-shared").alt}
+                  src={img("pages-about-chapter-01").src}
+                  alt={img("pages-about-chapter-01").alt}
                   fill
                   sizes="(max-width: 760px) 100vw, 45vw"
                   style={{ objectFit: "cover" }}
@@ -124,8 +124,8 @@ export default function AboutPage() {
             <Link href="/trips" className={styles.chapterCard}>
               <div className={`${styles.chapterPhoto} ${styles.imageFrame}`}>
                 <Image
-                  src={img("open-highway-stretching-toward-distant").src}
-                  alt={img("open-highway-stretching-toward-distant").alt}
+                  src={img("pages-about-chapter-02").src}
+                  alt={img("pages-about-chapter-02").alt}
                   fill
                   sizes="(max-width: 760px) 100vw, 45vw"
                   style={{ objectFit: "cover" }}

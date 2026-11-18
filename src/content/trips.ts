@@ -1,7 +1,7 @@
 import type { Trip } from "@/lib/trips/types";
 import { img } from "@/lib/images";
 
-const upcomingPhoto = img("homepage-upcoming-trip");
+const upcomingPhoto = img("pages-live-trip-15-strangers");
 
 export const realTrips: Trip[] = [
   {

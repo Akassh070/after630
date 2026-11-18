@@ -19,15 +19,15 @@ const sourceFiles = allSourceFiles(SRC_DIR);
 
 describe("cloudinaryLoader", () => {
   it("builds a Cloudinary delivery URL for a manifest-sourced image", () => {
-    const { src } = img("people-gathered-together-for-a");
+    const { src } = img("homepage-hero");
     const url = cloudinaryLoader({ src, width: 640, quality: 80 });
     expect(url).toBe(
-      "https://res.cloudinary.com/test-cloud/image/upload/f_auto,q_auto:80,c_limit,w_640/after630/people/people-gathered-together-for-a",
+      "https://res.cloudinary.com/test-cloud/image/upload/f_auto,q_auto:80,c_limit,w_640/after630/homepage/hero",
     );
   });
 
   it("omits the quality suffix when no quality is given", () => {
-    const { src } = img("people-gathered-together-for-a");
+    const { src } = img("homepage-hero");
     const url = cloudinaryLoader({ src, width: 320 });
     expect(url).toContain("/f_auto,q_auto,c_limit,w_320/");
   });

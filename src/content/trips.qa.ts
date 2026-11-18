@@ -23,10 +23,10 @@ export const qaTrips: Trip[] = [
     duration: { days: 3, nights: 2 },
     blurb: "QA fixture with a bookable departure, used only in automated tests.",
     images: [
-      { ...img("atmospheric-mountain-landscape-representing-adventure"), licensedForUse: false },
-      { ...img("alpine-trail-with-clear-mountain"), licensedForUse: false },
-      { ...img("mountain-valley-with-evergreen-forest"), licensedForUse: false },
-      { ...img("night-sky-over-mountain-silhouettes"), licensedForUse: false },
+      { ...img("pages-trips-hero-01"), licensedForUse: false },
+      { ...img("pages-trips-hero-02"), licensedForUse: false },
+      { ...img("pages-trips-hero-03"), licensedForUse: false },
+      { ...img("pages-live-trip-15-strangers"), licensedForUse: false },
     ],
     fallbackImage,
     itinerary: [
@@ -80,7 +80,7 @@ export const qaTrips: Trip[] = [
     duration: { days: 2, nights: 1 },
     blurb: "QA fixture for the sold-out state.",
     images: [
-      { ...img("travellers-on-an-outdoor-adventure"), licensedForUse: false },
+      { ...img("homepage-people-a-01"), licensedForUse: false },
     ],
     fallbackImage,
     departures: [
@@ -106,7 +106,7 @@ export const qaTrips: Trip[] = [
     duration: { days: 4, nights: 3 },
     blurb: "QA fixture for the postponed state.",
     images: [
-      { ...img("car-on-a-coastal-road"), licensedForUse: false },
+      { ...img("homepage-way-03"), licensedForUse: false },
     ],
     fallbackImage,
     departures: [],
@@ -124,7 +124,7 @@ export const qaTrips: Trip[] = [
     status: "coming-soon",
     duration: { days: 3, nights: 2 },
     blurb: "QA fixture for trips without confirmed departures.",
-    images: [{ ...img("open-highway-stretching-toward-distant"), licensedForUse: false }],
+    images: [{ ...img("pages-about-chapter-02"), licensedForUse: false }],
     fallbackImage,
     departures: [],
     published: true,

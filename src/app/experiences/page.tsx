@@ -31,8 +31,8 @@ export default function ExperiencesPage() {
           <div className={styles.archiveBlock}>
             <div className={`${styles.archivePicture} ${styles.imageFrame}`}>
               <Image
-                src={img("people-celebrating-together-at-an").src}
-                alt={img("people-celebrating-together-at-an").alt}
+                src={img("pages-archive-01-gathering").src}
+                alt={img("pages-archive-01-gathering").alt}
                 fill
                 sizes="(max-width: 760px) 100vw, 50vw"
                 style={{ objectFit: "cover" }}
@@ -52,8 +52,8 @@ export default function ExperiencesPage() {
           <div className={`${styles.archiveBlock} ${styles.reverse}`} style={{ borderBottom: "none" }}>
             <div className={`${styles.archivePicture} ${styles.imageFrame}`}>
               <Image
-                src={img("friends-sharing-a-meal-and").src}
-                alt={img("friends-sharing-a-meal-and").alt}
+                src={img("pages-archive-02-shared-table").src}
+                alt={img("pages-archive-02-shared-table").alt}
                 fill
                 sizes="(max-width: 760px) 100vw, 50vw"
                 style={{ objectFit: "cover" }}
@@ -102,8 +102,8 @@ export default function ExperiencesPage() {
             </div>
             <div className={`${styles.archiveLastPhoto} ${styles.imageFrame}`}>
               <Image
-                src={img("calm-riverside-waters-surrounded-by").src}
-                alt={img("calm-riverside-waters-surrounded-by").alt}
+                src={img("pages-experiences-riverside").src}
+                alt={img("pages-experiences-riverside").alt}
                 fill
                 sizes="(max-width: 760px) 100vw, 50vw"
                 style={{ objectFit: "cover" }}

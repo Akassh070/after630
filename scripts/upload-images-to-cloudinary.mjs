@@ -10,10 +10,10 @@
 // .env.example (which intentionally holds no real secrets).
 //
 // Each new upload needs either `sourceUrl` (Cloudinary fetches remotely) or
-// `localPath` (local file → data URI). Local files are upload sources only —
-// the live site always loads from Cloudinary via publicId. Resolve localPath
-// against AFTER630_HOMEPAGE_IMAGES_DIR when set (e.g. the Downloads pack),
-// otherwise against the repo root. Absolute localPath values are used as-is.
+// `localPath` (local file uploaded as multipart binary — not base64). Local
+// files are upload sources only; the live site always loads from Cloudinary
+// via publicId. Resolve localPath against AFTER630_LOCAL_IMAGES_DIR (or
+// AFTER630_HOMEPAGE_IMAGES_DIR) when set, otherwise the repo root.
 
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -24,9 +24,11 @@ const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || siteCopy.clo
 const API_KEY = process.env.CLOUDINARY_API_KEY;
 const API_SECRET = process.env.CLOUDINARY_API_SECRET;
 const ROOT = path.resolve(import.meta.dirname, "..");
-const LOCAL_ROOT = process.env.AFTER630_HOMEPAGE_IMAGES_DIR
-  ? path.resolve(process.env.AFTER630_HOMEPAGE_IMAGES_DIR)
-  : ROOT;
+const LOCAL_ROOT = process.env.AFTER630_LOCAL_IMAGES_DIR
+  ? path.resolve(process.env.AFTER630_LOCAL_IMAGES_DIR)
+  : process.env.AFTER630_HOMEPAGE_IMAGES_DIR
+    ? path.resolve(process.env.AFTER630_HOMEPAGE_IMAGES_DIR)
+    : ROOT;
 
 if (!CLOUD_NAME || !API_KEY || !API_SECRET) {
   console.error(
@@ -67,7 +69,8 @@ function filePayload(entry) {
     const absolute = resolveLocalPath(entry.localPath);
     const bytes = readFileSync(absolute);
     const mime = mimeFor(absolute);
-    return `data:${mime};base64,${bytes.toString("base64")}`;
+    // Multipart File is much faster than a base64 data URI for large WebPs.
+    return new File([bytes], path.basename(absolute), { type: mime });
   }
   if (entry.sourceUrl) return entry.sourceUrl;
   throw new Error("Manifest entry needs sourceUrl or localPath to upload");

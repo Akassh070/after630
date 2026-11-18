@@ -3,18 +3,16 @@ import { img } from "@/lib/images";
 import styles from "./trips.module.css";
 
 const heroSlides = [
-  img("atmospheric-mountain-landscape-representing-adventure"),
-  img("dramatic-mountain-peaks-under-open"),
-  img("mountain-pass-and-open-sky"),
-  img("open-highway-stretching-toward-distant"),
-  img("hill-viewpoint-overlooking-water-and"),
+  img("pages-trips-hero-01"),
+  img("pages-trips-hero-02"),
+  img("pages-trips-hero-03"),
 ];
 
 export default function TripsHero({ singleTrip }: { singleTrip: boolean }) {
   return (
     <section className={styles.hero}>
       <ImageSlideshow
-        slides={singleTrip ? heroSlides.slice(0, 3) : heroSlides}
+        slides={heroSlides}
         sizes="100vw"
         intervalMs={5000}
         priority

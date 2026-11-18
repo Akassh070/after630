@@ -3,7 +3,7 @@ import { img } from "@/lib/images";
 import Button from "@/components/ui/Button";
 import styles from "./trip.module.css";
 
-const background = img("atmospheric-mountain-landscape-representing-adventure");
+const background = img("pages-trips-hero-02");
 
 export default function EndCta() {
   return (
