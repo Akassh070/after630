@@ -11,13 +11,13 @@ const steps = [
   },
   {
     num: "02",
-    title: "Message our team",
-    text: "Choose a departure where available, then enquire via WhatsApp.",
+    title: "Tap Book Now",
+    text: "Choose your departure and tap Book Now. WhatsApp opens with your booking details filled in.",
   },
   {
     num: "03",
-    title: "Confirm your spot",
-    text: "Our team checks availability, shares payment details and verifies the booking.",
+    title: "Pay and confirm your seat",
+    text: "Our team shares the payment details and confirms your seat in writing once payment is received.",
   },
   {
     num: "04",
@@ -35,7 +35,7 @@ export default function HowItWorks() {
           <p className="eyebrow">Your journey, made simple</p>
           <h2 className="sectionTitle">From curious to on your way.</h2>
           <p className="sectionText">
-            Explore first. Ask everything you need to know. Then get ready for your next experience.
+            Pick a trip, book on WhatsApp in minutes, then get ready for your next experience.
           </p>
         </div>
         <div className={styles.steps}>
@@ -49,16 +49,12 @@ export default function HowItWorks() {
         </div>
         <div className={styles.howActions}>
           <Button href="/trips" variant="primary">
-            Explore trips ↗
+            Book a trip ↗
           </Button>
           <Button href={waLink ?? "/contact"} external={Boolean(waLink)} variant="ghost">
             Ask on WhatsApp ↗
           </Button>
         </div>
-        <p className={styles.howNote}>
-          A WhatsApp enquiry does not reserve a seat. Bookings are confirmed only once availability and payment
-          are verified.
-        </p>
       </div>
     </section>
   );

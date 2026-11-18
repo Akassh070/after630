@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { primaryNav } from "@/content/nav";
 import { siteConfig } from "@/lib/config";
-import { getGreetingWaLink } from "@/lib/whatsapp";
+import { getBookingWaLink, getGreetingWaLink } from "@/lib/whatsapp";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import styles from "./SiteHeader.module.css";
@@ -18,6 +18,7 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [renderedPathname, setRenderedPathname] = useState(pathname);
   const waLink = getGreetingWaLink(siteConfig.whatsappNumber);
+  const bookLink = getBookingWaLink(siteConfig.whatsappNumber);
   const logoSrc =
     theme === "dark" ? "/brand/after630-logo-white.svg" : "/brand/after630-logo-ink.svg";
 
@@ -70,19 +71,19 @@ export default function SiteHeader() {
         </nav>
         <div className={styles.actions}>
           <ThemeToggle />
-          {waLink ? (
+          {bookLink ? (
             <a
-              href={waLink}
+              href={bookLink}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.cta}
-              aria-label="WhatsApp enquiry (opens in a new tab)"
+              aria-label="Book Now on WhatsApp (opens in a new tab)"
             >
-              WhatsApp Enquiry ↗
+              Book Now ↗
             </a>
           ) : (
             <Link href="/contact" className={styles.cta}>
-              Enquire ↗
+              Book Now ↗
             </Link>
           )}
           <button

@@ -45,13 +45,13 @@ export const faqItems: { category: FaqCategory; question: string; answer: string
     category: "Booking & Payments",
     question: "How can I book a trip?",
     answer:
-      "Browse our upcoming trips on the website or our Instagram, then message our team on WhatsApp. We'll share the itinerary, inclusions, pricing and booking steps.",
+      "Open the trip you like and tap Book Now. WhatsApp opens with your trip details filled in. Send it, and our team will share the payment details and confirm your seat.",
   },
   {
     category: "Booking & Payments",
-    question: "Does sending a WhatsApp message reserve my seat?",
+    question: "When is my seat reserved?",
     answer:
-      "No. An enquiry is not a reservation. Your seat is confirmed only after the required payment has been received and After630 has sent you a confirmation.",
+      "As soon as your payment is received. Tap Book Now on the trip page, send the WhatsApp message, and our team will share the payment details and confirm your seat in writing.",
   },
   {
     category: "Booking & Payments",
@@ -153,7 +153,7 @@ export const homeFaqItems = [
   {
     question: "How do I book a trip?",
     answer:
-      "Pick a trip, review the details and message us on WhatsApp. We'll confirm availability and share payment details. Your seat is confirmed once payment is received and we've sent your confirmation.",
+      "Pick a trip and tap Book Now. WhatsApp opens with your trip details filled in. Send it, and we'll share the payment details. Your seat is confirmed as soon as payment is received.",
   },
   {
     question: "I'm not from Chandigarh. Can I still join?",

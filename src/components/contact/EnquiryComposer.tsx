@@ -6,7 +6,7 @@ import { buildGeneralEnquiryMessage, buildWaLink } from "@/lib/whatsapp";
 import styles from "@/components/secondary/secondary.module.css";
 
 export default function EnquiryComposer({ whatsappNumber }: { whatsappNumber: string | null }) {
-  const [fields, setFields] = useState({ type: "Trip enquiry", name: "", destination: "", travellers: "", dates: "", message: "" });
+  const [fields, setFields] = useState({ type: "Book a trip", name: "", destination: "", travellers: "", dates: "", message: "" });
 
   const message = useMemo(() => buildGeneralEnquiryMessage(fields), [fields]);
   const waLink = buildWaLink(whatsappNumber, message);
@@ -18,14 +18,14 @@ export default function EnquiryComposer({ whatsappNumber }: { whatsappNumber: st
   return (
     <div className={styles.contactCard}>
       <div className={styles.formHead}>
-        <h2>Compose an enquiry</h2>
+        <h2>Plan your trip with us</h2>
       </div>
 
       <div className={styles.formSection}>
         <label htmlFor="enquiry-type">What can we help you with?</label>
         <select id="enquiry-type" className={styles.formControl} value={fields.type} onChange={(e) => update("type", e.target.value)}>
-          <option>Trip enquiry</option>
-          <option>Group travel enquiry</option>
+          <option>Book a trip</option>
+          <option>Private or customised group trip</option>
           <option>Brand partnership</option>
           <option>General question</option>
         </select>
@@ -94,20 +94,14 @@ export default function EnquiryComposer({ whatsappNumber }: { whatsappNumber: st
       </div>
 
       <div className={styles.formActions}>
-        {waLink ? (
+        {waLink && (
           <Button href={waLink} external variant="primary">
             Send on WhatsApp ↗
-          </Button>
-        ) : (
-          <Button variant="outline" disabled title="WhatsApp Business number not connected yet">
-            WhatsApp coming soon
           </Button>
         )}
       </div>
       <p style={{ fontSize: 10, color: "var(--color-muted)", marginTop: 6, lineHeight: 1.8 }}>
-        {waLink
-          ? "Send on WhatsApp opens the chat with your enquiry filled in — you review it before sending. An enquiry doesn't reserve a seat."
-          : "WhatsApp isn't connected yet. Please check back shortly."}
+        Opens WhatsApp with your details filled in. Send it and our team will reply there.
       </p>
     </div>
   );

@@ -10,7 +10,7 @@ export default function Logistics({ trip }: { trip: Trip }) {
       <p className="eyebrow">Practical details</p>
       <h2>Travel &amp; stay details.</h2>
       <p>
-        Transport, stay and pick-up details for this journey. Anything still open is listed as to be announced.
+        Transport, stay and pick-up details for this journey.
       </p>
       <div className={styles.detailsGrid}>
         {entries.map((entry) => (

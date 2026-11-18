@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const STEPS = [
   { kicker: "01 / Explore", title: "Tell us your plan.", text: "Share a destination, preferred date or simply the kind of trip you're looking for." },
   { kicker: "02 / Confirm details", title: "Get the specifics.", text: "Our team can explain confirmed availability, the itinerary and relevant package inclusions." },
-  { kicker: "03 / Book with clarity", title: "Know before you pay.", text: "When ready, booking terms and payment instructions are shared before any confirmation." },
+  { kicker: "03 / Book your seat", title: "Pay and you're in.", text: "We share the payment details, and your seat is confirmed in writing as soon as payment is received." },
 ];
 
 export default function ContactPage() {
@@ -49,18 +49,10 @@ export default function ContactPage() {
                     </span>
                     <div>
                       <h3>WhatsApp · {formatWhatsappDisplay(siteConfig.whatsappNumber)}</h3>
-                      <p>Fastest way to reach the After630 team. Opens WhatsApp in a new tab.</p>
+                      <p>The fastest way to book or ask a question. Opens WhatsApp in a new tab.</p>
                     </div>
                   </a>
-                ) : (
-                  <div className={`${styles.contactMethod} ${styles.contactMethodPlain}`}>
-                    <span className={styles.methodIcon} aria-hidden="true">↗</span>
-                    <div>
-                      <h3>WhatsApp</h3>
-                      <p>WhatsApp enquiries will open here once our Business number is connected.</p>
-                    </div>
-                  </div>
-                )}
+                ) : null}
                 {siteConfig.instagramUrl ? (
                   <a
                     href={siteConfig.instagramUrl}
@@ -76,15 +68,7 @@ export default function ContactPage() {
                       <p>Trip moments, community stories and new journey announcements. Opens in a new tab.</p>
                     </div>
                   </a>
-                ) : (
-                  <div className={`${styles.contactMethod} ${styles.contactMethodPlain}`}>
-                    <span className={styles.methodIcon} aria-hidden="true">◎</span>
-                    <div>
-                      <h3>Instagram</h3>
-                      <p>Our Instagram will be linked here when ready.</p>
-                    </div>
-                  </div>
-                )}
+                ) : null}
               </div>
             </div>
 

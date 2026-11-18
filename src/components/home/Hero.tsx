@@ -84,8 +84,8 @@ export default function Hero({ trip }: { trip?: Trip }) {
             {trip?.blurb ?? "Unforgettable places. New friendships. Stories worth telling. Discover group journeys designed for people who love to explore."}
           </p>
           <div className={styles.heroActions}>
-            <Button href={trip ? `/trips/${trip.slug}` : "/trips"} variant="primary">
-              {trip ? "View trip details ↗" : "Explore Experiences ↗"}
+            <Button href={trip ? `/trips/${trip.slug}#book` : "/trips"} variant="primary">
+              {trip ? "Book Now ↗" : "Explore Experiences ↗"}
             </Button>
             <Button href={trip ? "/trips" : "#experience"} variant="ghost" inverted>
               {trip ? "Explore trips ↗" : "Find your travel style ↗"}

@@ -8,8 +8,6 @@ type SmartImageProps = {
   src: string;
   alt: string;
   fallbackSrc: string;
-  /** Shows a "DESIGN PREVIEW" ribbon — use for unlicensed/demo imagery only. */
-  showPreviewRibbon?: boolean;
   sizes?: string;
   priority?: boolean;
   className?: string;
@@ -25,7 +23,6 @@ export default function SmartImage({
   src,
   alt,
   fallbackSrc,
-  showPreviewRibbon,
   sizes = "(max-width: 760px) 100vw, 50vw",
   priority,
   className,
@@ -35,7 +32,6 @@ export default function SmartImage({
 
   return (
     <div className={`${styles.frame} ${fit ? styles.contained : ""} ${className ?? ""}`}>
-      {showPreviewRibbon && <span className={styles.ribbon}>Design preview</span>}
       {errored ? (
         // eslint-disable-next-line @next/next/no-img-element -- local static fallback
         <img src={fallbackSrc} alt={alt} className={styles.fallback} loading="lazy" />

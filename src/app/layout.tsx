@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s — After630",
   },
   description:
-    "Small-group trips for solo travellers aged 20–40. Explore the mountains, meet new people and see upcoming departures, dates and prices. Enquire on WhatsApp.",
+    "Small-group trips for solo travellers aged 20–40. Explore the mountains, meet new people and see upcoming departures, dates and prices. Book on WhatsApp.",
   // Shown when the site link is shared (WhatsApp, Instagram, etc.).
   openGraph: {
     siteName: "After630",

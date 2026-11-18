@@ -15,12 +15,11 @@ import {
 } from "@/lib/trips/availability";
 import { buildAlternateDatesMessage, buildFutureDatesMessage, buildTripEnquiryMessage, buildWaLink } from "@/lib/whatsapp";
 import type { Trip } from "@/lib/trips/types";
-import EnquiryPreviewDialog from "./EnquiryPreviewDialog";
 import styles from "./trip.module.css";
 
 const MODE_COPY: Record<EnquiryMode, { tag: string; help: string }> = {
-  enquire: { tag: "Open for enquiries", help: "Availability is confirmed by our team, not guaranteed instantly." },
-  "future-dates": { tag: "Departure not announced", help: "Dates are still to be announced. Ask us about future departures — an enquiry is not a booking." },
+  enquire: { tag: "Booking open", help: "Tap Book Now to reserve on WhatsApp. Your seat is confirmed once payment is received." },
+  "future-dates": { tag: "New dates coming", help: "The next departure for this trip will be announced soon. Message us to hear first." },
   "sold-out": { tag: "Sold out", help: "This departure is full. Ask us about other dates or similar trips." },
   postponed: { tag: "Postponed", help: "This trip's dates are being revised. Ask us for the latest update." },
   cancelled: { tag: "Cancelled", help: "This departure will not run. Ask us about alternative journeys." },
@@ -43,7 +42,6 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
   const [originCity, setOriginCity] = useState(hasFixedPackage ? firstOrigin.city : "");
   const [packageId, setPackageId] = useState(hasFixedPackage ? firstPackage.id : "");
   const [travellers, setTravellers] = useState(1);
-  const [previewOpen, setPreviewOpen] = useState(false);
 
   const selectedDeparture = departures.find((d) => d.id === departureId);
   const origins = selectedDeparture?.origins ?? [];
@@ -71,26 +69,26 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
 
   const message = computeMessage();
 
+  // The official number is built into the site, so waLink is normally always
+  // set; without one, the buttons fall back to the Contact page.
   const waLink = message ? buildWaLink(whatsappNumber, message) : null;
   const copy = MODE_COPY[mode];
 
   const ctaLabel =
     mode === "enquire"
-      ? "Ask about this journey ↗"
+      ? "Book Now ↗"
       : mode === "future-dates"
-        ? "Ask About Future Dates ↗"
+        ? "Get notified on WhatsApp ↗"
         : "Ask about other dates ↗";
-
-  function handlePrimaryClick() {
-    if (!waLink) setPreviewOpen(true);
-  }
 
   const mobileCtaLabel =
     mode === "completed"
       ? "See experiences"
-      : mode === "sold-out" || mode === "postponed" || mode === "cancelled"
-        ? "Other dates ↗"
-        : "Enquire ↗";
+      : mode === "enquire"
+        ? "Book Now ↗"
+        : mode === "future-dates"
+          ? "Get notified ↗"
+          : "Other dates ↗";
 
   const bookingRef = useRef<HTMLDivElement>(null);
   const [cardVisible, setCardVisible] = useState(true);
@@ -104,7 +102,7 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
 
   return (
     <>
-      <aside className={styles.booking} ref={bookingRef} aria-label="Trip enquiry">
+      <aside id="book" className={styles.booking} ref={bookingRef} aria-label="Book this trip">
         <div className={styles.bookingTop}>
           <span className={styles.bookingTag}>◌ {copy.tag}</span>
           {mode === "enquire" ? (
@@ -116,8 +114,8 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
             </>
           ) : (
             <>
-              <div className={styles.bookingLabel}>Starting from</div>
-              <div className={styles.bookingPrice}>To be announced</div>
+              <div className={styles.bookingLabel}>Price</div>
+              <div className={styles.bookingPrice}>On request</div>
             </>
           )}
           <p className={styles.bookingCopy}>{copy.help}</p>
@@ -222,67 +220,49 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
               </div>
             </div>
 
-            {waLink ? (
-              <Button href={waLink} external variant="primary" fullWidth className={styles.bookingPrimaryCta}>
+            {message ? (
+              <Button
+                href={waLink ?? "/contact"}
+                external={Boolean(waLink)}
+                variant="primary"
+                fullWidth
+                className={styles.bookingPrimaryCta}
+              >
                 {ctaLabel}
               </Button>
             ) : (
-              <Button
-                variant="primary"
-                fullWidth
-                disabled={!message}
-                onClick={handlePrimaryClick}
-                className={styles.bookingPrimaryCta}
-              >
+              <Button variant="primary" fullWidth disabled className={styles.bookingPrimaryCta}>
                 {ctaLabel}
               </Button>
             )}
             <p className={styles.bookingHelp}>
               {message
-                ? "Opens a WhatsApp enquiry. Does not send anything or reserve a seat."
+                ? "Opens WhatsApp with your booking details filled in."
                 : "Choose a departure, origin and package to continue."}
             </p>
 
             <div className={styles.bookingBenefits}>
               <span>
-                <b>✓</b> Availability confirmed by our team
+                <b>✓</b> Book in minutes on WhatsApp
               </span>
               <span>
-                <b>✓</b> Booking details shared before payment
+                <b>✓</b> Payment details shared by our team
               </span>
               <span>
-                <b>✓</b> Confirmation after payment verification
+                <b>✓</b> Written confirmation of your seat
               </span>
             </div>
-
-            {message && (
-              <button type="button" className={styles.shareBtn} onClick={() => setPreviewOpen(true)}>
-                Preview or copy message ↗
-              </button>
-            )}
           </div>
         )}
 
         {mode === "future-dates" && (
           <div className={styles.bookingFields}>
             <p style={{ fontSize: 12, color: "var(--color-muted)", margin: "0 0 14px", lineHeight: 1.7 }}>
-              Departure dates, origin cities and packages for this journey haven&apos;t been published yet.
+              The next departure, pickup city and price for this trip will be announced soon.
             </p>
-            {waLink ? (
-              <Button href={waLink} external variant="primary" fullWidth>
-                {ctaLabel}
-              </Button>
-            ) : (
-              <Button variant="primary" fullWidth onClick={handlePrimaryClick}>
-                {ctaLabel}
-              </Button>
-            )}
-            <p className={styles.bookingHelp}>Opens a WhatsApp enquiry. Does not send anything or reserve a seat.</p>
-            {message && (
-              <button type="button" className={styles.shareBtn} onClick={() => setPreviewOpen(true)}>
-                Preview or copy message ↗
-              </button>
-            )}
+            <Button href={waLink ?? "/contact"} external={Boolean(waLink)} variant="primary" fullWidth>
+              {ctaLabel}
+            </Button>
           </div>
         )}
 
@@ -290,21 +270,21 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
           <div className={styles.bookingFields}>
             <StatusBadge status={trip.status} />
             <p style={{ fontSize: 12, color: "var(--color-muted)", marginTop: 12 }}>
-              This departure isn&apos;t open for enquiries right now. Explore other journeys, or ask us about
+              This departure isn&apos;t open for booking right now. Explore other journeys, or ask us about
               alternate dates for this one.
             </p>
             <Button href="/trips" variant="primary" fullWidth style={{ marginTop: 14 }}>
               Explore other trips ↗
             </Button>
-            {waLink ? (
-              <Button href={waLink} external variant="outline" fullWidth style={{ marginTop: 10 }}>
-                {ctaLabel}
-              </Button>
-            ) : (
-              <Button variant="outline" fullWidth style={{ marginTop: 10 }} onClick={handlePrimaryClick}>
-                {ctaLabel}
-              </Button>
-            )}
+            <Button
+              href={waLink ?? "/contact"}
+              external={Boolean(waLink)}
+              variant="outline"
+              fullWidth
+              style={{ marginTop: 10 }}
+            >
+              {ctaLabel}
+            </Button>
           </div>
         )}
 
@@ -329,15 +309,11 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
         </div>
       </aside>
 
-      {message && (
-        <EnquiryPreviewDialog open={previewOpen} onClose={() => setPreviewOpen(false)} message={message} whatsappConnected={!!whatsappNumber} waLink={waLink} />
-      )}
-
       <div className={`${styles.mobileBooking} ${!cardVisible ? styles.show : ""}`}>
         <div>
           <span>{copy.tag}</span>
           <strong>
-            {mode === "enquire" ? formatPriceINR(selectedPackage?.priceINR ?? fallbackStartingPrice) : "To be announced"}
+            {mode === "enquire" ? formatPriceINR(selectedPackage?.priceINR ?? fallbackStartingPrice) : "Price on request"}
           </strong>
         </div>
         {waLink ? (
@@ -350,7 +326,7 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
             className={styles.mobileBookingBtn}
             onClick={() => {
               if (mode === "completed") router.push("/experiences");
-              else if (message) setPreviewOpen(true);
+              else if (message) router.push("/contact");
               else bookingRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
             }}
           >

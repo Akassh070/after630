@@ -4,7 +4,7 @@ import styles from "./StatusBadge.module.css";
 const LABELS: Record<TripStatus, string> = {
   draft: "Draft",
   "coming-soon": "Coming soon",
-  published: "Open for enquiries",
+  published: "Booking open",
   "sold-out": "Sold out",
   postponed: "Postponed",
   cancelled: "Cancelled",

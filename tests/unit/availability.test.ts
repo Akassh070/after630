@@ -57,8 +57,8 @@ describe("getEnquiryMode", () => {
 });
 
 describe("formatPriceINR", () => {
-  it("never shows a fabricated zero/default — missing price reads as enquiry", () => {
-    expect(formatPriceINR(undefined)).toBe("Price on enquiry");
+  it("never shows a fabricated zero/default — missing price reads as on request", () => {
+    expect(formatPriceINR(undefined)).toBe("Price on request");
   });
 
   it("formats a real price in INR", () => {

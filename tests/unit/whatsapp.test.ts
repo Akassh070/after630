@@ -3,6 +3,8 @@ import {
   formatWhatsappDisplay,
   getGreetingWaLink,
   buildGreetingMessage,
+  buildBookingGreetingMessage,
+  getBookingWaLink,
   buildAlternateDatesMessage,
   buildFutureDatesMessage,
   buildGeneralEnquiryMessage,
@@ -36,7 +38,8 @@ describe("buildTripEnquiryMessage", () => {
     expect(message).toContain("15 Strangers & Stories");
     expect(message).not.toContain("departure");
     expect(message).not.toContain("package");
-    expect(message).toMatch(/not a confirmed booking/i);
+    expect(message).toMatch(/I'd like to book 15 Strangers & Stories/);
+    expect(message).toMatch(/payment details to reserve my seat/i);
   });
 
   it("reflects the exact selected departure, origin, package and traveller count", () => {
@@ -64,7 +67,7 @@ describe("other message builders", () => {
   it("future-dates message never claims a date or price", () => {
     const message = buildFutureDatesMessage("Trip X");
     expect(message).not.toMatch(/₹|\d{1,2} [A-Z][a-z]+ \d{4}/);
-    expect(message).toMatch(/only an enquiry/i);
+    expect(message).toContain("Trip X");
   });
 
   it("alternate-dates message is honest about the current status", () => {
@@ -97,8 +100,23 @@ describe("site WhatsApp number helpers", () => {
     expect(getGreetingWaLink(null)).toBeNull();
   });
 
-  it("greeting states it's an enquiry, not a booking", () => {
-    expect(buildGreetingMessage()).toMatch(/enquiry, not a confirmed booking/);
+  it("no message carries the old enquiry-not-booking disclaimer", () => {
+    for (const message of [
+      buildGreetingMessage(),
+      buildBookingGreetingMessage(),
+      buildTripEnquiryMessage({ tripTitle: "Trip" }),
+      buildFutureDatesMessage("Trip"),
+      buildAlternateDatesMessage("Trip"),
+      buildGeneralEnquiryMessage({}),
+    ]) {
+      expect(message).not.toMatch(/enquiry|not a (confirmed )?booking/i);
+    }
+  });
+
+  it("builds the header Book Now link with a booking message", () => {
+    const link = getBookingWaLink("917016617715");
+    expect(decodeURIComponent(link!.split("text=")[1])).toMatch(/I'd like to book a trip/);
+    expect(getBookingWaLink(null)).toBeNull();
   });
 });
 

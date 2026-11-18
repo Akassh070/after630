@@ -7,7 +7,7 @@ import { getPublicTrips } from "@/lib/trips/repository";
 export const metadata: Metadata = {
   title: "Upcoming Group Trips for Solo Travellers",
   description:
-    "See upcoming After630 group trips with dates, prices, full itineraries and inclusions. Small groups, solo-friendly, ages 20–40. Enquire about any departure on WhatsApp.",
+    "See upcoming After630 group trips with dates, prices, full itineraries and inclusions. Small groups, solo-friendly, ages 20–40. Book any departure on WhatsApp.",
   alternates: { canonical: "/trips" },
 };
 

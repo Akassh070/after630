@@ -325,7 +325,7 @@ export default function TripExplorer({ trips }: { trips: Trip[] }) {
                   <p>Tell us what kind of experience you&apos;re looking for and our team will help you choose.</p>
                 </div>
                 <Button href="/contact" variant="outline">
-                  Ask After630 ↗
+                  Message After630 ↗
                 </Button>
               </div>
             </div>

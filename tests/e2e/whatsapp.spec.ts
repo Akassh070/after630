@@ -17,12 +17,13 @@ test.describe("WhatsApp support across the site", () => {
     });
   }
 
-  test("header CTA opens WhatsApp with an enquiry-not-booking greeting", async ({ page }) => {
+  test("header Book Now opens WhatsApp with a booking message", async ({ page }) => {
     await page.goto("/");
-    const cta = page.getByRole("link", { name: /WhatsApp enquiry/ });
+    const cta = page.getByRole("link", { name: /Book Now on WhatsApp/ });
+    await expect(cta).toHaveText("Book Now ↗");
     const href = await cta.getAttribute("href");
     expect(href).toMatch(WA);
-    expect(decodeURIComponent(href!.split("text=")[1])).toMatch(/enquiry, not a confirmed booking/);
+    expect(decodeURIComponent(href!.split("text=")[1])).toMatch(/I'd like to book a trip/);
   });
 
   test("footer shows the number and Contact page links to WhatsApp", async ({ page }) => {
@@ -40,17 +41,16 @@ test.describe("WhatsApp support across the site", () => {
     }
   });
 
-  test("floating button steps aside on phone trip pages (sticky enquiry bar is there)", async ({ page }) => {
+  test("floating button steps aside on phone trip pages (sticky booking bar is there)", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/trips/15-strangers-and-stories");
     await expect(page.getByRole("link", { name: /Chat with After630 on WhatsApp/ })).toBeHidden();
   });
 
-  test("trip enquiry preview offers 'Open in WhatsApp' with the trip message", async ({ page }) => {
+  test("trip Book Now goes straight to WhatsApp with the trip message", async ({ page }) => {
     await page.goto("/trips/15-strangers-and-stories");
-    await page.getByRole("button", { name: /Preview or copy message/ }).click();
-    const open = page.getByRole("dialog").getByRole("link", { name: /Open in WhatsApp/ });
-    const href = await open.getAttribute("href");
+    const book = page.getByRole("complementary", { name: "Book this trip" }).getByRole("link", { name: "Book Now ↗" });
+    const href = await book.getAttribute("href");
     expect(href).toMatch(WA);
     expect(new URL(href!).searchParams.get("text")).toContain("15 Strangers & Stories");
   });
@@ -64,7 +64,7 @@ test.describe("WhatsApp support across the site", () => {
     await expect(page.getByRole("link", { name: /^Instagram · @after630club/ })).toHaveAttribute("href", ig);
   });
 
-  test("Contact offers WhatsApp enquiries without email options", async ({ page }) => {
+  test("Contact offers WhatsApp messaging without email options", async ({ page }) => {
     await page.goto("/contact");
     await expect(page.locator('a[href^="mailto:" i]')).toHaveCount(0);
     await expect(page.locator("body")).not.toContainText(/\bemail\b/i);

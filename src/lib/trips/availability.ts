@@ -56,7 +56,7 @@ export function getStartingPriceINR(trip: Trip): number | undefined {
 }
 
 export function formatPriceINR(priceINR?: number): string {
-  if (typeof priceINR !== "number" || Number.isNaN(priceINR)) return "Price on enquiry";
+  if (typeof priceINR !== "number" || Number.isNaN(priceINR)) return "Price on request";
   return new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",

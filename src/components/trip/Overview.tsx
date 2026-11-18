@@ -8,8 +8,22 @@ function durationLabel(trip: Trip): string {
 }
 
 function statusLabel(trip: Trip): string {
-  if (trip.status === "coming-soon") return "Coming soon";
-  return trip.status.replace(/-/g, " ");
+  switch (trip.status) {
+    case "published":
+      return "Booking open";
+    case "coming-soon":
+      return "Coming soon";
+    case "sold-out":
+      return "Sold out";
+    case "postponed":
+      return "Postponed";
+    case "cancelled":
+      return "Cancelled";
+    case "completed":
+      return "Completed";
+    default:
+      return "Coming soon";
+  }
 }
 
 export default function Overview({ trip }: { trip: Trip }) {

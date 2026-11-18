@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   // apply here: this string is the full <title>.
   title: "Group Trips for Solo Travellers in India — After630",
   description:
-    "Small-group trips for solo travellers aged 20–40. Explore the mountains, meet new people and see upcoming departures, dates and prices. Enquire on WhatsApp.",
+    "Small-group trips for solo travellers aged 20–40. Explore the mountains, meet new people and see upcoming departures, dates and prices. Book on WhatsApp.",
   alternates: { canonical: "/" },
 };
 

@@ -96,7 +96,7 @@ export default function UpcomingTrips({ trips }: { trips: Trip[] }) {
                   </div>
                   <div className={styles.tripActions}>
                     <Button href={`/trips/${featured.slug}`} variant="primary" inverted className={styles.askCta}>
-                      Ask about this trip ↗
+                      Book now ↗
                     </Button>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export default function UpcomingTrips({ trips }: { trips: Trip[] }) {
                       <Pill>{priceLabel(trip)}</Pill>
                     </div>
                     <div className={styles.miniFooter}>
-                      <span className={styles.miniCta}>Ask about this trip ↗</span>
+                      <span className={styles.miniCta}>Book now ↗</span>
                     </div>
                   </div>
                 </Link>
