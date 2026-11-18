@@ -7,7 +7,7 @@ test("Meta Pixel is fully off while no ID is configured", async ({ page }) => {
   page.on("request", (req) => {
     if (/facebook\.(com|net)/.test(req.url())) facebookRequests.push(req.url());
   });
-  for (const route of ["/", "/trips", "/trips/jibhi-slow-mountains", "/contact"]) {
+  for (const route of ["/", "/trips", "/trips/15-strangers-and-stories", "/contact"]) {
     await page.goto(route);
     await page.waitForLoadState("networkidle");
   }

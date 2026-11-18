@@ -21,10 +21,9 @@ function makeTrip(overrides: Partial<Trip>): Trip {
     status: "coming-soon",
     blurb: "Blurb",
     images: [],
-    fallbackImage: "/images/fallback/jibhi.svg",
+    fallbackImage: "/brand/after630-og-square.png",
     departures: overrides.departures ?? [],
     published: true,
-    isDemo: true,
     ...overrides,
   };
 }
@@ -36,9 +35,9 @@ describe("parseFilterState", () => {
   });
 
   it("reads valid values", () => {
-    const params = new URLSearchParams("category=mountain&duration=short&region=north&month=2027-03&sort=alpha&q=jibhi");
+    const params = new URLSearchParams("category=mountain&duration=short&region=north&month=2027-03&sort=alpha&q=alpine");
     expect(parseFilterState(params)).toEqual({
-      q: "jibhi",
+      q: "alpine",
       category: "mountain",
       duration: "short",
       region: "north",
@@ -65,7 +64,7 @@ describe("filterTrips", () => {
   const trips = [
     makeTrip({ id: "a", category: "mountain", region: "north", duration: { days: 2 } }),
     makeTrip({ id: "b", category: "road", region: "south", duration: { days: 7 } }),
-    makeTrip({ id: "c", category: "mountain", region: "west", title: "Jibhi Escape", duration: { days: 4 } }),
+    makeTrip({ id: "c", category: "mountain", region: "west", title: "Alpine Escape", duration: { days: 4 } }),
   ];
 
   it("filters by category", () => {
@@ -83,7 +82,7 @@ describe("filterTrips", () => {
   });
 
   it("filters by free-text search across title", () => {
-    expect(filterTrips(trips, { ...DEFAULT_FILTER_STATE, q: "jibhi" }).map((t) => t.id)).toEqual(["c"]);
+    expect(filterTrips(trips, { ...DEFAULT_FILTER_STATE, q: "alpine" }).map((t) => t.id)).toEqual(["c"]);
   });
 
   it("combines filters with AND semantics", () => {

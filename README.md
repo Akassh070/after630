@@ -44,8 +44,7 @@ approval).
 ### Trip data (`AFTER630_TRIP_SOURCE`)
 
 - `live` (default) — shows only the published trips in `src/content/trips.ts`.
-- `demo` — adds the 8 illustrative concept trips from the design handoff, all marked `coming-soon` with no departures.
-- `qa` — adds a few additional fixtures with fake departures/prices, used only by the Playwright suite to exercise the departure → origin → package selector and the sold-out/postponed states end to end.
+- `qa` — adds fictional fixtures for the Playwright suite to exercise the departure selector and availability states.
 
 ## Adding a real trip
 
@@ -59,11 +58,9 @@ anything unset. Set `endDate` on a departure when the return date is confirmed.
 Every photo on the site — trip galleries, hero/section backgrounds, the
 About/Past Experiences pages — is hosted on Cloudinary and delivered through
 a custom `next/image` loader (`src/lib/cloudinary-loader.ts`). The Himachal
-trip artwork from the itinerary is bundled in `public/images/trips/`. The **logo** (`public/brand/`), the browser/app
-**icons** (`src/app/icon.svg`, `apple-icon.png`, `favicon.ico`, `manifest.ts`) and the 8
-local SVG **fallback illustrations** (`public/images/fallback/`, shown if a
-Cloudinary photo fails to load) stay on our own server on purpose — the
-fallback especially must not depend on Cloudinary being up.
+trip artwork from the itinerary is bundled in `public/images/trips/`.
+Brand assets and photo fallbacks also use local files so they can load
+independently of Cloudinary.
 
 **Adding or replacing a photo:**
 
@@ -123,7 +120,7 @@ src/
     config.ts     Validated env access
     images.ts     img() — the only way components read the image manifest
     cloudinary-loader.ts   Custom next/image loader (see "Images" above)
-  content/        Site copy, nav, FAQ, legal text, demo/QA/real trip data, images.ts manifest
+  content/        Site copy, nav, FAQ, legal text, live trips, QA fixtures, images.ts manifest
 scripts/
   upload-images-to-cloudinary.mjs   `npm run images:upload`
 tests/

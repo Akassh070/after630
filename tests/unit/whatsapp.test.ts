@@ -32,8 +32,8 @@ describe("buildWaLink", () => {
 
 describe("buildTripEnquiryMessage", () => {
   it("includes only the fields that were actually provided", () => {
-    const message = buildTripEnquiryMessage({ tripTitle: "Jibhi & the Slow Mountains" });
-    expect(message).toContain("Jibhi & the Slow Mountains");
+    const message = buildTripEnquiryMessage({ tripTitle: "15 Strangers & Stories" });
+    expect(message).toContain("15 Strangers & Stories");
     expect(message).not.toContain("departure");
     expect(message).not.toContain("package");
     expect(message).toMatch(/not a confirmed booking/i);
@@ -41,7 +41,7 @@ describe("buildTripEnquiryMessage", () => {
 
   it("reflects the exact selected departure, origin, package and traveller count", () => {
     const message = buildTripEnquiryMessage({
-      tripTitle: "Jibhi & the Slow Mountains",
+      tripTitle: "Test Group Trip",
       departureDate: "14 March 2027",
       originCity: "Delhi",
       packageName: "Premium",
@@ -73,9 +73,9 @@ describe("other message builders", () => {
   });
 
   it("general enquiry composer mirrors only the fields filled in", () => {
-    const message = buildGeneralEnquiryMessage({ name: "Riya", destination: "Jibhi" });
+    const message = buildGeneralEnquiryMessage({ name: "Riya", destination: "Himachal" });
     expect(message).toContain("Name: Riya");
-    expect(message).toContain("Trip / destination: Jibhi");
+    expect(message).toContain("Trip / destination: Himachal");
     expect(message).not.toContain("Travellers:");
     expect(message).not.toContain("Preferred dates:");
   });

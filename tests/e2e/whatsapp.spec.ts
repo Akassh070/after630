@@ -42,17 +42,17 @@ test.describe("WhatsApp support across the site", () => {
 
   test("floating button steps aside on phone trip pages (sticky enquiry bar is there)", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/trips/jibhi-slow-mountains");
+    await page.goto("/trips/15-strangers-and-stories");
     await expect(page.getByRole("link", { name: /Chat with After630 on WhatsApp/ })).toBeHidden();
   });
 
   test("trip enquiry preview offers 'Open in WhatsApp' with the trip message", async ({ page }) => {
-    await page.goto("/trips/jibhi-slow-mountains");
+    await page.goto("/trips/15-strangers-and-stories");
     await page.getByRole("button", { name: /Preview or copy message/ }).click();
     const open = page.getByRole("dialog").getByRole("link", { name: /Open in WhatsApp/ });
     const href = await open.getAttribute("href");
     expect(href).toMatch(WA);
-    expect(decodeURIComponent(href!.split("text=")[1])).toContain("Jibhi");
+    expect(new URL(href!).searchParams.get("text")).toContain("15 Strangers & Stories");
   });
 
   test("Instagram profile is linked from the footer and the Contact page", async ({ page }) => {
@@ -70,10 +70,10 @@ test.describe("WhatsApp support across the site", () => {
     await expect(page.locator("body")).not.toContainText(/\bemail\b/i);
     await expect(page.locator('meta[name="description"]')).not.toHaveAttribute("content", /\bemail\b/i);
 
-    await page.getByLabel("Trip / destination").fill("Spiti");
+    await page.getByLabel("Trip / destination").fill("Himachal");
     const send = page.getByRole("link", { name: "Send on WhatsApp ↗" });
-    await expect(send).toHaveAttribute("href", /^https:\/\/wa\.me\/919800000000\?text=.*Spiti/);
+    await expect(send).toHaveAttribute("href", /^https:\/\/wa\.me\/919800000000\?text=.*Himachal/);
     const href = await send.getAttribute("href");
-    expect(new URL(href!).searchParams.get("text")).toContain("Trip / destination: Spiti");
+    expect(new URL(href!).searchParams.get("text")).toContain("Trip / destination: Himachal");
   });
 });

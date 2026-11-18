@@ -3,10 +3,10 @@ import { test, expect } from "@playwright/test";
 test.describe("Explore Trips — search, filter, sort", () => {
   test("search is reflected in the URL and filters results", async ({ page }) => {
     await page.goto("/trips");
-    await page.getByLabel("Where would you like to go?").fill("Spiti");
-    await expect(page).toHaveURL(/[?&]q=Spiti/, { timeout: 2000 });
-    await expect(page.getByRole("heading", { name: /High Road to Spiti/ })).toBeVisible();
-    await expect(page.getByText("Jibhi & the Slow Mountains")).toHaveCount(0);
+    await page.getByLabel("Where would you like to go?").fill("Coast");
+    await expect(page).toHaveURL(/[?&]q=Coast/, { timeout: 2000 });
+    await expect(page.getByRole("heading", { name: /Postponed Test Trip/ })).toBeVisible();
+    await expect(page.getByText("15 Strangers & Stories")).toHaveCount(0);
   });
 
   test("duration filter + sort combine, and reload restores the same state", async ({ page }) => {

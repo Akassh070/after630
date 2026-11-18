@@ -3,7 +3,7 @@
 **Date:** 12 November 2026
 **Source:** Built from `handoff/ui` (11 HTML prototypes, approved visual direction) and
 `handoff/ux` (UX implementation spec + development prompt).
-**Status:** Pre-deploy QA passed (12 Nov 2026) — ready to deploy. Demo trips and draft legal text still in place (see §7).
+**Status:** The public trip catalog contains the Himachal departure. Draft legal text awaits approval (see §7).
 
 ## 1. Routes implemented
 
@@ -13,7 +13,7 @@ All 11 required routes exist, build, and pass automated checks:
 |---|---|
 | `/` | Hero, category tiles → `/trips?category=`, upcoming trips (real data, honestly labeled TBA/Coming soon), manifesto, experience grid, how-it-works, story, FAQ accordion, closing CTA |
 | `/trips` | Search, category chips, duration/region/month filters, sort, URL-driven state (Back/Forward/reload-safe), active-filter chips, empty state, mobile filter sheet |
-| `/trips/[slug]` | Gallery + keyboard lightbox, overview, itinerary accordion, inclusions/exclusions, travel & stay, trip FAQ, enquiry card (full state machine below), related trips, mobile sticky bar, end CTA. 8 demo slugs statically generated. |
+| `/trips/[slug]` | Overview, artwork or photo gallery, itinerary, inclusions, travel and stay, trip FAQ, enquiry card, mobile sticky bar and end CTA. The public build generates the Himachal detail page. |
 | `/about` | Company story, two "chapters," beliefs |
 | `/experiences` | Archive placeholders, clearly labeled as not-yet-real |
 | `/contact` | Interactive enquiry composer (mirrors the trip detail message builder), contact methods |
@@ -27,12 +27,12 @@ All 11 required routes exist, build, and pass automated checks:
 - Homepage → `/trips` → `/trips/[slug]` are real routes end to end; no preview modals anywhere (the prototype's Explore Trips modal and "coming soon" dialogs were removed and replaced with real navigation).
 - The enquiry card (`src/components/trip/EnquirySection.tsx`) implements the full state machine from the UX spec:
   - **enquire** (published trip with ≥1 available departure): departure → origin → package → traveller count (1–12), each step unlocking the next; sold-out departures are simply never offered (not shown-then-disabled); CTA disabled until the combination is complete.
-  - **future-dates** (no confirmed departures — true for all 8 demo trips): "Ask About Future Dates," no price/date pretending to be real.
+  - **future-dates** (no confirmed departures): "Ask About Future Dates."
   - **sold-out / postponed / cancelled**: prominent status, no booking-style CTA as the primary action, a secondary "ask about other dates" option, and a clear "Explore other trips" path.
   - **completed**: status only, links to Past Experiences / Explore Trips.
   - Every state's WhatsApp message explicitly states it's an enquiry, not a booking (verified in `tests/unit/whatsapp.test.ts`).
 - `NEXT_PUBLIC_AFTER630_WHATSAPP_NUMBER` is unset by default. With no number, every "enquire" action opens a **preview-and-copy dialog** instead of a dead or fake link; a `DemoBanner` surfaces this state site-wide. Never a fabricated number.
-- Demo trips (`src/content/trips.demo.ts`) are the 8 prototype concepts, all `status: "coming-soon"`, zero departures — they can never appear bookable. QA-only fixtures with fake departures/prices exist solely for the Playwright suite (`AFTER630_TRIP_SOURCE=qa`) and are excluded from `demo`/`live`.
+- The public catalog uses the Himachal trip in `src/content/trips.ts`. The Playwright suite adds fictional fixtures with `AFTER630_TRIP_SOURCE=qa`.
 
 ## 3. Deviations from the prototypes (intentional)
 
@@ -60,7 +60,7 @@ All 37 unique photos used across the site (trip galleries, Hero/Manifesto/Story/
 
 - **Why a custom loader.** This Next.js version's `next/image` only supports `images.loader: "custom"` for an external CDN — the legacy `"cloudinary"` string loader exists only on `next/legacy/image`. `src/lib/cloudinary-loader.ts` builds `f_auto,q_auto,c_limit,w_<size>` delivery URLs; local assets (the logo) pass through unchanged.
 - **Single source of truth.** `src/content/images.ts` lists every photo once (key, Cloudinary `publicId`, `alt`, and the original `sourceUrl` it was fetched from). Components call `img("key")` (`src/lib/images.ts`) — never a hard-coded URL. `npm run images:upload` (`scripts/upload-images-to-cloudinary.mjs`) uploads anything in that manifest not already on Cloudinary (checked via the Admin API first, so reruns are instant no-ops) and verifies every delivery URL with a HEAD request afterward.
-- **What stayed local, and why:** the logo (`public/brand/`) and browser/app icons — the owner's instruction — plus the 8 SVG fallback illustrations (`public/images/fallback/`), which must keep working even if Cloudinary is ever down, since they're exactly what covers for a failed photo load (`ImageSlideshow`/`SmartImage`'s `onError` → local SVG). Verified by temporarily pointing one manifest entry at a non-existent Cloudinary resource: that one slide fell back to its SVG while the rest of the gallery kept loading normally.
+- The logo, browser/app icons, Himachal artwork and fallback images load from local files.
 - **Secrets.** `CLOUDINARY_API_KEY`/`CLOUDINARY_API_SECRET` (used only by the upload script) live in `.env.local`, never `.env.example`; `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` is the one exception that's meant to be public — it appears in every delivery URL the browser requests anyway. Confirmed the key/secret never reach the client bundle: `grep`-ed the built `.next/` output for both literal values after `npm run build` (no hits), and `tests/unit/images.test.ts` asserts no source file reads the key/secret via a `NEXT_PUBLIC_` name.
 - Rebuilt `.env.example`'s Cloudinary block as empty placeholders with explanatory comments, and added `!.env.example` to `.gitignore` (the blanket `.env*` rule was otherwise hiding the one env file meant to be shared).
 
@@ -98,7 +98,7 @@ Verified on 10 routes × 320/375/390/430/600/768/820/1024/1280/1440px with an au
 - **Phones.** No iOS zoom-on-focus (form fields are 16px under 760px); CTA rows go full-width when they wrap; the Manifesto photos stay side by side; How-it-works steps become left-aligned rows; the footer uses two link columns; the FAQ "ask the team" box follows the answers; the gallery shows an "All photos" badge on its third tile (the 4th is hidden on phones).
 - **Tablet.** Enquiry-card copy/CTA always take a full row; the related-trips grid drops its orphaned 3rd card between 651–840px.
 - **Consistency.** The breadcrumb sits at the top of every hero with the same spacing (Experiences, Contact, FAQ and legal pages had a large empty band above it); form controls inherit the brand font (the textarea was falling back to monospace).
-- **Also fixed while reviewing:** one demo photo URL returned 404 (replaced and visually checked); `ImageSlideshow` now drops photos that fail to load and falls back to the trip's bundled illustration; the trip subnav only links to sections that exist (7 of 8 demo trips have no itinerary/inclusions/FAQ); search fields regained a visible keyboard focus ring; the mobile sticky bar no longer says "Enquire" on sold-out/postponed/cancelled trips.
+- **Also fixed while reviewing:** `ImageSlideshow` skips photos that fail to load and uses a local fallback when needed. The trip subnav links to available sections. Search fields have a visible keyboard focus ring. The sticky bar offers other dates for sold-out, postponed or cancelled trips.
 - `tests/e2e/responsive.spec.ts` now covers 9 routes × 8 widths and fails if any content is cut off, not only on page-level horizontal scroll.
 
 ## 5. Automated test results (all passing at time of writing)
@@ -151,10 +151,10 @@ Crawl result: 0 JS errors, 0 failed requests, 0 broken images, 0 broken internal
 
 ## 6. Manual QA path
 
-1. `/` → "Explore Experiences" → `/trips`.
-2. Filter by Mountains, search "Jibhi", open the trip.
-3. Expand itinerary days, open the gallery, try arrow keys / Escape.
-4. Scroll to the enquiry card — it correctly shows "Ask About Future Dates" (no real departures exist yet). Click it: with no `NEXT_PUBLIC_AFTER630_WHATSAPP_NUMBER` set, a preview dialog opens with a copyable message; with the number set, it opens a real `wa.me` link in a new tab.
+1. `/` → "Explore trips" → `/trips`.
+2. Search "Himachal" and open "15 Strangers & Stories."
+3. Expand the itinerary days and check the travel and stay details.
+4. Scroll to the enquiry card and verify the preselected departure, origin and package in the WhatsApp message preview.
 5. `/contact` → fill the enquiry composer → "Send on WhatsApp".
 6. Visit an unknown route and an unknown trip slug → both 404 with real links back.
 
@@ -174,6 +174,5 @@ against what's now wired to receive them:
 
 - npm, CSS Modules (no Tailwind/UI kit) — matches the prototypes' plain CSS approach.
 - Unified header/footer uses the "secondary page" nav set from the prototypes rather than the homepage's own, since it was the more complete/coherent one.
-- Demo trips are all `coming-soon`; the bookable-selector path is proven via QA-only fixtures instead, so nothing demo-labeled can ever look purchasable.
 - Indexing and legal-page indexing are both off by default — safe for a pre-launch prototype.
 - Cloudinary `publicId`s are grouped into `after630/trips/`, `after630/people/` or `after630/scenes/` by what the photo shows, not by which page uses it (several photos are reused across pages) — a readable default, easy to reorganize later since nothing in code depends on the folder name beyond the full `publicId` stored in `src/content/images.ts`.

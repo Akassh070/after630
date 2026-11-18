@@ -16,15 +16,15 @@ test.describe("core navigation", () => {
 
   test("trip card navigates to a real detail route, not a modal", async ({ page }) => {
     await page.goto("/trips");
-    await page.getByRole("link", { name: "Jibhi & the Slow Mountains" }).first().click();
-    await expect(page).toHaveURL(/\/trips\/jibhi-slow-mountains$/);
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Jibhi");
+    await page.getByRole("link", { name: "View trip: 15 Strangers & Stories" }).click();
+    await expect(page).toHaveURL(/\/trips\/15-strangers-and-stories$/);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("15 Strangers & Stories");
   });
 
   test("back navigation from a trip detail restores the listing", async ({ page }) => {
     await page.goto("/trips?category=mountain");
-    await page.getByRole("link", { name: "Jibhi & the Slow Mountains" }).first().click();
-    await expect(page).toHaveURL(/\/trips\/jibhi-slow-mountains$/);
+    await page.getByRole("link", { name: "View trip: 15 Strangers & Stories" }).click();
+    await expect(page).toHaveURL(/\/trips\/15-strangers-and-stories$/);
     await page.goBack();
     await expect(page).toHaveURL(/\/trips\?category=mountain/);
     await expect(page.getByRole("button", { name: "Mountains", exact: true })).toHaveAttribute("aria-pressed", "true");
@@ -50,5 +50,10 @@ test.describe("core navigation", () => {
   test("unknown trip slug 404s instead of crashing", async ({ page }) => {
     const response = await page.goto("/trips/not-a-real-trip");
     expect(response?.status()).toBe(404);
+  });
+
+  test("retired trip stays unavailable in QA mode", async ({ request }) => {
+    const response = await request.get("/trips/jibhi-slow-mountains");
+    expect(response.status()).toBe(404);
   });
 });

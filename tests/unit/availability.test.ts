@@ -14,10 +14,9 @@ function makeTrip(overrides: Partial<Trip>): Trip {
     status: "coming-soon",
     blurb: "Blurb",
     images: [],
-    fallbackImage: "/images/fallback/jibhi.svg",
+    fallbackImage: "/brand/after630-og-square.png",
     departures: [],
     published: true,
-    isDemo: true,
     ...overrides,
   };
 }

@@ -2,23 +2,23 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Trip Details — gallery, itinerary, enquiry", () => {
   test("gallery lightbox opens, supports arrow-key navigation and Escape", async ({ page }) => {
-    await page.goto("/trips/jibhi-slow-mountains");
-    await page.getByRole("button", { name: /Open photo 1 of 5/ }).click();
+    await page.goto("/trips/qa-published-trip");
+    await page.getByRole("button", { name: /Open photo 1 of 4/ }).click();
 
     const dialog = page.getByRole("dialog", { name: "Trip photo gallery" });
     await expect(dialog).toBeVisible();
-    await expect(dialog.getByText("1 / 5", { exact: false })).toBeVisible();
+    await expect(dialog.getByText("1 / 4", { exact: false })).toBeVisible();
 
     await page.keyboard.press("ArrowRight");
-    await expect(dialog.getByText("2 / 5", { exact: false })).toBeVisible();
+    await expect(dialog.getByText("2 / 4", { exact: false })).toBeVisible();
 
     await page.keyboard.press("Escape");
     await expect(dialog).toBeHidden();
   });
 
   test("itinerary accordion toggles aria-expanded and Expand all opens every day", async ({ page }) => {
-    await page.goto("/trips/jibhi-slow-mountains");
-    const dayTwoTrigger = page.getByRole("button", { name: /Forest trails & mountain viewpoints/ });
+    await page.goto("/trips/15-strangers-and-stories");
+    const dayTwoTrigger = page.getByRole("button", { name: /Meadow trek and waterfall/ });
     await expect(dayTwoTrigger).toHaveAttribute("aria-expanded", "false");
     await dayTwoTrigger.click();
     await expect(dayTwoTrigger).toHaveAttribute("aria-expanded", "true");
@@ -32,7 +32,7 @@ test.describe("Trip Details — gallery, itinerary, enquiry", () => {
   });
 
   test("a trip with no published departures shows 'Ask About Future Dates', no price/date selectors", async ({ page }) => {
-    await page.goto("/trips/jibhi-slow-mountains");
+    await page.goto("/trips/qa-future-trip");
     await expect(page.getByRole("link", { name: "Ask About Future Dates ↗" })).toBeVisible();
     await expect(page.getByLabel("Choose departure")).toHaveCount(0);
   });
@@ -80,10 +80,10 @@ test.describe("Trip Details — gallery, itinerary, enquiry", () => {
   });
 
   test("preview dialog offers a copyable message as a WhatsApp fallback", async ({ page }) => {
-    await page.goto("/trips/jibhi-slow-mountains");
+    await page.goto("/trips/15-strangers-and-stories");
     await page.getByRole("button", { name: "Preview or copy message ↗" }).click();
     const dialog = page.getByRole("dialog", { name: "Enquiry message preview" });
     await expect(dialog).toBeVisible();
-    await expect(dialog.getByRole("textbox")).toHaveValue(/Jibhi/);
+    await expect(dialog.getByRole("textbox")).toHaveValue(/15 Strangers & Stories/);
   });
 });

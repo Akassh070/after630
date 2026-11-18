@@ -58,11 +58,6 @@ export const imageManifest = {
     alt: "Travellers on an outdoor adventure",
     sourceUrl: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff",
   },
-  "kutch-gujarat": {
-    publicId: "after630/trips/kutch-gujarat",
-    alt: "Kutch, Gujarat",
-    sourceUrl: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
-  },
   "green-forest-and-mountain-landscape": {
     publicId: "after630/scenes/green-forest-and-mountain-landscape",
     alt: "Green forest and mountain landscape preview",
@@ -88,11 +83,6 @@ export const imageManifest = {
     alt: "Scenic road through a beautiful landscape",
     sourceUrl: "https://images.unsplash.com/photo-1500534623283-312aade485b7",
   },
-  "river-rafting-atmosphere-near-mountain": {
-    publicId: "after630/scenes/river-rafting-atmosphere-near-mountain",
-    alt: "River rafting atmosphere near mountain foothills",
-    sourceUrl: "https://images.unsplash.com/photo-1544551763-46a013bb70d5",
-  },
   "mountain-pass-and-open-sky": {
     publicId: "after630/scenes/mountain-pass-and-open-sky",
     alt: "Mountain pass and open sky near the hills",
@@ -108,21 +98,6 @@ export const imageManifest = {
     alt: "Lakeside resort atmosphere at golden hour",
     sourceUrl: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4",
   },
-  "historic-palace-architecture-against-blue": {
-    publicId: "after630/scenes/historic-palace-architecture-against-blue",
-    alt: "Historic palace architecture against blue sky",
-    sourceUrl: "https://images.unsplash.com/photo-1564507592333-c60657eea523",
-  },
-  "old-city-lanes-and-warm": {
-    publicId: "after630/scenes/old-city-lanes-and-warm",
-    alt: "Old city lanes and warm evening light",
-    sourceUrl: "https://images.unsplash.com/photo-1477587458883-47145ed94245",
-  },
-  "lake-view-with-boats-near": {
-    publicId: "after630/scenes/lake-view-with-boats-near",
-    alt: "Lake view with boats near a city shore",
-    sourceUrl: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220",
-  },
   "misty-forest-path-through-evergreen": {
     publicId: "after630/scenes/misty-forest-path-through-evergreen",
     alt: "Misty forest path through evergreen trees",
@@ -132,36 +107,6 @@ export const imageManifest = {
     publicId: "after630/scenes/dramatic-mountain-peaks-under-open",
     alt: "Dramatic mountain peaks under open sky",
     sourceUrl: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429",
-  },
-  "fog-rolling-over-forested-hills": {
-    publicId: "after630/scenes/fog-rolling-over-forested-hills",
-    alt: "Fog rolling over forested hills",
-    sourceUrl: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
-  },
-  "waterfall-cascade-in-the-western": {
-    publicId: "after630/scenes/waterfall-cascade-in-the-western",
-    alt: "Waterfall cascade in the Western Ghats",
-    sourceUrl: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9",
-  },
-  "spiti-valley-himachal-pradesh": {
-    publicId: "after630/trips/spiti-valley-himachal-pradesh",
-    alt: "Spiti Valley, Himachal Pradesh",
-    sourceUrl: "https://images.unsplash.com/photo-1483347756197-71ef80e95f73",
-  },
-  "desert-dunes-under-warm-evening": {
-    publicId: "after630/scenes/desert-dunes-under-warm-evening",
-    alt: "Desert dunes under warm evening light",
-    sourceUrl: "https://images.unsplash.com/photo-1509316785289-025f5b846b35",
-  },
-  "vast-arid-landscape-at-sunset": {
-    publicId: "after630/scenes/vast-arid-landscape-at-sunset",
-    alt: "Vast arid landscape at sunset",
-    sourceUrl: "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba",
-  },
-  "golden-desert-horizon-at-dusk": {
-    publicId: "after630/scenes/golden-desert-horizon-at-dusk",
-    alt: "Golden desert horizon at dusk",
-    sourceUrl: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0",
   },
   "desert-road-trip-under-a": {
     publicId: "after630/scenes/desert-road-trip-under-a",

@@ -69,7 +69,7 @@ export default function ImageSlideshow({
     return (
       <div className={`${styles.frame} ${className ?? ""}`} aria-hidden="true">
         {fallbackSrc && (
-          // eslint-disable-next-line @next/next/no-img-element -- local static SVG fallback
+          // eslint-disable-next-line @next/next/no-img-element -- local static fallback
           <img src={fallbackSrc} alt="" className={styles.fallback} />
         )}
       </div>

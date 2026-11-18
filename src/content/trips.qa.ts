@@ -1,15 +1,13 @@
 /**
  * QA-ONLY fixtures — never shown outside automated tests / local QA.
  *
- * These exist solely to exercise the departure → origin → package selector,
- * the WhatsApp enquiry message builder, and the sold-out/postponed/cancelled/
- * completed states end-to-end, since the real demo trips (trips.demo.ts) are
- * intentionally all "coming-soon" with zero departures. Only loaded when
- * AFTER630_TRIP_SOURCE=qa (see src/lib/config.ts). Prices/dates here are
- * fictional test data, not After630 inventory.
+ * These exercise the departure selector, photo gallery, and availability states
+ * when AFTER630_TRIP_SOURCE=qa. Their details and prices are fictional.
  */
 import type { Trip } from "@/lib/trips/types";
 import { img } from "@/lib/images";
+
+const fallbackImage = "/brand/after630-og-square.png";
 
 export const qaTrips: Trip[] = [
   {
@@ -26,8 +24,11 @@ export const qaTrips: Trip[] = [
     blurb: "QA fixture with a bookable departure, used only in automated tests.",
     images: [
       { ...img("atmospheric-mountain-landscape-representing-adventure"), licensedForUse: false },
+      { ...img("alpine-trail-with-clear-mountain"), licensedForUse: false },
+      { ...img("mountain-valley-with-evergreen-forest"), licensedForUse: false },
+      { ...img("night-sky-over-mountain-silhouettes"), licensedForUse: false },
     ],
-    fallbackImage: "/images/fallback/jibhi.svg",
+    fallbackImage,
     itinerary: [
       { day: 1, title: "Arrival", description: "QA fixture day one." },
       { day: 2, title: "Activities", description: "QA fixture day two." },
@@ -65,7 +66,6 @@ export const qaTrips: Trip[] = [
     ],
     policyUrls: { terms: "/terms", cancellation: "/cancellation-refunds" },
     published: true,
-    isDemo: true,
   },
   {
     id: "qa-sold-out",
@@ -82,7 +82,7 @@ export const qaTrips: Trip[] = [
     images: [
       { ...img("travellers-on-an-outdoor-adventure"), licensedForUse: false },
     ],
-    fallbackImage: "/images/fallback/lonavala.svg",
+    fallbackImage,
     departures: [
       {
         id: "dep-1",
@@ -92,7 +92,6 @@ export const qaTrips: Trip[] = [
       },
     ],
     published: true,
-    isDemo: true,
   },
   {
     id: "qa-postponed",
@@ -107,11 +106,27 @@ export const qaTrips: Trip[] = [
     duration: { days: 4, nights: 3 },
     blurb: "QA fixture for the postponed state.",
     images: [
-      { ...img("kutch-gujarat"), licensedForUse: false },
+      { ...img("car-on-a-coastal-road"), licensedForUse: false },
     ],
-    fallbackImage: "/images/fallback/kutch.svg",
+    fallbackImage,
     departures: [],
     published: true,
-    isDemo: true,
+  },
+  {
+    id: "qa-future",
+    slug: "qa-future-trip",
+    title: "[QA] Future Test Trip",
+    region: "west",
+    destinations: ["Test Trail"],
+    place: "Test Trail, Test State",
+    category: "road",
+    tone: "QA Fixture",
+    status: "coming-soon",
+    duration: { days: 3, nights: 2 },
+    blurb: "QA fixture for trips without confirmed departures.",
+    images: [{ ...img("open-highway-stretching-toward-distant"), licensedForUse: false }],
+    fallbackImage,
+    departures: [],
+    published: true,
   },
 ];

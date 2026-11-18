@@ -10,12 +10,11 @@ import { siteCopy } from "@/content/site";
  * for a verified business detail.
  */
 
-export type TripSource = "live" | "demo" | "qa";
+type TripSource = "live" | "qa";
 
 function readTripSource(): TripSource {
   const raw = process.env.AFTER630_TRIP_SOURCE?.trim().toLowerCase();
-  if (raw === "live" || raw === "demo" || raw === "qa") return raw;
-  return "live";
+  return raw === "qa" ? "qa" : "live";
 }
 
 /**
@@ -88,7 +87,3 @@ export const siteConfig = {
   legalApproved: readBoolean("NEXT_PUBLIC_LEGAL_APPROVED"),
   metaPixelId: readMetaPixelId(),
 } as const;
-
-export function isDemoSource(): boolean {
-  return siteConfig.tripSource !== "live";
-}

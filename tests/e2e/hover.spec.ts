@@ -18,27 +18,22 @@ test.describe("Hover feedback — desktop mouse", () => {
   }
 
   test("gallery photo zooms on hover", async ({ page }) => {
-    await page.goto("/trips/jibhi-slow-mountains");
+    await page.goto("/trips/qa-published-trip");
     const item = page.getByRole("button", { name: /Open photo 1 of/ });
     const img = item.locator("img").first();
 
     const before = await img.evaluate((el) => getComputedStyle(el).transform);
     await item.hover();
-    const after = await img.evaluate((el) => getComputedStyle(el).transform);
-
-    expect(after).not.toBe(before);
-    expect(after).toContain("matrix");
+    await expect.poll(() => img.evaluate((el) => getComputedStyle(el).transform)).not.toBe(before);
   });
 
   test("accordion trigger background changes on hover", async ({ page }) => {
-    await page.goto("/trips/jibhi-slow-mountains");
-    const trigger = page.getByRole("button", { name: /Forest trails & mountain viewpoints/ });
+    await page.goto("/trips/15-strangers-and-stories");
+    const trigger = page.getByRole("button", { name: /Meadow trek and waterfall/ });
 
     const before = await trigger.evaluate((el) => getComputedStyle(el).backgroundColor);
     await trigger.hover();
-    const after = await trigger.evaluate((el) => getComputedStyle(el).backgroundColor);
-
-    expect(after).not.toBe(before);
+    await expect.poll(() => trigger.evaluate((el) => getComputedStyle(el).backgroundColor)).not.toBe(before);
   });
 
   test("explore-trips category chip color changes on hover", async ({ page }) => {
@@ -47,13 +42,11 @@ test.describe("Hover feedback — desktop mouse", () => {
 
     const before = await chip.evaluate((el) => getComputedStyle(el).color);
     await chip.hover();
-    const after = await chip.evaluate((el) => getComputedStyle(el).color);
-
-    expect(after).not.toBe(before);
+    await expect.poll(() => chip.evaluate((el) => getComputedStyle(el).color)).not.toBe(before);
   });
 
   test("related trip card lifts and its photo zooms on hover", async ({ page }) => {
-    await page.goto("/trips/jibhi-slow-mountains");
+    await page.goto("/trips/qa-published-trip");
     const card = page.locator('a[aria-label^="View trip:"]').first();
     const img = card.locator("img").first();
     await card.scrollIntoViewIfNeeded();

@@ -16,8 +16,8 @@ const VIEWPORTS = [
 const ROUTES = [
   "/",
   "/trips",
-  "/trips/jibhi-slow-mountains",
-  "/trips/udaipur-lakeside",
+  "/trips/15-strangers-and-stories",
+  "/trips/qa-published-trip",
   "/about",
   "/experiences",
   "/contact",

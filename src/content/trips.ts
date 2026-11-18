@@ -114,6 +114,5 @@ export const realTrips: Trip[] = [
     ],
     published: true,
     featured: true,
-    isDemo: false,
   },
 ];

@@ -1,6 +1,5 @@
 import { siteConfig } from "@/lib/config";
 import { realTrips } from "@/content/trips";
-import { demoTrips } from "@/content/trips.demo";
 import { qaTrips } from "@/content/trips.qa";
 import type { Trip } from "./types";
 
@@ -9,21 +8,10 @@ import type { Trip } from "./types";
  * only means changing this file — nothing else in the app should import
  * content/trips*.ts directly.
  */
-function allTripsForSource(): Trip[] {
-  switch (siteConfig.tripSource) {
-    case "live":
-      return realTrips;
-    case "qa":
-      return [...realTrips, ...demoTrips, ...qaTrips];
-    case "demo":
-    default:
-      return [...realTrips, ...demoTrips];
-  }
-}
-
 /** Trips a visitor is allowed to see: published and not in draft status. */
 export function getPublicTrips(): Trip[] {
-  return allTripsForSource().filter((trip) => trip.published && trip.status !== "draft");
+  const trips = siteConfig.tripSource === "qa" ? [...realTrips, ...qaTrips] : realTrips;
+  return trips.filter((trip) => trip.published && trip.status !== "draft");
 }
 
 export function getTripBySlug(slug: string): Trip | undefined {

@@ -37,7 +37,7 @@ export default function SmartImage({
     <div className={`${styles.frame} ${fit ? styles.contained : ""} ${className ?? ""}`}>
       {showPreviewRibbon && <span className={styles.ribbon}>Design preview</span>}
       {errored ? (
-        // eslint-disable-next-line @next/next/no-img-element -- local static SVG fallback, not worth next/image optimization
+        // eslint-disable-next-line @next/next/no-img-element -- local static fallback
         <img src={fallbackSrc} alt={alt} className={styles.fallback} loading="lazy" />
       ) : (
         <Image

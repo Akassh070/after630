@@ -87,6 +87,4 @@ export type Trip = {
   policyUrls?: { terms?: string; cancellation?: string };
   published: boolean;
   featured?: boolean;
-  /** True for prototype/demo content — never real inventory. Drives the DemoBanner + badges. */
-  isDemo: boolean;
 };
