@@ -47,9 +47,9 @@ describe("meta pixel config", () => {
     vi.resetModules();
   });
 
-  it("is off by default (no ID supplied yet)", async () => {
+  it("uses the official pixel ID from site.ts by default", async () => {
     const { siteConfig } = await import("@/lib/config");
-    expect(siteConfig.metaPixelId).toBeNull();
+    expect(siteConfig.metaPixelId).toBe("29229964080031303");
   });
 
   it("accepts a numeric ID from the env override and rejects junk", async () => {
