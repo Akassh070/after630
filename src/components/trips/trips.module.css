@@ -66,9 +66,9 @@
   min-height: 90px;
   padding: 16px 18px;
   border-radius: 19px;
-  background: #fff;
+  background: var(--color-surface);
   box-shadow: 0 18px 56px rgba(13, 48, 64, 0.18);
-  border: 1px solid #e7eff2;
+  border: 1px solid var(--color-border);
   flex-wrap: wrap;
 }
 
@@ -95,8 +95,8 @@
   min-height: 48px;
   padding: 0 14px;
   border-radius: 12px;
-  border: 1px solid #c5d9e1;
-  background: #f4f8fa;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-muted);
   transition:
     border-color var(--duration-fast) var(--ease),
     box-shadow var(--duration-fast) var(--ease),
@@ -105,7 +105,7 @@
 
 .searchInput:focus-within {
   border-color: var(--color-blue);
-  background: #fff;
+  background: var(--color-surface);
   box-shadow: 0 0 0 3px rgba(37, 124, 157, 0.18);
 }
 
@@ -123,7 +123,7 @@
   min-height: 44px;
   border: 0;
   outline: none;
-  color: var(--color-ink);
+  color: var(--color-text);
   font-size: var(--field-font-size);
   font-weight: var(--field-font-weight);
   line-height: 1.3;
@@ -159,7 +159,7 @@
 
 .listing {
   padding: 36px 0 90px;
-  background: #fff;
+  background: var(--color-surface);
 }
 
 .topline {
@@ -195,12 +195,12 @@
 }
 
 .chip {
-  border: 1px solid #dce7ec;
+  border: 1px solid var(--color-border);
   border-radius: 999px;
   padding: 12px 16px;
   white-space: nowrap;
-  background: #fff;
-  color: #53707d;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
   font-size: 11px;
   font-weight: 800;
   transition:
@@ -212,7 +212,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .chip:hover {
-    border-color: #a4cbd7;
+    border-color: var(--color-border-strong);
     color: var(--color-blue-dark);
   }
 }
@@ -245,29 +245,29 @@
   align-items: center;
   gap: 8px;
   background: var(--color-soft);
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-border);
   border-radius: 999px;
   padding: 7px 8px 7px 14px;
   font-size: 11px;
   font-weight: 700;
-  color: var(--color-ink);
+  color: var(--color-text);
 }
 
 .activeChip button {
-  background: #fff;
+  background: var(--color-surface);
   border: none;
   border-radius: 50%;
   width: 20px;
   height: 20px;
   font-size: 12px;
   cursor: pointer;
-  color: var(--color-ink);
+  color: var(--color-text);
   transition: background var(--duration-fast) var(--ease);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .activeChip button:hover {
-    background: var(--color-line);
+    background: var(--color-border);
   }
 }
 
@@ -301,9 +301,9 @@
 }
 
 .filters {
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-border);
   border-radius: 18px;
-  background: #fafcfc;
+  background: var(--color-surface-muted);
   padding: 22px;
   box-shadow: var(--shadow-md);
   position: sticky;
@@ -316,7 +316,7 @@
   align-items: center;
   gap: 10px;
   padding-bottom: 18px;
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .filterTitle h2 {
@@ -346,7 +346,7 @@
 
 .filterGroup {
   padding: 22px 0 18px;
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .filterGroup:last-of-type {
@@ -372,7 +372,7 @@
   align-items: center;
   gap: 10px;
   font-size: 11px;
-  color: #576e7a;
+  color: var(--color-text-muted);
   cursor: pointer;
   font-weight: 700;
   transition: color var(--duration-fast) var(--ease);
@@ -393,11 +393,11 @@
 
 .selectField {
   width: 100%;
-  border: 1px solid #d9e6ea;
+  border: 1px solid var(--color-border);
   border-radius: 10px;
-  background-color: #fff;
+  background-color: var(--color-surface);
   padding: 12px 40px 12px 12px;
-  color: var(--color-ink);
+  color: var(--color-text);
   font-size: var(--field-font-size);
   font-weight: var(--field-font-weight);
   min-height: 44px;
@@ -406,7 +406,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .selectField:hover {
-    border-color: #a4cbd7;
+    border-color: var(--color-border-strong);
   }
 }
 
@@ -448,11 +448,11 @@
 }
 
 .sortSelect {
-  border: 1px solid #dce7ec;
+  border: 1px solid var(--color-border);
   padding: 0 36px 0 11px;
-  color: #2e5265;
+  color: var(--color-text);
   border-radius: 10px;
-  background-color: #fff;
+  background-color: var(--color-surface);
   font-size: var(--field-font-size);
   font-weight: var(--field-font-weight);
   line-height: 1;
@@ -463,11 +463,11 @@
 
 .mobileFilterTrigger {
   display: none;
-  border: 1px solid #dce7ec;
+  border: 1px solid var(--color-border);
   border-radius: 10px;
-  background: #fff;
+  background: var(--color-surface);
   padding: 0 13px;
-  color: var(--color-ink);
+  color: var(--color-text);
   font-weight: 800;
   font-size: 11px;
   height: 40px;
@@ -486,11 +486,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
-  border: 1px solid #dce7ec;
+  border: 1px solid var(--color-border);
   border-radius: 19px;
   overflow: hidden;
   min-height: 340px;
-  background: #fff;
+  background: var(--color-surface);
   box-shadow: var(--shadow-md);
   margin-bottom: 18px;
   color: inherit;
@@ -547,7 +547,7 @@
   line-height: 1.09;
   margin: 12px 0 9px;
   font-weight: 800;
-  color: var(--color-ink);
+  color: var(--color-text);
 }
 
 .featureLocation {
@@ -576,10 +576,10 @@
 }
 
 .metaPill {
-  background: #eff5f7;
+  background: var(--color-soft);
   border-radius: 999px;
   padding: 8px 10px;
-  color: #426579;
+  color: var(--color-text-muted);
   font-size: 10px;
   font-weight: 800;
 }
@@ -591,7 +591,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid var(--color-border);
   flex-wrap: wrap;
 }
 
@@ -606,7 +606,7 @@
 .priceValue {
   font-size: 17px;
   font-weight: 800;
-  color: var(--color-ink);
+  color: var(--color-text);
   letter-spacing: -0.04em;
 }
 
@@ -643,8 +643,8 @@
 }
 
 .tripCard {
-  background: #fff;
-  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 17px;
   box-shadow: 0 7px 26px rgba(20, 43, 59, 0.055);
   overflow: hidden;
@@ -699,7 +699,7 @@
   line-height: 1.15;
   margin: 7px 0 7px;
   font-weight: 800;
-  color: var(--color-ink);
+  color: var(--color-text);
 }
 
 .cardLocation {
@@ -729,9 +729,9 @@
 .empty {
   padding: 56px 22px;
   text-align: center;
-  border: 1px dashed #bdd4de;
+  border: 1px dashed var(--color-border-strong);
   border-radius: 18px;
-  background: #f7fafb;
+  background: var(--color-surface-muted);
 }
 
 .empty h3 {
@@ -798,7 +798,7 @@
   left: 0;
   right: 0;
   z-index: 101;
-  background: #fff;
+  background: var(--color-surface);
   box-shadow: 0 -14px 50px rgba(0, 0, 0, 0.12);
   border-radius: 24px 24px 0 0;
   max-height: 90dvh;
@@ -818,7 +818,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .sheetHead strong {
@@ -832,14 +832,14 @@
   width: 40px;
   border-radius: 50%;
   font-size: 18px;
-  color: var(--color-ink);
+  color: var(--color-text);
   cursor: pointer;
   transition: background var(--duration-fast) var(--ease);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .sheetClose:hover {
-    background: #dcebef;
+    background: var(--color-soft);
   }
 }
 
@@ -853,8 +853,8 @@
   display: flex;
   gap: 12px;
   padding: 15px 20px 24px;
-  border-top: 1px solid var(--color-line);
-  background: #fff;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
   padding-bottom: calc(24px + env(safe-area-inset-bottom));
 }
 
@@ -876,8 +876,8 @@
 }
 
 .sheetFooter .reset {
-  background: #fff;
-  border: 1px solid #cddfe5;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
   color: var(--color-blue-dark);
 }
 

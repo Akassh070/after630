@@ -3,17 +3,17 @@
   gap: 12px;
   align-items: flex-start;
   background: var(--color-soft);
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 16px 18px;
   font-size: 12px;
   line-height: 1.7;
-  color: var(--color-ink);
+  color: var(--color-text);
 }
 
 .notice.warning {
-  background: #fdf4e8;
-  border-color: #f0d9b3;
+  background: var(--color-warning-bg);
+  border-color: var(--color-warning);
 }
 
 .icon {
@@ -21,7 +21,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--color-surface);
   display: flex;
   align-items: center;
   justify-content: center;

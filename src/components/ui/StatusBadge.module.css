@@ -19,28 +19,28 @@
 }
 
 .comingSoon {
-  background: #eaf3f6;
+  background: var(--color-info-bg);
   color: var(--color-blue-dark);
 }
 
 .published {
-  background: #e6f4ec;
+  background: var(--color-success-bg);
   color: var(--color-success);
 }
 
 .soldOut {
-  background: #fdeaea;
+  background: var(--color-danger-bg);
   color: var(--color-danger);
 }
 
 .postponed,
 .cancelled {
-  background: #fdf4e8;
+  background: var(--color-warning-bg);
   color: var(--color-warning);
 }
 
 .completed,
 .draft {
-  background: #eef1f2;
+  background: var(--color-soft);
   color: var(--color-muted);
 }

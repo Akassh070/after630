@@ -3,8 +3,15 @@
  * prototypes (see /handoff/ui/docs/DESIGN_SYSTEM.md in the project root).
  * Keep these in sync with that document; do not introduce new colors here
  * without updating the doc too.
+ *
+ * Light is the default (:root). Dark overrides live under
+ * html[data-theme="dark"]. Semantic surface/text tokens (--color-bg,
+ * --color-surface, etc.) flip with theme; cinematic navy bands keep their
+ * own hardcoded colors and stay dark in both modes.
  */
 :root {
+  color-scheme: light;
+
   /* Core palette */
   --color-ink: #142b3b; /* main navy */
   --color-navy-deep: #0d2b3b; /* dark cinematic navy */
@@ -28,14 +35,30 @@
   --color-line-soft: #e0e9ed;
   --color-white: #ffffff;
 
+  /* Semantic themeable surfaces / text (light) */
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f9fbfb;
+  --color-surface-muted: #f7f9f9;
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-body);
+  --color-border: var(--color-line);
+  --color-border-strong: #b6ced7;
+  --header-bg: rgba(249, 251, 251, 0.95);
+
   /* Status */
   --color-success: #1f7a4d;
   --color-warning: #8a5214;
   --color-danger: #b23b3b;
+  --color-success-bg: #e6f4ec;
+  --color-warning-bg: #fef3e2;
+  --color-danger-bg: #fdeaea;
+  --color-info-bg: #e8f3f7;
 
   /* Elevation / shape */
   --shadow-md: 0 12px 40px rgba(20, 43, 59, 0.08);
   --shadow-lg: 0 20px 60px rgba(20, 43, 59, 0.12);
+  --shadow-panel: 0 18px 40px rgba(20, 43, 59, 0.14);
   --radius-lg: 18px;
   --radius-md: 13px;
   --radius-sm: 10px;
@@ -59,4 +82,46 @@
   --hover-lift-lg: -4px;
   --hover-zoom: 1.04;
   --shadow-hover: 0 14px 34px rgba(20, 43, 59, 0.12);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-ink: #e8f1f4;
+  --color-body: #a8c0cb;
+  --color-muted: #a8c0cb;
+  --color-paper: #122833;
+  --color-soft: #1a3442;
+  --color-line: #2a4554;
+  --color-line-soft: #243d4a;
+  --color-white: #ffffff;
+
+  /* Brand blues slightly lifted for dark surfaces */
+  --color-blue: #3d9bbd;
+  --color-blue-dark: #7eb8cc;
+  --color-blue-deep: #4aa3c4;
+  --color-button-blue: #3d9bbd;
+
+  --color-bg: #0d1c24;
+  --color-surface: #152a36;
+  --color-surface-elevated: #1a3140;
+  --color-surface-muted: #122833;
+  --color-text: #e8f1f4;
+  --color-text-muted: #a8c0cb;
+  --color-border: #2a4554;
+  --color-border-strong: #3d5f70;
+  --header-bg: rgba(13, 28, 36, 0.92);
+
+  --color-success: #4ade80;
+  --color-warning: #fbbf24;
+  --color-danger: #f87171;
+  --color-success-bg: #143528;
+  --color-warning-bg: #3a2e14;
+  --color-danger-bg: #3a1c1c;
+  --color-info-bg: #163240;
+
+  --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --shadow-panel: 0 18px 40px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 14px 34px rgba(0, 0, 0, 0.4);
 }

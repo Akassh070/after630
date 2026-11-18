@@ -33,8 +33,8 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  color: var(--color-ink);
-  background: #fff;
+  color: var(--color-text);
+  background: var(--color-bg);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -65,12 +65,17 @@ select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-color: #fff;
+  background-color: var(--color-surface);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1.5 1.75 6 6.25 10.5 1.75' stroke='%23142b3b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   background-size: 12px 8px;
   padding-right: 40px;
+  color: var(--color-text);
+}
+
+html[data-theme="dark"] select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1.5 1.75 6 6.25 10.5 1.75' stroke='%23e8f1f4' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 select::-ms-expand {
@@ -124,7 +129,7 @@ ul {
   top: -48px;
   left: 12px;
   z-index: 1000;
-  background: var(--color-ink);
+  background: var(--color-navy-deep);
   color: #fff;
   padding: 12px 18px;
   border-radius: var(--radius-sm);
@@ -147,7 +152,7 @@ ul {
    source — minmax() grid columns — and the responsive e2e suite checks every
    route for overflow and clipped content.) */
 .site {
-  background: #fff;
+  background: var(--color-bg);
   min-height: 100vh;
 }
 
@@ -210,7 +215,7 @@ ul {
   gap: 10px;
   font-size: 12px;
   font-weight: 800;
-  color: var(--color-ink);
+  color: var(--color-text);
   padding-bottom: 4px;
   border-bottom: 1px solid rgba(37, 124, 157, 0.35);
   min-height: 44px;

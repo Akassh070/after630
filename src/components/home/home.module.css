@@ -234,7 +234,7 @@
 
 .upcoming {
   padding: 96px 0 100px;
-  background: #fff;
+  background: var(--color-surface);
 }
 
 .sectionHead {
@@ -313,7 +313,7 @@
 .badge {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.95);
-  color: #173a4c;
+  color: #142b3b;
   padding: 9px 12px;
   font-size: 9px;
   font-weight: 800;
@@ -389,10 +389,10 @@
   grid-template-columns: 190px 1fr;
   gap: 18px;
   align-items: stretch;
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-border);
   border-radius: 18px;
   overflow: hidden;
-  background: #fff;
+  background: var(--color-surface);
   box-shadow: var(--shadow-md);
   color: inherit;
   text-decoration: none;
@@ -435,7 +435,7 @@
   line-height: 1.08;
   letter-spacing: -0.055em;
   font-weight: 800;
-  color: var(--color-ink);
+  color: var(--color-text);
 }
 
 .miniCopy {
@@ -551,7 +551,7 @@
 
 .experience {
   padding: 100px 0;
-  background: #fff;
+  background: var(--color-surface);
 }
 
 .experienceLayout {
@@ -582,7 +582,7 @@
 
 .experienceRows {
   margin-top: 28px;
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid var(--color-border);
 }
 
 .experienceRow {
@@ -591,7 +591,7 @@
   gap: 16px;
   align-items: start;
   padding: 22px 0;
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .expNum {
@@ -712,7 +712,7 @@
 
 .story {
   padding: 100px 0;
-  background: #fff;
+  background: var(--color-surface);
 }
 
 .storyGrid {
@@ -886,11 +886,20 @@
     min-height: 44px;
     padding: 14px 20px;
     border-radius: var(--radius-sm);
-    background: #fff !important;
-    color: #173a4c !important;
     box-shadow: none !important;
     font-size: 12px;
     font-weight: 800;
+  }
+
+  /* Featured card sits on a dark photo — keep inverted white CTA in both themes. */
+  .askCta {
+    background: #fff !important;
+    color: #173a4c !important;
+  }
+
+  .miniCta {
+    background: var(--color-surface) !important;
+    color: var(--color-text) !important;
   }
   .miniFooter {
     justify-content: stretch;

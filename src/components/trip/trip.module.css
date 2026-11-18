@@ -42,14 +42,14 @@
   padding: 9px 12px;
   border-radius: 999px;
   background: var(--color-soft);
-  color: #356175;
+  color: var(--color-text-muted);
   font-size: 10px;
   font-weight: 800;
   white-space: nowrap;
 }
 
 .tag.muted {
-  background: #f0f3f4;
+  background: var(--color-soft);
   color: var(--color-muted);
 }
 
@@ -105,6 +105,7 @@
   right: 17px;
   z-index: 2;
   background: #fff;
+  color: #142b3b;
   border-radius: 9px;
   padding: 11px 13px;
   font-size: 11px;
@@ -120,23 +121,23 @@
   gap: 12px;
   padding: 14px 17px;
   margin-top: 19px;
-  background: #edf7fa;
-  border: 1px solid #d1e5ec;
+  background: var(--color-soft);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   font-size: 11px;
   line-height: 1.75;
-  color: #4f7181;
+  color: var(--color-text-muted);
 }
 
 .previewCallout b {
-  color: #264f62;
+  color: var(--color-text);
 }
 
 /* Subnav */
 
 .subnav {
   margin: 33px 0 0;
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   gap: 30px;
   overflow-x: auto;
@@ -182,7 +183,7 @@
 .section {
   padding-bottom: 43px;
   margin-bottom: 43px;
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-border);
   scroll-margin-top: 96px;
 }
 
@@ -215,9 +216,9 @@
 }
 
 .point {
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-border);
   border-radius: 14px;
-  background: #fbfcfc;
+  background: var(--color-surface-muted);
   padding: 17px;
 }
 
@@ -255,7 +256,7 @@
 
 .fact {
   border-radius: 12px;
-  background: #f6f9fa;
+  background: var(--color-surface-muted);
   padding: 15px 12px;
 }
 
@@ -269,7 +270,7 @@
 
 .factValue {
   font-size: 12px;
-  color: var(--color-ink);
+  color: var(--color-text);
   font-weight: 800;
   margin-top: 6px;
 }
@@ -334,10 +335,10 @@
 }
 
 .incBox {
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-border);
   border-radius: 15px;
   padding: 21px;
-  background: #fbfcfc;
+  background: var(--color-surface-muted);
 }
 
 .incBox h3 {
@@ -358,7 +359,7 @@
 .incBox li {
   font-size: 12px;
   line-height: 1.65;
-  color: #597481;
+  color: var(--color-text-muted);
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -385,7 +386,7 @@
 }
 
 .detailCell {
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-border);
   border-radius: 13px;
   padding: 18px;
 }
@@ -409,8 +410,8 @@
 .booking {
   position: sticky;
   top: 105px;
-  background: #fff;
-  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 20px;
   box-shadow: 0 16px 50px rgba(20, 43, 59, 0.1);
   overflow: hidden;
@@ -418,14 +419,14 @@
 
 .bookingTop {
   padding: 24px;
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .bookingTag {
   display: inline-flex;
   border-radius: 6px;
   background: var(--color-soft);
-  color: #38657b;
+  color: var(--color-text-muted);
   padding: 7px 10px;
   font-size: 9px;
   letter-spacing: 0.6px;
@@ -460,7 +461,7 @@
 
 .fieldTitle {
   display: block;
-  color: #59717d;
+  color: var(--color-text-muted);
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.8px;
@@ -470,25 +471,25 @@
 
 .selectField {
   width: 100%;
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
-  background-color: #f7fafa;
+  background-color: var(--color-surface-muted);
   padding: 13px 40px 13px 14px;
   font-size: var(--field-font-size);
   font-weight: var(--field-font-weight);
-  color: #395261;
+  color: var(--color-text);
   min-height: 44px;
   transition: border-color var(--duration-fast) var(--ease);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .selectField:hover:not(:disabled) {
-    border-color: #a4cbd7;
+    border-color: var(--color-border-strong);
   }
 }
 
 .selectField:disabled {
-  color: #9aabb2;
+  color: var(--color-text-muted);
   cursor: not-allowed;
 }
 
@@ -506,9 +507,9 @@
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  border: 1px solid var(--color-line);
-  background: #fff;
-  color: var(--color-ink);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
   font-size: 16px;
   font-weight: 800;
   cursor: pointer;
@@ -525,7 +526,7 @@
 @media (hover: hover) and (pointer: fine) {
   .stepperBtn:hover:not(:disabled) {
     background: var(--color-soft);
-    border-color: #a4cbd7;
+    border-color: var(--color-border-strong);
   }
 }
 
@@ -575,7 +576,7 @@
 
 .bookingBenefits {
   margin-top: 19px;
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid var(--color-border);
   padding-top: 15px;
   display: flex;
   flex-direction: column;
@@ -593,8 +594,8 @@
 
 .shareBtn {
   width: 100%;
-  border: 1px solid #cbdde5;
-  background: #fff;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
   color: var(--color-blue-dark);
   border-radius: 10px;
   padding: 11px;
@@ -677,8 +678,8 @@
 }
 
 .relatedCard {
-  background: #fff;
-  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 17px;
   overflow: hidden;
   box-shadow: var(--shadow-md);
@@ -733,7 +734,7 @@
   line-height: 1.2;
   letter-spacing: -0.045em;
   margin: 8px 0 20px;
-  color: var(--color-ink);
+  color: var(--color-text);
 }
 
 .relatedBottom {
@@ -742,7 +743,7 @@
   justify-content: space-between;
   gap: 9px;
   padding-top: 15px;
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid var(--color-border);
 }
 
 .relatedBottom small {
@@ -816,8 +817,8 @@
     left: 0;
     right: 0;
     z-index: 30;
-    background: #fff;
-    border-top: 1px solid var(--color-line);
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
     box-shadow: 0 -8px 35px rgba(12, 39, 53, 0.13);
     padding: 12px max(18px, env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom))
       max(18px, env(safe-area-inset-left));
@@ -913,7 +914,7 @@
   padding: 14px;
   font-size: var(--field-font-size);
   font-weight: var(--field-font-weight);
-  color: var(--color-ink);
+  color: var(--color-text);
   line-height: 1.7;
 }
 
@@ -928,10 +929,10 @@
   margin-top: 14px;
   border-radius: 10px;
   padding: 12px;
-  background: #f0f7fa;
+  background: var(--color-soft);
   font-size: 11px;
   line-height: 1.7;
-  color: #4c6e7f;
+  color: var(--color-text-muted);
 }
 
 @media (max-width: 1100px) {

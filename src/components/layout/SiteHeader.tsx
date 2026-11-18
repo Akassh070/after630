@@ -7,14 +7,19 @@ import { usePathname } from "next/navigation";
 import { primaryNav } from "@/content/nav";
 import { siteConfig } from "@/lib/config";
 import { getGreetingWaLink } from "@/lib/whatsapp";
+import ThemeToggle from "@/components/theme/ThemeToggle";
+import { useTheme } from "@/components/theme/ThemeProvider";
 import styles from "./SiteHeader.module.css";
 import mobileStyles from "./MobileNav.module.css";
 
 export default function SiteHeader() {
   const pathname = usePathname();
+  const { theme } = useTheme();
   const [open, setOpen] = useState(false);
   const [renderedPathname, setRenderedPathname] = useState(pathname);
   const waLink = getGreetingWaLink(siteConfig.whatsappNumber);
+  const logoSrc =
+    theme === "dark" ? "/brand/after630-logo-white.svg" : "/brand/after630-logo-ink.svg";
 
   // Close the mobile panel whenever the route actually changes. Adjusting
   // state during render (React's documented pattern for this) instead of in
@@ -43,7 +48,7 @@ export default function SiteHeader() {
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logo} aria-label="After630 home">
           <Image
-            src="/brand/after630-logo-ink.svg"
+            src={logoSrc}
             alt=""
             width={999}
             height={313}
@@ -64,6 +69,7 @@ export default function SiteHeader() {
           ))}
         </nav>
         <div className={styles.actions}>
+          <ThemeToggle />
           {waLink ? (
             <a
               href={waLink}
@@ -102,6 +108,7 @@ export default function SiteHeader() {
           </Link>
         ))}
         <Link href="/contact">Contact</Link>
+        <ThemeToggle variant="mobile" />
         {waLink && (
           <a href={waLink} target="_blank" rel="noopener noreferrer" className={mobileStyles.whatsapp}>
             Chat on WhatsApp ↗

@@ -5,7 +5,8 @@
   max-width: min(560px, calc(100vw - 32px));
   width: 100%;
   box-shadow: var(--shadow-lg);
-  color: var(--color-ink);
+  color: var(--color-text);
+  background: var(--color-surface-elevated);
 }
 
 .dialog::backdrop {
@@ -30,12 +31,12 @@
   height: 36px;
   font-size: 16px;
   cursor: pointer;
-  color: var(--color-ink);
+  color: var(--color-text);
   transition: background var(--duration-fast) var(--ease);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .closeBtn:hover {
-    background: #dcebef;
+    background: var(--color-line);
   }
 }

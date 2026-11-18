@@ -1,0 +1,58 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 22px;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease),
+    border-color var(--duration-fast) var(--ease),
+    color var(--duration-fast) var(--ease);
+}
+
+.toggle svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .toggle:hover {
+    background: var(--color-soft);
+  }
+}
+
+.mobileRow {
+  display: none;
+  margin-top: 4px;
+}
+
+@media (max-width: 760px) {
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 4px 4px;
+    border-top: 1px solid var(--color-border);
+    margin-top: 12px;
+  }
+
+  .mobileLabel {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+}

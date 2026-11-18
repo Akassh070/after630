@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
+import Script from "next/script";
 import { siteConfig } from "@/lib/config";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SkipLink from "@/components/layout/SkipLink";
 import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 import MetaPixel from "@/components/analytics/MetaPixel";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { THEME_INIT_SCRIPT } from "@/components/theme/theme";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -34,16 +37,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={manrope.variable}>
+    <html lang="en" className={manrope.variable} data-theme="light" suppressHydrationWarning>
       <body>
-        <SkipLink />
-        <div className="site">
-          <SiteHeader />
-          <main id="main-content">{children}</main>
-          <SiteFooter />
-        </div>
-        <WhatsAppFloat />
-        {siteConfig.metaPixelId && <MetaPixel pixelId={siteConfig.metaPixelId} />}
+        <Script id="after630-theme-init" strategy="beforeInteractive">
+          {THEME_INIT_SCRIPT}
+        </Script>
+        <ThemeProvider>
+          <SkipLink />
+          <div className="site">
+            <SiteHeader />
+            <main id="main-content">{children}</main>
+            <SiteFooter />
+          </div>
+          <WhatsAppFloat />
+          {siteConfig.metaPixelId && <MetaPixel pixelId={siteConfig.metaPixelId} />}
+        </ThemeProvider>
       </body>
     </html>
   );
