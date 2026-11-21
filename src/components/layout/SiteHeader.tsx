@@ -77,13 +77,13 @@ export default function SiteHeader() {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.cta}
-              aria-label="Book Now on WhatsApp (opens in a new tab)"
+              aria-label="Enquire on WhatsApp (opens in a new tab)"
             >
-              Book Now ↗
+              Enquire on WhatsApp ↗
             </a>
           ) : (
             <Link href="/contact" className={styles.cta}>
-              Book Now ↗
+              Enquire on WhatsApp ↗
             </Link>
           )}
           <button

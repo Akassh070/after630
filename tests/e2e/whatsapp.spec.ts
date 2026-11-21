@@ -17,13 +17,13 @@ test.describe("WhatsApp support across the site", () => {
     });
   }
 
-  test("header Book Now opens WhatsApp with a booking message", async ({ page }) => {
+  test("header Enquire on WhatsApp opens WhatsApp with a trips message", async ({ page }) => {
     await page.goto("/");
-    const cta = page.getByRole("link", { name: /Book Now on WhatsApp/ });
-    await expect(cta).toHaveText("Book Now ↗");
+    const cta = page.getByRole("link", { name: /Enquire on WhatsApp \(opens in a new tab\)/ });
+    await expect(cta).toHaveText("Enquire on WhatsApp ↗");
     const href = await cta.getAttribute("href");
     expect(href).toMatch(WA);
-    expect(decodeURIComponent(href!.split("text=")[1])).toMatch(/I'd like to book a trip/);
+    expect(decodeURIComponent(href!.split("text=")[1])).toMatch(/interested in your upcoming trips/);
   });
 
   test("footer shows the number and Contact page links to WhatsApp", async ({ page }) => {
@@ -47,9 +47,11 @@ test.describe("WhatsApp support across the site", () => {
     await expect(page.getByRole("link", { name: /Chat with After630 on WhatsApp/ })).toBeHidden();
   });
 
-  test("trip Book Now goes straight to WhatsApp with the trip message", async ({ page }) => {
+  test("trip Enquire on WhatsApp goes straight to WhatsApp with the trip message", async ({ page }) => {
     await page.goto("/trips/15-strangers-and-stories");
-    const book = page.getByRole("complementary", { name: "Book this trip" }).getByRole("link", { name: "Book Now ↗" });
+    const book = page
+      .getByRole("complementary", { name: "Book this trip" })
+      .getByRole("link", { name: "Enquire on WhatsApp", exact: true });
     const href = await book.getAttribute("href");
     expect(href).toMatch(WA);
     expect(new URL(href!).searchParams.get("text")).toContain("15 Strangers & Stories");

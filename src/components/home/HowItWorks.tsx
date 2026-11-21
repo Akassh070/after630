@@ -11,8 +11,8 @@ const steps = [
   },
   {
     num: "02",
-    title: "Tap Book Now",
-    text: "Choose your departure and tap Book Now. WhatsApp opens with your booking details filled in.",
+    title: "Tap Enquire on WhatsApp",
+    text: "Choose your departure and tap Enquire on WhatsApp. WhatsApp opens with your trip details filled in.",
   },
   {
     num: "03",

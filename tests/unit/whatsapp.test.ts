@@ -10,6 +10,7 @@ import {
   buildGeneralEnquiryMessage,
   buildTripEnquiryMessage,
   buildWaLink,
+  shortDestination,
 } from "@/lib/whatsapp";
 
 describe("buildWaLink", () => {
@@ -33,34 +34,37 @@ describe("buildWaLink", () => {
 });
 
 describe("buildTripEnquiryMessage", () => {
-  it("includes only the fields that were actually provided", () => {
-    const message = buildTripEnquiryMessage({ tripTitle: "15 Strangers & Stories" });
-    expect(message).toContain("15 Strangers & Stories");
-    expect(message).not.toContain("departure");
-    expect(message).not.toContain("package");
-    expect(message).toMatch(/I'd like to book 15 Strangers & Stories/);
-    expect(message).toMatch(/payment details to reserve my seat/i);
-  });
-
-  it("reflects the exact selected departure, origin, package and traveller count", () => {
+  it("builds the full trip message with destination, dates and pickup city", () => {
     const message = buildTripEnquiryMessage({
-      tripTitle: "Test Group Trip",
-      departureDate: "14 March 2027",
-      originCity: "Delhi",
-      packageName: "Premium",
-      travellers: 3,
+      tripTitle: "15 Strangers & Stories",
+      destination: "Himachal",
+      departureDate: "12–16 December 2026",
+      originCity: "Chandigarh",
     });
-    expect(message).toContain("departure 14 March 2027");
-    expect(message).toContain("starting from Delhi");
-    expect(message).toContain("package Premium");
-    expect(message).toContain("for 3 travellers");
-    expect(message).toContain("reserve our seats");
+    expect(message).toBe(
+      "Hi After630! 👋\n\n" +
+        "I'm interested in the *15 Strangers & Stories* Himachal trip (12–16 December 2026) from Chandigarh.\n\n" +
+        "Are seats still available? I'd love to know a little more about the experience and booking process before confirming. 🏔️",
+    );
   });
 
-  it("uses singular traveller wording for one traveller", () => {
-    const message = buildTripEnquiryMessage({ tripTitle: "Trip", travellers: 1 });
-    expect(message).toContain("for 1 traveller");
-    expect(message).not.toContain("1 travellers");
+  it("leaves out the parts that weren't provided", () => {
+    const message = buildTripEnquiryMessage({ tripTitle: "Test Group Trip" });
+    expect(message).toContain("I'm interested in the *Test Group Trip* trip.");
+    expect(message).not.toContain("(");
+    expect(message).not.toContain(" from ");
+  });
+});
+
+describe("shortDestination", () => {
+  it("uses the broadest destination, shortened where people do", () => {
+    expect(shortDestination(["Sainj Valley", "Himachal Pradesh"])).toBe("Himachal");
+  });
+
+  it("passes other names through unchanged and handles an empty list", () => {
+    expect(shortDestination(["Rishikesh", "Uttarakhand"])).toBe("Uttarakhand");
+    expect(shortDestination(["Uttar Pradesh"])).toBe("Uttar Pradesh");
+    expect(shortDestination([])).toBeUndefined();
   });
 });
 
@@ -114,9 +118,9 @@ describe("site WhatsApp number helpers", () => {
     }
   });
 
-  it("builds the header Book Now link with a booking message", () => {
+  it("builds the header Enquire on WhatsApp link with a trips message", () => {
     const link = getBookingWaLink("917016617715");
-    expect(decodeURIComponent(link!.split("text=")[1])).toMatch(/I'd like to book a trip/);
+    expect(decodeURIComponent(link!.split("text=")[1])).toMatch(/interested in your upcoming trips/);
     expect(getBookingWaLink(null)).toBeNull();
   });
 });

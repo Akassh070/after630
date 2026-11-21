@@ -13,13 +13,20 @@ import {
   getStartingPriceINR,
   type EnquiryMode,
 } from "@/lib/trips/availability";
-import { buildAlternateDatesMessage, buildFutureDatesMessage, buildTripEnquiryMessage, buildWaLink } from "@/lib/whatsapp";
+import {
+  buildAlternateDatesMessage,
+  buildFutureDatesMessage,
+  buildTripEnquiryMessage,
+  buildWaLink,
+  shortDestination,
+} from "@/lib/whatsapp";
+import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import type { Trip } from "@/lib/trips/types";
 import BrochureDownload from "./BrochureDownload";
 import styles from "./trip.module.css";
 
 const MODE_COPY: Record<EnquiryMode, { tag: string; help: string }> = {
-  enquire: { tag: "Booking open", help: "Tap Book Now to reserve on WhatsApp. Your seat is confirmed once payment is received." },
+  enquire: { tag: "Booking open", help: "Message us on WhatsApp to check availability. Your seat is confirmed once payment is received." },
   "future-dates": { tag: "New dates coming", help: "The next departure for this trip will be announced soon. Message us to hear first." },
   "sold-out": { tag: "Sold out", help: "This departure is full. Ask us about other dates or similar trips." },
   postponed: { tag: "Postponed", help: "This trip's dates are being revised. Ask us for the latest update." },
@@ -60,10 +67,9 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
       if (!selectedDeparture || !selectedOrigin || !selectedPackage) return null;
       return buildTripEnquiryMessage({
         tripTitle: trip.title,
+        destination: shortDestination(trip.destinations),
         departureDate: formatDepartureDate(selectedDeparture.localDate, selectedDeparture.endDate),
         originCity: selectedOrigin.city,
-        packageName: selectedPackage.name,
-        travellers,
       });
     }
     if (mode === "future-dates") return buildFutureDatesMessage(trip.title);
@@ -78,9 +84,16 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
   const waLink = message ? buildWaLink(whatsappNumber, message) : null;
   const copy = MODE_COPY[mode];
 
+  const whatsappLabel = (
+    <>
+      <WhatsAppIcon className={styles.whatsappIcon} />
+      Enquire on WhatsApp
+    </>
+  );
+
   const ctaLabel =
     mode === "enquire"
-      ? "Book Now ↗"
+      ? whatsappLabel
       : mode === "future-dates"
         ? "Get notified on WhatsApp ↗"
         : "Ask about other dates ↗";
@@ -89,7 +102,7 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
     mode === "completed"
       ? "See experiences"
       : mode === "enquire"
-        ? "Book Now ↗"
+        ? whatsappLabel
         : mode === "future-dates"
           ? "Get notified ↗"
           : "Other dates ↗";
@@ -263,24 +276,24 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
                 external={Boolean(waLink)}
                 variant="primary"
                 fullWidth
-                className={styles.bookingPrimaryCta}
+                className={`${styles.bookingPrimaryCta} ${styles.whatsappCta}`}
               >
                 {ctaLabel}
               </Button>
             ) : (
-              <Button variant="primary" fullWidth disabled className={styles.bookingPrimaryCta}>
+              <Button variant="primary" fullWidth disabled className={`${styles.bookingPrimaryCta} ${styles.whatsappCta}`}>
                 {ctaLabel}
               </Button>
             )}
             <p className={styles.bookingHelp}>
               {message
-                ? "Opens WhatsApp with your booking details filled in."
+                ? "Opens WhatsApp. Tap Send to enquire. No payment required to ask questions."
                 : "Choose a departure, origin and package to continue."}
             </p>
 
             <div className={styles.bookingBenefits}>
               <span>
-                <b>✓</b> Book in minutes on WhatsApp
+                <b>✓</b> Ask anything on WhatsApp first
               </span>
               <span>
                 <b>✓</b> Payment details shared by our team
@@ -360,7 +373,12 @@ export default function EnquirySection({ trip, whatsappNumber }: { trip: Trip; w
           </strong>
         </div>
         {waLink ? (
-          <Button href={waLink} external variant="primary" className={styles.mobileBookingBtn}>
+          <Button
+            href={waLink}
+            external
+            variant="primary"
+            className={`${styles.mobileBookingBtn} ${mode === "enquire" ? styles.whatsappCta : ""}`}
+          >
             {mobileCtaLabel}
           </Button>
         ) : (

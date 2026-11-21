@@ -41,22 +41,22 @@ test.describe("Trip Details — gallery, itinerary, booking", () => {
     await page.goto("/trips/qa-published-trip");
 
     const booking = page.getByRole("complementary", { name: "Book this trip" });
-    await expect(booking.getByRole("link", { name: "Book Now ↗" })).toHaveCount(0);
+    await expect(booking.getByRole("link", { name: "Enquire on WhatsApp", exact: true })).toHaveCount(0);
 
     await booking.getByLabel("Choose departure").selectOption("dep-1");
     await booking.getByLabel("Travel from").selectOption("Test City A");
     await booking.getByLabel("Package").selectOption("pkg-premium");
 
-    const cta = booking.getByRole("link", { name: "Book Now ↗" });
+    const cta = booking.getByRole("link", { name: "Enquire on WhatsApp", exact: true });
     await expect(cta).toBeVisible();
+    await expect(booking.getByText("Opens WhatsApp. Tap Send to enquire. No payment required to ask questions.")).toBeVisible();
     const href = await cta.getAttribute("href");
     expect(href).toContain("https://wa.me/919800000000?text=");
     const decoded = decodeURIComponent(href!.split("text=")[1]);
+    expect(decoded).toContain("*[QA] Published Test Trip* Test Hills trip");
     expect(decoded).toContain("14 March 2027");
-    expect(decoded).toContain("Test City A");
-    expect(decoded).toContain("Premium");
-    expect(decoded).toMatch(/I'd like to book/);
-    expect(decoded).not.toMatch(/enquiry/i);
+    expect(decoded).toContain("from Test City A");
+    expect(decoded).toContain("Are seats still available?");
   });
 
   test("a sold-out departure on an otherwise-open trip is never offered as a selectable option", async ({ page }) => {
@@ -67,7 +67,7 @@ test.describe("Trip Details — gallery, itinerary, booking", () => {
     expect(options.join(" ")).not.toContain("2 April 2027"); // the sold-out departure
   });
 
-  test("sold-out trip shows a prominent status and no Book Now CTA as the primary action", async ({ page }) => {
+  test("sold-out trip shows a prominent status and no Enquire on WhatsApp CTA as the primary action", async ({ page }) => {
     await page.goto("/trips/qa-sold-out-trip");
     const booking = page.getByRole("complementary", { name: "Book this trip" });
     await expect(booking.getByText("Sold out").first()).toBeVisible();
@@ -80,14 +80,15 @@ test.describe("Trip Details — gallery, itinerary, booking", () => {
     await expect(booking.getByText("Postponed").first()).toBeVisible();
   });
 
-  test("live trip: Book Now opens WhatsApp with the booking message, and no message preview remains", async ({ page }) => {
+  test("live trip: Enquire on WhatsApp opens WhatsApp with the trip message, and no message preview remains", async ({ page }) => {
     await page.goto("/trips/15-strangers-and-stories");
     const booking = page.getByRole("complementary", { name: "Book this trip" });
     await expect(booking.getByText("Booking open")).toBeVisible();
-    const href = await booking.getByRole("link", { name: "Book Now ↗" }).getAttribute("href");
-    expect(new URL(href!).searchParams.get("text")).toContain("I'd like to book 15 Strangers & Stories");
+    const href = await booking.getByRole("link", { name: "Enquire on WhatsApp", exact: true }).getAttribute("href");
+    expect(new URL(href!).searchParams.get("text")).toContain(
+      "I'm interested in the *15 Strangers & Stories* Himachal trip (12–16 December 2026) from Chandigarh.",
+    );
     await expect(page.getByRole("button", { name: /Preview or copy message/ })).toHaveCount(0);
-    await expect(page.locator("body")).not.toContainText(/enquiry|enquire/i);
   });
   test("itinerary PDF can be downloaded from the itinerary and the booking card", async ({ page, request }) => {
     await page.goto("/trips/15-strangers-and-stories");

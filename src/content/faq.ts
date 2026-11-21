@@ -45,13 +45,13 @@ export const faqItems: { category: FaqCategory; question: string; answer: string
     category: "Booking & Payments",
     question: "How can I book a trip?",
     answer:
-      "Open the trip you like and tap Book Now. WhatsApp opens with your trip details filled in. Send it, and our team will share the payment details and confirm your seat.",
+      "Open the trip you like and tap Enquire on WhatsApp. WhatsApp opens with your trip details filled in. Send it, and our team will share the payment details and confirm your seat.",
   },
   {
     category: "Booking & Payments",
     question: "When is my seat reserved?",
     answer:
-      "As soon as your payment is received. Tap Book Now on the trip page, send the WhatsApp message, and our team will share the payment details and confirm your seat in writing.",
+      "As soon as your payment is received. Tap Enquire on WhatsApp on the trip page, send the WhatsApp message, and our team will share the payment details and confirm your seat in writing.",
   },
   {
     category: "Booking & Payments",
@@ -153,7 +153,7 @@ export const homeFaqItems = [
   {
     question: "How do I book a trip?",
     answer:
-      "Pick a trip and tap Book Now. WhatsApp opens with your trip details filled in. Send it, and we'll share the payment details. Your seat is confirmed as soon as payment is received.",
+      "Pick a trip and tap Enquire on WhatsApp. WhatsApp opens with your trip details filled in. Send it, and we'll share the payment details. Your seat is confirmed as soon as payment is received.",
   },
   {
     question: "I'm not from Chandigarh. Can I still join?",

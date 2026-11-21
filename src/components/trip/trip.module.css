@@ -573,6 +573,32 @@
   margin-top: 21px;
 }
 
+/* WhatsApp-green CTA, so it's clear the next step is a chat, not a checkout.
+   #0e7a3c is the darkened WhatsApp green from WhatsAppFloat (white text 5.4:1).
+   Doubled class so it beats the shared Button's .primary regardless of
+   stylesheet order. */
+.whatsappCta.whatsappCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #0e7a3c;
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(12, 60, 32, 0.2);
+}
+
+@media (hover: hover) {
+  .whatsappCta.whatsappCta:hover:not(:disabled) {
+    background: #0b6331;
+  }
+}
+
+.whatsappIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 /* Fixed-package trips: the trip facts in place of single-option dropdowns. */
 .bookingSummary {
   margin: 0 0 18px;

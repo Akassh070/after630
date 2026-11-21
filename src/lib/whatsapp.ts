@@ -1,8 +1,8 @@
 /**
  * WhatsApp booking message builders + link construction.
  *
- * Bookings happen on WhatsApp: "Book Now" opens a chat with the trip details
- * filled in, and the team confirms the seat once payment is received (see
+ * Bookings happen on WhatsApp: "Enquire on WhatsApp" opens a chat with the
+ * trip details filled in, and the team confirms the seat once payment is received (see
  * src/content/legal/terms.ts §2). Never build a wa.me link from an
  * unverified/missing number — buildWaLink returns null in that case and
  * callers fall back to the Contact page.
@@ -31,12 +31,12 @@ export function buildGreetingMessage(): string {
   return "Hi After630! I'd like to know more about your upcoming trips.";
 }
 
-/** Opening message for the header's "Book Now" button, when no trip is chosen yet. */
+/** Opening message for the header's "Enquire on WhatsApp" button, when no trip is chosen yet. */
 export function buildBookingGreetingMessage(): string {
-  return "Hi After630! I'd like to book a trip. Please share the upcoming departures and booking details.";
+  return "Hi After630! 👋 I'm interested in your upcoming trips. Could you share the departures and booking details?";
 }
 
-/** wa.me link for the header's "Book Now" button, or null when no number is configured. */
+/** wa.me link for the header's "Enquire on WhatsApp" button, or null when no number is configured. */
 export function getBookingWaLink(whatsappNumber: string | null): string | null {
   return buildWaLink(whatsappNumber, buildBookingGreetingMessage());
 }
@@ -48,25 +48,39 @@ export function getGreetingWaLink(whatsappNumber: string | null): string | null 
 
 export type TripEnquiryDetails = {
   tripTitle: string;
-  departureDate?: string; // already formatted for display, e.g. "14 March 2027"
+  destination?: string; // short region name, e.g. "Himachal"
+  departureDate?: string; // already formatted for display, e.g. "12–16 December 2026"
   originCity?: string;
-  packageName?: string;
-  travellers?: number;
 };
 
-/** "Book Now" message, once a real departure/origin/package/traveller-count combination is selected. */
-export function buildTripEnquiryMessage(details: TripEnquiryDetails): string {
-  const { tripTitle, departureDate, originCity, packageName, travellers } = details;
-  const parts = [`Hi After630! I'd like to book ${tripTitle}`];
-  if (departureDate) parts.push(`departure ${departureDate}`);
-  if (originCity) parts.push(`starting from ${originCity}`);
-  if (packageName) parts.push(`package ${packageName}`);
-  if (travellers) parts.push(`for ${travellers} traveller${travellers === 1 ? "" : "s"}`);
+// State names people shorten in conversation. Anything not listed is used as-is.
+const SHORT_DESTINATION_NAMES: Record<string, string> = {
+  "Himachal Pradesh": "Himachal",
+};
 
-  return (
-    `${parts.join(", ")}. Please confirm availability and share the payment details to reserve ` +
-    `${travellers && travellers > 1 ? "our seats" : "my seat"}.`
-  );
+/** The trip's broadest destination (last in the list), in its conversational form. */
+export function shortDestination(destinations: string[]): string | undefined {
+  const last = destinations.at(-1)?.trim();
+  if (!last) return undefined;
+  return SHORT_DESTINATION_NAMES[last] ?? last;
+}
+
+/** "Enquire on WhatsApp" message, once a real departure/origin/package combination is selected. */
+export function buildTripEnquiryMessage(details: TripEnquiryDetails): string {
+  const { tripTitle, destination, departureDate, originCity } = details;
+  let trip = `*${tripTitle}*`;
+  if (destination) trip += ` ${destination}`;
+  trip += " trip";
+  if (departureDate) trip += ` (${departureDate})`;
+  if (originCity) trip += ` from ${originCity}`;
+
+  return [
+    "Hi After630! 👋",
+    "",
+    `I'm interested in the ${trip}.`,
+    "",
+    "Are seats still available? I'd love to know a little more about the experience and booking process before confirming. 🏔️",
+  ].join("\n");
 }
 
 /** Used when a trip has no confirmed departures yet. */
